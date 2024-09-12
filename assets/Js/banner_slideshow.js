@@ -4,13 +4,20 @@ showSlides();
 function showSlides() {
     var i;
     var slides = document.getElementsByClassName("mySlides");
+
+    // Alle slides verbergen door de 'active' class te verwijderen
     for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+        slides[i].classList.remove("active");
     }
+
     slideIndex++;
     if (slideIndex > slides.length) {
         slideIndex = 1;
     }
-    slides[slideIndex - 1].style.display = "block";
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
+
+    // Toon de huidige slide door de 'active' class toe te voegen
+    slides[slideIndex - 1].classList.add("active");
+
+    // Verander de afbeelding elke 4 seconden
+    setTimeout(showSlides, 4000);
 }

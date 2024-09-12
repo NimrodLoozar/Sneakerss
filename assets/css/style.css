@@ -849,39 +849,32 @@ h6 {
 }
 
 .slideshow-container {
-    position: relative;
+    position: absolute;
+    top: 0;
     width: 100%;
     height: 100vh;
     display: grid;
     overflow: hidden;
     margin-bottom: 1rem;
+    z-index: -1;
 }
 
 .slideshow-container img.mySlides {
     height: 100vh;
-    overflow: hidden;
-    border-radius: 0;
-    position: relative;
-    inset: 0;
     width: 100%;
-    height: 100%;
     object-fit: cover;
+    position: absolute;
+    inset: 0;
+    opacity: 0; /* Start met onzichtbaar */
     z-index: -1;
+    transition: opacity 1s ease-in-out; /* Smooth fade effect */
 }
 
-.slideshow-container .banner-text {
-    position: absolute;
-    align-self: center;
-    color: rgb(255, 255, 255);
-    justify-self: center;
-    font-weight: bold;
-    font-size: 3.5rem;
-    z-index: 2;
-    padding: 1.5rem;
-    border-radius: 0 50px;
-    background-color: hsla(0, 0%, 0%, 0.867);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.slideshow-container img.mySlides.active {
+    opacity: 1; /* Zorg dat de actieve slide zichtbaar is */
+    z-index: 1; /* Breng de actieve slide naar voren */
 }
+
 
 
 /*------------------------------------------------------------------------------------------*/
