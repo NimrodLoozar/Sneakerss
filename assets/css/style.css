@@ -360,6 +360,15 @@ section {
     margin: 0;
 }
 
+#progress-bar {
+    background-color: #ff8c00;
+    /* Change color as needed */
+    height: 5px;
+    width: 0;
+    transition: width 0.001s ease-in-out;
+    /* Smoother transition */
+}
+
 /* --------- 2.2 Logo ---------- */
 
 #logo {
@@ -534,7 +543,7 @@ section {
     opacity: 0.6;
 }
 
-/*Navigation Solid*/
+/* Navigation Solid */
 
 #header.nav-solid [class*='col-'] {
     padding: 0 20px;
@@ -743,7 +752,7 @@ a img {
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-    /* -webkit-backface-visibility: hidden; */
+    -webkit-backface-visibility: hidden;
 }
 
 a img:hover {
@@ -1029,7 +1038,7 @@ blockquote {
 
 #gallery a:hover img {
     opacity: 0.15;
-    /* -moz-backface-visibility: hidden; */
+    -moz-backface-visibility: hidden;
 }
 
 #gallery a:before {
@@ -1051,7 +1060,7 @@ blockquote {
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
     transition: all .2s linear;
-    /* vertical-align: middle; */
+    vertical-align: middle;
 }
 
 #gallery a:hover:before {
@@ -1189,8 +1198,7 @@ blockquote {
 /* handling phones and small screens */
 @media only screen and (max-width: 1024px) {
     .featherlight .featherlight-content {
-        /* dimensions: maximize lightbox with for small screens */
-        margin-left: 10px;
+        dimensions: maximize lightbox with for small screens margin-left: 10px;
         margin-right: 10px;
         max-height: 98%;
 
@@ -1444,7 +1452,7 @@ blockquote {
     padding: 15px 25px;
 }
 
-/* .client-overlay {
+.client-overlay {
     background: rgba(0, 0, 0, 0.8);
     position: absolute;
     top;
@@ -1459,7 +1467,7 @@ blockquote {
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-} */
+}
 
 #clients a:hover .client-overlay {
     opacity: 1;
