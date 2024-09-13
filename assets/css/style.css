@@ -1035,8 +1035,8 @@ h6 {
     min-width: 33.33%;
     /* Drie recensies per keer */
     padding: 20px;
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
+    /* background-color: #f1f1f1; */
+    /* border: 1px solid #ccc; */
     text-align: center;
 }
 
@@ -2570,28 +2570,28 @@ button:hover {
 .contact-form {
     max-width: 400px;
     margin: 0 auto;
-  }
-  
-  .contact-form label {
+}
+
+.contact-form label {
     display: flex;
     flex-direction: column;
     margin-top: 25px;
     font-weight: 300;
-  }
-  
-  .contact-form input[type=text],
-  .contact-form input[type=email],
-  .contact-form input[type=tel],
-  .contact-form textarea {
+}
+
+.contact-form input[type=text],
+.contact-form input[type=email],
+.contact-form input[type=tel],
+.contact-form textarea {
     width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px;
-  }
-  
-  .contact-form input[type=submit] {
+}
+
+.contact-form input[type=submit] {
     background-color: #e30613;
     color: white;
     padding: 10px 20px;
@@ -2601,8 +2601,8 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-  }
-  
-  .contact-form input[type=submit]:hover {
+}
+
+.contact-form input[type=submit]:hover {
     background-color: #ba0d1b;
-  }
+}
