@@ -865,14 +865,18 @@ h6 {
     object-fit: cover;
     position: absolute;
     inset: 0;
-    opacity: 0; /* Start met onzichtbaar */
+    opacity: 0;
+    /* Start met onzichtbaar */
     z-index: -1;
-    transition: opacity 1s ease-in-out; /* Smooth fade effect */
+    transition: opacity 1s ease-in-out;
+    /* Smooth fade effect */
 }
 
 .slideshow-container img.mySlides.active {
-    opacity: 1; /* Zorg dat de actieve slide zichtbaar is */
-    z-index: 1; /* Breng de actieve slide naar voren */
+    opacity: 1;
+    /* Zorg dat de actieve slide zichtbaar is */
+    z-index: 1;
+    /* Breng de actieve slide naar voren */
 }
 
 
@@ -1006,48 +1010,55 @@ h6 {
 
 .testimonial {
     padding: 15px;
+    box-sizing: border-box;
 }
 
-blockquote {
+.testimonial-slider {
     position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial-wrapper {
+    overflow: hidden;
+    width: 75%;
+    /* Verandert op basis van jouw layout */
+}
+
+.testimonial-slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.testimonial {
+    min-width: 33.33%;
+    /* Drie recensies per keer */
+    padding: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    text-align: center;
 }
 
 .testimonial img {
-    max-height: 120px;
-    border-radius: 250em;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
 }
 
-.testimonial footer {
-    padding-top: 12px;
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }
 
-/* Style Classic - Avatar above Testimonial */
-
-.testimonial.classic img {
-    display: inline-block;
-    margin-bottom: 25px;
-}
-
-.testimonial.classic q {
-    display: block;
-}
-
-.testimonial.classic footer:before {
-    display: block;
-    content: "";
-    width: 30px;
-    height: 4px;
-    margin: 10px auto 15px auto;
-}
-
-/* Style Big */
-
-.testimonial.bigtest {
-    padding-top: 0;
-}
-
-.testimonial.bigtest q {
-    font-size: 22px;
+button:hover {
+    background-color: #555;
 }
 
 /* --------- 6.4 Gallery ---------- */

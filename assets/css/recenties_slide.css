@@ -1,0 +1,38 @@
+.slideshow-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.slideshow-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 33.33%;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
