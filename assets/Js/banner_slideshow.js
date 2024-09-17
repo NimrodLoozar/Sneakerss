@@ -19,5 +19,5 @@ function showSlides() {
     slides[slideIndex - 1].classList.add("active");
 
     // Verander de afbeelding elke 4 seconden
-    setTimeout(showSlides, 4000);
+    setTimeout(showSlides, 3000);
 }
