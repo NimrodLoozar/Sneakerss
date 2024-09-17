@@ -1,0 +1,172 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; 
+}
+
+.infoText {
+    overflow: hidden; 
+    white-space: nowrap; 
+    background-color: black;
+    color: white;
+    padding: 1px 0;
+    position: relative;
+}
+
+.infoText p {
+    display: inline-block;
+    position: relative;
+    animation: slide 10s linear infinite;
+}
+
+.logo {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(260%);
+    }
+    50% {
+        transform: translateX(-100%); 
+    }
+    50.01% {
+        transform: translateX(260%); 
+    }
+    100% {
+        transform: translateX(0); 
+    }
+}
+
+.slideshow {
+    display: flex;
+    overflow: hidden;
+    max-height: 1100px;
+    align-items: center;
+    width: 100%; /* Zorg ervoor dat de container de volledige breedte heeft */
+}
+
+
+.slide {
+    flex: 0 0 100%; /* Zorg ervoor dat elke slide 100% van de containerbreedte beslaat */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+
+.products {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15em;
+
+}
+
+.products1, .products2, .products3 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 400px;
+    height: auto;
+    background-color: rgb(207, 207, 207);
+    border-radius: 25px;
+    border: 1px solid black;
+}
+
+.products img {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+    position: relative;
+}
+
+.products .hover-text1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    background-color: burlywood;
+    border-radius: 30px;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.products div:hover img {
+    opacity: 0.3;
+}
+
+.products div:hover .hover-text1 {
+    opacity: 1;
+    transition: 1s;
+}
+
+.details {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product-title {
+    font-size: 1.2em;
+    margin: 0;
+    padding: 5px 0;
+}
+
+.price {
+    font-size: 1em;
+    color: #000000;
+}
+
+.tittle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+}
+
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Grill Sans Semibold', sans-serif;
+    font-size: 32px;
+}
+
+
+p, span, div {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+
+
+.sidebar {
+    width: 200px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
