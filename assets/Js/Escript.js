@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const slideshow = document.querySelector(".slideshow");
     const slides = document.querySelectorAll(".slide");
     let currentIndex = 0;
@@ -12,5 +12,5 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(() => {
         currentIndex = (currentIndex + 1) % slides.length;
         showSlide(currentIndex);
-    }, 2000); 
+    }, 2000);
 });
