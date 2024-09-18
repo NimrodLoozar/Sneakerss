@@ -884,7 +884,9 @@ h6 {
     /* Breng de actieve slide naar voren */
 }
 
-
+.fadeIn {
+    transform: translateZ(0);
+}
 
 /*------------------------------------------------------------------------------------------*/
 /* 5. Content Elements */
