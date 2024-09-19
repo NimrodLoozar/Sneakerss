@@ -853,7 +853,7 @@ h6 {
     margin-top: 30px;
 }
 
-.slideshow-container {
+.slideshow-container-1 {
     position: absolute;
     top: 0;
     width: 100%;
@@ -864,7 +864,7 @@ h6 {
     z-index: -1;
 }
 
-.slideshow-container img.mySlides {
+.slideshow-container-1 img.mySlides-1 {
     height: 100vh;
     width: 100%;
     object-fit: cover;
@@ -877,11 +877,79 @@ h6 {
     /* Smooth fade effect */
 }
 
-.slideshow-container img.mySlides.active {
+.slideshow-container-1 img.mySlides-1.active {
     opacity: 1;
     /* Zorg dat de actieve slide zichtbaar is */
     z-index: 1;
     /* Breng de actieve slide naar voren */
+}
+
+.slideshow-container-1 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    z-index: -1;
+}
+
+.slideshow-container-1 img.mySlides-1 {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    /* Start met onzichtbaar */
+    z-index: -1;
+    transition: opacity 1s ease-in-out;
+    /* Smooth fade effect */
+}
+
+.slideshow-container-1 img.mySlides-1.active {
+    opacity: 1;
+    /* Zorg dat de actieve slide zichtbaar is */
+    z-index: 1;
+    /* Breng de actieve slide naar voren */
+}
+
+.slideshow-container-2 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    z-index: -1;
+}
+
+.slideshow-container-2 img.mySlides-2 {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
+    /* Start met onzichtbaar */
+    z-index: -1;
+    transition: opacity 1s ease-in-out;
+    /* Smooth fade effect */
+}
+
+.slideshow-container-2 img.mySlides-2.active {
+    opacity: 1;
+    /* Zorg dat de actieve slide zichtbaar is */
+    z-index: 1;
+    /* Breng de actieve slide naar voren */
+}
+
+.mySlides-1,
+.mySlides-2 {
+    display: none;
+}
+
+.active {
+    display: block;
 }
 
 .fadeIn {
@@ -912,7 +980,7 @@ h6 {
 }
 
 .icon-block .icon {
-    position: absolute;
+    position: relative;
 }
 
 .icon-block p {
@@ -949,6 +1017,12 @@ h6 {
     position: relative;
     display: block;
 }
+
+.icon-top .icon img {
+    width: 70%;
+    height: 70%;
+}
+
 
 .icon-top .icon-block-description {
     padding-top: 25px;
@@ -1067,6 +1141,8 @@ button {
 button:hover {
     background-color: #555;
 }
+
+/* --------- 6.4 Gallery ---------- */
 
 /* --------- 6.4 Gallery ---------- */
 

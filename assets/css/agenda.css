@@ -1,150 +1,138 @@
-/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Wrapper */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
 #wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-body {
-    margin: 2rem;
-}
-
-
-/* Header Styles */
-header#banner {
-    margin: 2rem;
-    background: url('path-to-your-banner-image.jpg') no-repeat center center/cover;
-    min-height: 20vh;
+header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-#banner-content {
-    min-height: 40vh;
-    text-align: center;
-}
-
-header h1, header h2 {
-    color: #fff;
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
     text-transform: uppercase;
 }
 
-/* Navigation */
-#nav-main ul {
+nav ul{
     list-style: none;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
 }
 
-#nav-main ul li {
-    display: inline;
+
+nav ul li {
+    margin-left: 20px;
 }
 
-#nav-main ul li a {
+nav ul li a {
     text-decoration: none;
     color: #333;
-    font-weight: bold;
-    padding: 10px 20px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
 }
 
-#nav-main ul li a:hover {
+nav ul li a:hover,
+nav ul li a.active {
     color: #f0a500;
 }
 
-/* Upcoming List */
-.upcoming-list {
-    margin-top: 2rem;
+aside ul {
     list-style: none;
-    min-height: 80%;
+    display: flex;
+    align-items: center;
 }
 
-.upcoming-list li {
-    background: #f0f0f0;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-left: 5px solid #f0a500;
+aside li {
+    margin: 1rem;
 }
 
-.upcoming-list h4 {
-    margin-bottom: 5px;
+.social-icons a {
+    color: #333;
+    text-decoration: none;
 }
 
-/* Section Titles */
-.section-title {
+
+.underline {
+    height: 3px;
+    background-color: #f0a500;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.agenda-item {
+    margin-bottom: 40px;
+}
+
+.agenda-date {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-/* Footer */
-footer#landing-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-}
-
-footer a {
+    margin-bottom: 10px;
     color: #f0a500;
-    text-decoration: none;
 }
 
-footer a:hover {
-    color: #fff;
-}
-
-
-/* Navigation */
-
-nav {
-    border: 2px solid black;
-}
-
-
-#nav-main ul {
-    list-style: none;
+.event {
     display: flex;
-    justify-content: center; /* Center the navigation */
     align-items: center;
-    gap: 30px; /* Adjust the spacing between menu items */
-    padding: 0;
-    margin: 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border-left: 4px solid #f0a500;
 }
 
-#nav-main ul li {
-    display: inline-block;
-}
-
-#nav-main ul li a {
-    text-decoration: none;
-    color: #333;
+.event-time {
     font-weight: bold;
-    font-size: 1rem;
-    text-transform: uppercase;
-    padding: 10px 15px;
 }
 
-#nav-main ul li a:hover {
-    color: #f0a500; /* Hover color for the navigation links */
-    transition: color 0.3s ease;
+.event-time {
+    font-weight: bold;
 }
 
-/* Logo */
-#logo {
-    position: absolute;
-    left: 20px; /* Adjust logo position */
-    top: 10px; /* Adjust vertical alignment */
+.event-description {
+    margin-left: 10px;
 }
 
-#logo img {
-    max-height: 40px; /* Resize logo */
+#community {
+    background-color: #f0f0f0;
+    padding: 40px 0;
+    text-align: center;
 }
 
+#community h3 {
+    color: #f0a500;
+    margin-bottom: 20px;
+}
+
+.community-links a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}

@@ -1,23 +1,30 @@
-var slideIndex = 0;
-showSlides();
+function showSlides(slideClass, containerClass) {
+    var slideIndex = 0;
 
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
+    function displaySlides() {
+        var i;
+        var slides = document.getElementsByClassName(slideClass);
 
-    // Alle slides verbergen door de 'active' class te verwijderen
-    for (i = 0; i < slides.length; i++) {
-        slides[i].classList.remove("active");
+        // Alle slides verbergen
+        for (i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+
+        // Toon de huidige slide
+        slides[slideIndex - 1].classList.add("active");
+
+        // Verander de afbeelding elke 4 seconden
+        setTimeout(displaySlides, 3000);
     }
 
-    slideIndex++;
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
-
-    // Toon de huidige slide door de 'active' class toe te voegen
-    slides[slideIndex - 1].classList.add("active");
-
-    // Verander de afbeelding elke 4 seconden
-    setTimeout(showSlides, 3000);
+    displaySlides();
 }
+
+// Roep de functie aan voor elke slideshow
+showSlides("mySlides-1", "slideshow-container-1");
+showSlides("mySlides-2", "slideshow-container-2");
