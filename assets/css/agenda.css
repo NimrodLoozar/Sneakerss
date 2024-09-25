@@ -11,8 +11,11 @@ body {
 }
 
 #wrapper {
-    max-width: 1200px;
     margin: 0 auto;
+    max-width: 1200px;
+}
+
+main {
     padding: 20px;
 }
 
@@ -30,8 +33,11 @@ header {
     text-transform: uppercase;
 }
 
-nav ul{
+ul {
     list-style: none;
+}
+
+nav ul{
     display: flex;
     align-items: center;
 }
@@ -108,31 +114,19 @@ aside li {
     margin-left: 10px;
 }
 
-#community {
-    background-color: #f0f0f0;
-    padding: 40px 0;
-    text-align: center;
-}
-
-#community h3 {
-    color: #f0a500;
-    margin-bottom: 20px;
-}
-
-.community-links a {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
 footer {
-    background-color: #333;
+    min-height: 10rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #111;
     color: white;
     text-align: center;
     padding: 20px 0;
     margin-top: 40px;
+}
+
+footer div ul li a {
+    text-decoration: none;
+    color: #fff;
 }
