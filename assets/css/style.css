@@ -25,6 +25,7 @@
 - 6.6 Pricing Table
 7. Footer
 8. contact form
+9. Exclusive sneakers
 
 
 /*------------------------------------------------------------------------------------------*/
@@ -2689,4 +2690,55 @@ button:hover {
 
 .contact-form input[type=submit]:hover {
     background-color: #ba0d1b;
+}
+
+/* 9. Exclusive sneakers */
+
+.exclusive-underground {
+    border: 5px solid black;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-image: url('path/to/your/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.exclusive-underground h2 {
+    font-size: 24px;
+    color: #ba0d1b;
+    margin-bottom: 10px;
+}
+
+.exclusive-underground p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.sneaker-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.sneaker-item {
+    flex: 1 1 calc(33.333% - 20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.sneaker-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.sneaker-item p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
 }
