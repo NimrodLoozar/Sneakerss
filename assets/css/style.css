@@ -2764,3 +2764,23 @@ button:hover {
 .sneaker-item a:hover {
     background-color: #e30613;
 }
+
+/* Add this to the parent container of .vip-sneaker */
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure the container takes up the full width */
+    margin: 20px 0; /* Optional: Add some margin for spacing */
+}
+
+/* Update the .vip-sneaker class */
+.vip-sneaker {
+    border: 2px solid gold;
+    padding: 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #111;
+}
