@@ -2765,22 +2765,56 @@ button:hover {
     background-color: #e30613;
 }
 
-/* Add this to the parent container of .vip-sneaker */
-.parent-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Ensure the container takes up the full width */
-    margin: 20px 0; /* Optional: Add some margin for spacing */
+/* Special Podium Section for Large Display */
+.podium-section {
+    background-color: #000; /* Dark background for the podium */
+    padding: 100px 20px;    /* Extra padding to create a podium-like feel */
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-/* Update the .vip-sneaker class */
-.vip-sneaker {
-    border: 2px solid gold;
-    padding: 10px;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #111;
+.podium-item {
+    display: inline-block;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    padding: 40px;
+    width: 60%; /* Make it larger */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Elevated look */
+    transition: transform 0.3s ease;
+}
+
+.podium-item:hover {
+    transform: scale(1.08); /* Slight zoom-in on hover */
+}
+
+.podium-item img {
+    max-width: 100%; /* Make the image larger */
+    border-radius: 12px;
+    background-color: #fff;
+    height: auto;
+    margin: 20px 0;
+}
+
+.podium-item p {
+    margin: 20px 0;
+    font-size: 24px; /* Larger font size for prominence */
+    font-weight: bold;
+    color: #ffcc00; /* Gold color for exclusivity */
+}
+
+.podium-item a {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ffcc00;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5%
+}
+
+.podium-item a:hover {
+    background-color: #e30613; /* Red hover effect for button */
 }
