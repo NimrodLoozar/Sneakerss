@@ -2736,7 +2736,9 @@ button:hover {
 
 .sneaker-item img {
     max-width: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
+    background-color: #fff;
+    margin: 5px;
 }
 
 .sneaker-item p {
@@ -2748,7 +2750,7 @@ button:hover {
 .sneaker-item a {
     display: inline-block;
     padding: 10px 20px;
-    margin: 5%;
+    margin-bottom: 5%;
     background-color: #ffcc00;
     color: #1a1a1a;
     text-transform: uppercase;
