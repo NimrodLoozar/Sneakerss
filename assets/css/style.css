@@ -2730,11 +2730,13 @@ button:hover {
     padding: 10px;
     background-color: #fff;
     text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s;
 }
 
 .sneaker-item img {
     max-width: 100%;
-    height: auto;
+    height: 70%;
 }
 
 .sneaker-item p {
