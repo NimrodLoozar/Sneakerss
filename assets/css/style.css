@@ -2818,3 +2818,33 @@ button:hover {
 .podium-item a:hover {
     background-color: #e30613; /* Red hover effect for button */
 }
+
+
+/* 10. Faq */
+
+.faq-item {
+    margin-bottom: 20px;
+  }
+  
+  .faq-item h3 {
+    cursor: pointer;
+    margin: 0;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .faq-item p {
+    margin: 10px 0;
+    font-size: 26px;
+    line-height: 1.5;
+    display: none;
+  }
+  
+  .arrow {
+    float: right;
+  }
+  
