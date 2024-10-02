@@ -886,21 +886,17 @@ h6 {
 }
 
 .slideshow-container-1 {
-    position: absolute;
     top: 0;
-    width: 100%;
-    height: 100vh;
+    height: 40vh;
     display: grid;
     overflow: hidden;
     margin-bottom: 1rem;
     z-index: -1;
+    margin: auto;
 }
 
 .slideshow-container-1 img.mySlides-1 {
-    height: 100vh;
-    width: 100%;
     object-fit: cover;
-    position: absolute;
     inset: 0;
     opacity: 0;
     /* Start met onzichtbaar */
