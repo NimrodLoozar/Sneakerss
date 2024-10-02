@@ -2871,6 +2871,36 @@ button:hover {
     margin-top: 20px;
 }
 
+/* Plategrond */
+.map-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#map-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
 /* 11. Faq */
 
 .faq-item {
