@@ -2742,3 +2742,42 @@ button:hover {
     font-size: 14px;
     color: #555;
 }
+
+/* Ashutosh FAQ Page */
+.question-container {
+    text-align: -webkit-center;
+    max-width: 8000px;
+    margin: 0 auto;
+    border: 3px solid rgb(196, 166, 34);
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px;
+    display: table;
+}
+
+.question-container ul li {
+    border: 2px solid rgb(196, 166, 34); /* Dezelfde kleur als de container */
+    border-radius: 5px; /* Geeft ronde hoeken aan de border */
+    margin: 55px 0; /* Zorgt voor wat ruimte tussen de items */
+    padding: 10px; /* Geeft wat extra ruimte binnen de lijstitems */
+    list-style: none; /* Verwijdert de standaard bullet points */
+}
+
+.questions-left, .questions-right {
+    width: 45%;
+}
+
+.questions-left ul, .questions-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.questions-left li, .questions-right li {
+    padding: 10px 0;
+}
+
+/* Zorg ervoor dat de container op de juiste plaats staat */
+#questions {
+    max-width: 2000px;
+    margin: 0 auto; /* Centreer de vragen onder de tekst */
+}
