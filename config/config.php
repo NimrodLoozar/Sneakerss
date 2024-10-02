@@ -1,19 +1,14 @@
 <?php
-// Database configuration
-$dbHost = 'localhost';
-$dbName = 'Sneaker';
-$dbUser = 'DB_USER';
-$dbPass = 'DB_PASS';
-
-$dsn = "mysql:host=$dbHost;
-        dbname=$dbName;
-        charset=UTF8";
+// config.php (database connectie)
+$host = 'localhost';
+$dbname = 'astronomie';
+$username = 'root';
+$password = '';
 
 try {
-    $pdo = new PDO($dsn, $dbUser, $dbPass);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
 } catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+    die("Fout bij verbinding: " . $e->getMessage());
 }
 ?>
