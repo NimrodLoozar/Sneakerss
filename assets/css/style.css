@@ -2725,9 +2725,19 @@ button:hover {
 }
 
 .sneaker-item {
-    flex: 1 1 calc(33.333% - 20px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    background-color: #262626;
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.sneaker-item:hover {
+    transform: scale(1.05);
+}
+
+.sneaker-item img {
+    max-width: 100%;
+    border-radius: 12px;
     background-color: #fff;
     height: 150px;
     margin: 5px;
@@ -2785,6 +2795,9 @@ button:hover {
 
 .podium-item img {
     max-width: 100%;
+    /* Make the image larger */
+    border-radius: 12px;
+    background-color: #fff;
     height: auto;
     margin: 20px 0;
 }
