@@ -887,7 +887,6 @@ h6 {
 
 .slideshow-container-1 {
     top: 0;
-    height: 40vh;
     display: grid;
     overflow: hidden;
     margin-bottom: 1rem;
@@ -1144,10 +1143,12 @@ button:hover {
 .text-with-image {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Zorgt ervoor dat de inhoud aan de linkerkant uitgelijnd is */
+    justify-content: flex-start;
+    /* Zorgt ervoor dat de inhoud aan de linkerkant uitgelijnd is */
     gap: 20px;
     margin: 40px 0;
-    padding: 0 20px; /* Voeg padding toe aan de zijkanten om het geheel wat naar binnen te halen */
+    padding: 0 20px;
+    /* Voeg padding toe aan de zijkanten om het geheel wat naar binnen te halen */
 }
 
 .text-with-image span {
