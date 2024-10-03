@@ -1,100 +1,58 @@
 <?php
-include('../config/config.php');
+include 'config/config.php';
 
-/**
- * Gebruik dubbele quotes om de connectiestring, 
- * gebruik kleine letters voor host en dbname!
- */
-$dsn = "mysql:host=$dbHost;
-        dbname=$dbName;
-        charset=UTF8";
+// We gebruiken nu de variabelen uit config.php
+try {
+    // De $pdo-verbinding is al gemaakt in config.php, dus we hoeven dit niet opnieuw te doen
 
-/**
- * Maak een nieuw PDO object waarmee je verbinding maakt met de 
- * MySQL-server en de database
- */
-$pdo = new PDO($dsn, $dbUser, $dbPass);
+    // Controleer of het formulier is verzonden
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Sanitize de input
+        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $phonenumber = filter_input(INPUT_POST, 'phonenumber', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $question = filter_input(INPUT_POST, 'question', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-/**
- * We gaan de $_POST-array waarden schoonmaken
- */
-$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // Prepare the query
+        $sql = "INSERT INTO contact (Firstname, Lastname, PhoneNumber, Email, Question)
+                VALUES (:firstname, :lastname, :phonenumber, :email, :question)";
+        $statement = $pdo->prepare($sql);
 
-    // Prepare the query
-    $sql = "INSERT INTO contact (Firstname, 
-                                Lastname,
-                                PhoneNumber, 
-                                Email, 
-                                Question)           
-            VALUEs              (:firstname, 
-                                :lastname, 
-                                :phonenumber,
-                                :email, 
-                                :question)";
-    $statement = $pdo->prepare($sql);
+        // Bind the parameters
+        $statement->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+        $statement->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+        $statement->bindParam(':phonenumber', $phonenumber, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':question', $question, PDO::PARAM_STR);
 
-    // Bind the parameters
-    $statement->bindParam(':firstname', $_POST['firstname'], PDO::PARAM_STR);
-    $statement->bindParam(':lastname', $_POST['lastname'], PDO::PARAM_STR);
-    $statement->bindParam(':phonenumber', $_POST['phonenumber'], PDO::PARAM_STR);
-    $statement->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
-    $statement->bindParam(':question', $_POST['question'], PDO::PARAM_STR);
-    
- /**
-     * Voer de query uit in de database
-     */
-    $statement->execute();
+        // Voer de query uit in de database
+        $statement->execute();
 
-    /**
-     * Geef feedback aan de gebruiker
-     */
-    
+        // Geef feedback aan de gebruiker
+        $feedback = "We hebben uw formulier ontvangen. We nemen zo snel mogelijk contact met u op!";
 
-    /**
-     * Met een header() functie kun je automatisch naar een andere pagina
-     * navigeren
-     */
-    header('Refresh:2.5; url=../index.php');
-    ?>
-
+        // Met een header() functie kun je automatisch naar een andere pagina navigeren
+        header('Refresh:2.5; url=index.html');
+    }
+} catch (PDOException $e) {
+    die("Fout bij het verwerken van het formulier: " . $e->getMessage());
+}
+?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head lang="en">
+<html lang="nl">
+<head>
     <meta charset="UTF-8">
-
-    <!--Page Title-->
     <title>Sneakerss - 2024</title>
-
-    <!--Meta Keywords and Description-->
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-
-    <!--Favicon-->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" title="Favicon" />
-
-    <!-- Main CSS Files -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Namari Color CSS -->
-    <link rel="stylesheet" href="assets/css/namari-color.css">
-
-    <!--Icon Fonts - Font Awesome Icons-->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-
-    <!-- Animate CSS-->
-    <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
-
-    <!--Google Webfonts-->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Voeg hier je CSS en andere head elementen toe -->
 </head>
 <body>
-    <h3>We hebben uw formulier ontvangen. <br> We nemen zo snel mogelijk contact met u op!</h3>
+    <?php if (isset($feedback)): ?>
+        <h3><?php echo $feedback; ?></h3>
+    <?php else: ?>
+        <h3>Vul het formulier in om contact met ons op te nemen.</h3>
+        <!-- Hier kun je het HTML-formulier toevoegen -->
+    <?php endif; ?>
 </body>
 </html>
-
-
-    
-
-

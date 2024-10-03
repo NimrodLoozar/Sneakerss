@@ -55,9 +55,11 @@
                 </ul>
             </aside>
         </header>
-        <button class="pre-order-button">
-            Pre-order nu!
-        </button>
+        <div class="button-container">
+            <button class="pre-order-button">
+                Pre-order nu!
+            </button>
+        </div>
 
         <h2>Onze beste gasten die een pre-order hebben.</h2>
         <?php
