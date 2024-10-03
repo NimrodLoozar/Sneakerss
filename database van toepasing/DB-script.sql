@@ -4,7 +4,7 @@
 
 --
 -- Database: `astronomie`
---'
+--
 
 DROP DATABASE IF EXISTS `astronomie`;
 CREATE DATABASE `astronomie`;
@@ -20,7 +20,7 @@ USE `astronomie`;
 --
 
 DROP TABLE IF EXISTS `contact`;
-CREATE TABLE IF NOT EXISTS `contact` (
+CREATE TABLE `contact` (
   `id` tinyint NOT NULL AUTO_INCREMENT,
   `Firstname` varchar(100) NOT NULL,
   `Lastname` varchar(100) NOT NULL,
@@ -45,7 +45,7 @@ INSERT INTO `contact` (`id`, `Firstname`, `Lastname`, `PhoneNumber`, `Email`, `Q
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT,
   `Username` varchar(20) NOT NULL,
   `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
