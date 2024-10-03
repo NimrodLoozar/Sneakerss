@@ -1575,6 +1575,18 @@ button:hover {
 #clients img {
     display: inline-block;
     padding: 15px 25px;
+    /* width: 600px; */
+    /* Vaste breedte */
+    height: 90px;
+    /* Vaste hoogte */
+    object-fit: cover;
+    /* Zorgt ervoor dat de afbeelding netjes binnen de container past zonder te vervormen */
+    border-radius: 5px;
+    margin-bottom: 1.3rem;
+}
+
+.clients_img {
+    width: 200px;
 }
 
 .client-overlay {
