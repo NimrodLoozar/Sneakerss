@@ -2949,7 +2949,16 @@ button:hover {
 }
 
 .question-container ul li {
-    border: 2px solid rgb(196, 166, 34);/ Dezelfde kleur als de container / border-radius: 5px;/ Geeft ronde hoeken aan de border / margin: 55px 0;/ Zorgt voor wat ruimte tussen de items / padding: 10px;/ Geeft wat extra ruimte binnen de lijstitems / list-style: none;/ Verwijdert de standaard bullet points /
+    border: 2px solid rgb(196, 166, 34);
+    /* Dezelfde kleur als de container */
+    border-radius: 5px;
+    /* Geeft ronde hoeken aan de border */
+    margin: 55px 0;
+    /* Zorgt voor wat ruimte tussen de items */
+    padding: 10px;
+    /* Geeft wat extra ruimte binnen de lijstitems */
+    list-style: none;
+    /* Verwijdert de standaard bullet points */
 }
 
 .questions-left,
