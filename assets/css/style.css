@@ -1179,7 +1179,6 @@ button:hover {
     max-width: 500px;
     height: auto;
     border-radius: 10px;
-    margin-left: 10%;
 }
 
 @media (max-width: 768px) {
@@ -1191,8 +1190,7 @@ button:hover {
     .what-is-sneakerness {
         max-width: 100%;
     }
-}
-
+} 
 
 /* --------- 6.4 Gallery ---------- */
 
