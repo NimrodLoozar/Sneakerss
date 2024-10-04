@@ -335,7 +335,8 @@ section {
 
 /* --------- 2.1 Header --------- */
 
-#header {
+#header,
+#headerFAQ {
     height: 71px !important;
     overflow: visible;
     z-index: 9999;
@@ -343,19 +344,23 @@ section {
     position: absolute !important;
 }
 
-#header .row {
+#header .row,
+#headerFAQ .row {
     padding: 0;
 }
 
-#header aside {
+#header aside,
+#headerFAQ aside {
     text-align: right;
 }
 
-#header ul {
+#header ul,
+#headerFAQ ul {
     text-align: center;
 }
 
-#header li {
+#header li,
+#headerFAQ li {
     display: inline-block;
     list-style: none;
     margin: 0;
@@ -523,45 +528,53 @@ section {
 
 /* --------- 2.4 Navigation ---------- */
 
-#header {
+#header,
+#headerFAQ {
     font-size: 13px;
 }
 
-#header aside {
+#header aside,
+#headerFAQ aside {
     float: right;
 }
 
-#header nav ul {
+#header nav ul,
+#headerFAQ nav ul {
     text-transform: uppercase;
     width: 1800px;
 
 }
 
-#header nav a {
+#header nav a,
+#headerFAQ nav a {
     height: 71px;
     line-height: 71px;
     display: block;
     padding: 0 10px;
 }
 
-#header nav a:hover {
+#header nav a:hover,
+#headerFAQ nav a:hover {
     opacity: 0.6;
 }
 
 /* Navigation Solid */
 
-#header.nav-solid [class*='col-'] {
+#header.nav-solid [class*='col-'],
+#headerFAQ.nav-solid [class*='col-'] {
     padding: 0 20px;
 }
 
-#header.nav-solid {
+#header.nav-solid,
+#headerFAQ.nav-solid {
     background: #fff;
     box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.2);
     position: fixed !important;
     left: 0;
 }
 
-#header.nav-solid nav a {
+#header.nav-solid nav a,
+#headerFAQ.nav-solid nav a {
     border-bottom: 3px solid;
     border-color: #fff;
     -webkit-transition: all 0.3s ease-out;
@@ -570,13 +583,15 @@ section {
     transition: all 0.3s ease-out;
 }
 
-#header.nav-solid nav a:hover {
+#header.nav-solid nav a:hover,
+#headerFAQ.nav-solid nav a:hover {
     opacity: 1;
 }
 
 /* Social Elements when Solid*/
 
-#header.nav-solid .social-icons a {
+#header.nav-solid .social-icons a,
+#headerFAQ.nav-solid .social-icons a {
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
@@ -584,7 +599,8 @@ section {
     opacity: 0.5;
 }
 
-#header.nav-solid .social-icons a:hover {
+#header.nav-solid .social-icons a:hover,
+#headerFAQ.nav-solid .social-icons a:hover {
     opacity: 1;
     color: #e4473c;
 }
@@ -711,7 +727,8 @@ nav#nav-mobile a:hover {
 
 /* --------- 2.5 Social Elements ---------- */
 
-#header .col-4 {
+#header .col-4,
+#headerFAQ .col-4 {
     text-align: right;
 }
 
@@ -734,7 +751,8 @@ nav#nav-mobile a:hover {
     display: none;
 }
 
-#header .social-icons {
+#header .social-icons,
+#headerFAQ .social-icons {
     margin-top: 27px;
     margin-right: 100px;
 }
@@ -809,7 +827,8 @@ h6 {
 
 /* Section Headings */
 
-.section-heading {
+.section-heading,
+.section-headingFAQ {
     padding: 0 0 15px 0;
 }
 
@@ -818,7 +837,8 @@ h6 {
     padding-top: 0;
 }
 
-.section-heading h3 {
+.section-heading h3,
+.section-headingFAQ h3 {
     font-size: 14px;
     font-weight: bold;
     color: #ccc;
@@ -826,11 +846,16 @@ h6 {
     padding-bottom: 0;
 }
 
+/* .section-headingFAQ p {
+    color: #fff;
+} */
+
 /*------------------------------------------------------------------------------------------*/
 /* 4. Banner */
 /*------------------------------------------------------------------------------------------*/
 
-#banner {
+#banner,
+#bannerFAQ {
     background-size: cover;
     justify-content: center;
     align-items: center;
@@ -846,6 +871,10 @@ h6 {
     padding-top: 5%;
 }
 
+#bannerFAQ h1 {
+    color: #fff;
+}
+
 #banner .section-heading:before {
     content: "";
     display: block;
@@ -854,7 +883,8 @@ h6 {
     margin-top: 30px;
 }
 
-.slideshow-container-1 {
+.slideshow-container-1,
+.video {
     position: absolute;
     top: 0;
     width: 100%;
@@ -1068,8 +1098,14 @@ h6 {
 
 /* --------- 6.1 Introduction ---------- */
 
-.introduction img.featured {
+.introduction {
     padding: 55px 0 0 0;
+}
+
+.introductionFAQ {
+    position: absolute;
+    top: 0;
+
 }
 
 /* --------- 6.2 Features ---------- */
@@ -2417,7 +2453,8 @@ button:hover {
         display: block;
     }
 
-    #header aside {
+    #header aside,
+    #headerFAQ aside {
         display: none;
     }
 }
@@ -2484,11 +2521,13 @@ button:hover {
     }
 
     /*-----------------Header Elements-----------------*/
-    #header .row {
+    #header .row,
+    #headerFAQ .row {
         padding: 0 15px !important;
     }
 
-    #header.nav-solid [class*="col-"] {
+    #header.nav-solid [class*="col-"],
+    #headerFAQ.nav-solid [class*="col-"] {
         padding: 0;
     }
 
@@ -2498,12 +2537,14 @@ button:hover {
     }
 
     /* Social */
-    #header aside {
+    #header aside,
+    #headerFAQ aside {
         clear: both;
         padding: 0;
     }
 
-    #header ul.social-icons {
+    #header ul.social-icons,
+    #headerFAQ ul.social-icons {
         margin-top: 0;
     }
 
@@ -2596,11 +2637,13 @@ button:hover {
     }
 
     /*-----------------Header Elements-----------------*/
-    #header .row {
+    #header .row,
+    #headerFAQ .row {
         padding: 0 !important;
     }
 
-    #header aside {
+    #header aside,
+    #headerFAQ aside {
         display: inline-block;
         position: absolute;
         top: 40px;
@@ -2609,11 +2652,13 @@ button:hover {
         padding-right: 5px;
     }
 
-    #header.nav-solid aside {
+    #header.nav-solid aside,
+    #headerFAQ.nav-solid aside {
         top: 20px;
     }
 
-    #header aside ul {
+    #header aside ul,
+    #headerFAQ aside ul {
         margin-top: 0 !important;
         padding-top: 6px;
     }
@@ -2670,7 +2715,8 @@ button:hover {
     }
 
     /*-----------------Header Elements-----------------*/
-    #header aside {
+    #header aside,
+    #headerFAQ aside {
         display: inline-block;
         position: absolute;
         top: 40px;
@@ -2679,11 +2725,13 @@ button:hover {
         padding-right: 5px;
     }
 
-    #header.nav-solid aside {
+    #header.nav-solid aside,
+    #headerFAQ.nav-solid aside {
         top: 20px;
     }
 
-    #header aside ul {
+    #header aside ul,
+    #headerFAQ aside ul {
         margin-top: 0 !important;
         padding-top: 6px;
     }
@@ -2926,7 +2974,7 @@ button:hover {
     margin-bottom: 1.3rem;
 }
 
-.hidden {
+.error_hidden {
     display: none;
 }
 
@@ -2962,12 +3010,9 @@ button:hover {
     cursor: pointer;
 }
 
-.hidden {
-    display: none;
-}
 
 /* 11. Plattegrond */
-.map-container {
+/* .map-container {
     position: relative;
     display: flex;
     justify-content: center;
@@ -2994,13 +3039,14 @@ button:hover {
 
 .hidden {
     display: none;
-}
+} */
 
 
 /* 12. Faq */
 
 .faq-item {
     margin-bottom: 20px;
+    width: 78vw;
 }
 
 .faq-item h3 {
@@ -3008,7 +3054,7 @@ button:hover {
     margin: 0;
     padding: 10px;
     background-color: #f1f1f1;
-    border: 1px solid #ccc;
+    border: 1px solid #d7b539;
     border-radius: 8px;
     font-size: 28px;
     font-weight: bold;
@@ -3019,10 +3065,51 @@ button:hover {
     font-size: 26px;
     line-height: 1.5;
     display: none;
+
 }
 
 .arrow {
     float: right;
+}
+
+.faq-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 81vw;
+    text-align: center;
+}
+
+#searchInput[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#searchButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background-color: #45a049;
+}
+
+#resultSection {
+    margin-top: 20px;
+}
+
+.no-results {
+    color: red;
+    font-weight: bold;
 }
 
 /*-------------------------------------------------------------------------------------

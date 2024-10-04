@@ -27,8 +27,8 @@ function displayStands(stands) {
 
 // Functie voor foutmelding
 function showError() {
-    mapContainer.classList.add('hidden');
-    errorMessage.classList.remove('hidden');
+    mapContainer.classList.add('error_hidden');
+    errorMessage.classList.remove('error_hidden');
 }
 
 // Check voor beschikbare standdata

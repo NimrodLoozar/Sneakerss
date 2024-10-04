@@ -39,8 +39,8 @@ function displaySneakers(sneakers) {
 
 // Functie om foutmelding te tonen
 function showError() {
-    sneakerContainer.classList.add('hidden');
-    errorMessage.classList.remove('hidden');
+    sneakerContainer.classList.add('error_hidden');
+    errorMessage.classList.remove('error_hidden');
 }
 
 // Sneakers weergeven of foutmelding tonen
