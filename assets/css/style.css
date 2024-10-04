@@ -25,7 +25,7 @@
 - 6.6 Pricing Table
 7. Footer
 8. contact form
-9. Exclusive sneakers & VIP
+9. Exclusive sneakers & Podium
 
 
 /*------------------------------------------------------------------------------------------*/
@@ -125,7 +125,7 @@ figure {
 .page-border>.bottom-border,
 .page-border>.left-border {
     padding: 11px;
-    background: #ccc;
+    background: #e30613;
 }
 
 .page-border .bottom-border,
