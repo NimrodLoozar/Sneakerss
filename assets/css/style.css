@@ -115,7 +115,7 @@ p {
 
 .row img {
     height: auto;
-    max-width: 100%;
+    /* max-width: 100%; */
 }
 
 a {
@@ -940,7 +940,7 @@ h6 {
     height: 100vh;
     display: grid;
     overflow: hidden;
-    /* margin-bottom: 1rem; */
+    margin-bottom: 1rem;
     z-index: -1;
 }
 
@@ -1281,8 +1281,16 @@ button:hover {
     max-width: 500px;
     height: auto;
     border-radius: 50px;
+}
+
+#imgLeft {
     margin-left: 10%;
 }
+
+.what-is-sneakerness#imgRight {
+    margin-left: 10%;
+}
+
 
 @media (max-width: 768px) {
     .text-with-image {
@@ -3005,7 +3013,7 @@ button:hover {
 /* 10. Exclusive Sneakers */
 
 .sneaker-container {
-    /* display: flex; */
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
@@ -3225,4 +3233,20 @@ button:hover {
     max-width: 2000px;
     margin: 0 auto;
     /* Centreer de vragen onder de tekst */
+}
+
+#info-section {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* .hidden {
+    display: none;
+} */
+
+#error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
 }
