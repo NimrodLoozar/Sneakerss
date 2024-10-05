@@ -72,6 +72,43 @@ body {
     overflow-x: hidden;
 }
 
+@media (max-width: 2560px) {
+    main{
+        margin-top: 30rem;
+    }
+}
+
+@media (max-width: 1920px) {
+    main{
+        margin-top: 10rem;
+    }
+}
+
+@media (max-width: 1440px) {
+    main{
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 425px) {
+    main{
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 375px) {
+    main{
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    main{
+        margin-top: 1rem;
+    }
+}
+
+
 p {
     line-height: 25px;
 }
@@ -390,7 +427,8 @@ section {
     display: inline-block;
 }
 
-#banner #logo h1 {
+#banner #logo h1,
+#bannerFAQ #loog h1 {
     font-size: 28px;
     margin-right: 10px;
     font-weight: 900;
@@ -867,7 +905,8 @@ h6 {
     padding-bottom: 100px;
 }
 
-#banner h1 {
+#banner h1,
+#bannerFAQ h1 {
     padding-top: 5%;
 }
 
@@ -875,7 +914,8 @@ h6 {
     color: #fff;
 }
 
-#banner .section-heading:before {
+#banner .section-heading:before,
+#bannerFAQ .section-heading:before{
     content: "";
     display: block;
     width: 30px;
@@ -895,9 +935,18 @@ h6 {
     z-index: -1;
 }
 
+.hVideo{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    overflow: hidden;
+    /* margin-bottom: 1rem; */
+    z-index: -1;
+}
+
 .slideshow-container-1 img.mySlides-1 {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     object-fit: cover;
     position: absolute;
     inset: 0;
@@ -906,6 +955,22 @@ h6 {
     z-index: -1;
     transition: opacity 1s ease-in-out;
     /* Smooth fade effect */
+}
+
+.myVideo {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.myHVideo {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
 
 .slideshow-container-1 img.mySlides-1.active {
@@ -1104,7 +1169,8 @@ h6 {
 
 .introductionFAQ {
     position: absolute;
-    top: 0;
+    top: 65vh;
+    left: 45vh;
 
 }
 
@@ -1214,7 +1280,7 @@ button:hover {
 .what-is-sneakerness {
     max-width: 500px;
     height: auto;
-    border-radius: 10px;
+    border-radius: 50px;
     margin-left: 10%;
 }
 
@@ -1234,6 +1300,7 @@ button:hover {
 
 #gallery img {
     max-height: 300px;
+    width: 200px;
 }
 
 #gallery [class*='col-'] {
@@ -1713,6 +1780,7 @@ button:hover {
     transition: all 0.2s ease-in-out 0s;
     position: relative;
     border: 10px solid #fff;
+    max-height: 720px;
 }
 
 
@@ -2582,7 +2650,8 @@ button:hover {
         font-size: 38px;
     }
 
-    #banner h1 {
+    #banner h1,
+    #bannerFAQ h1 {
         font-size: 48px;
     }
 
@@ -2995,6 +3064,7 @@ button:hover {
 #map-image {
     max-width: 100%;
     height: auto;
+    border-radius: 50px;
 }
 
 .marker {
@@ -3046,7 +3116,7 @@ button:hover {
 
 .faq-item {
     margin-bottom: 20px;
-    width: 78vw;
+    width: 960px;
 }
 
 .faq-item h3 {
@@ -3077,7 +3147,7 @@ button:hover {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 81vw;
+    width: 1000px;
     text-align: center;
 }
 
