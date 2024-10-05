@@ -25,7 +25,7 @@
 - 6.6 Pricing Table
 7. Footer
 8. contact form
-9. Exclusive sneakers & VIP
+9. Exclusive sneakers & Podium
 
 
 /*------------------------------------------------------------------------------------------*/
@@ -162,7 +162,7 @@ figure {
 .page-border>.bottom-border,
 .page-border>.left-border {
     padding: 11px;
-    background: #ccc;
+    background: #e30613;
 }
 
 .page-border .bottom-border,
@@ -404,7 +404,7 @@ section {
 }
 
 #progress-bar {
-    background-color: #ff8c00;
+    background-color: #ba0d1b;
     /* Change color as needed */
     height: 5px;
     width: 0;
@@ -1293,8 +1293,7 @@ button:hover {
     .what-is-sneakerness {
         max-width: 100%;
     }
-}
-
+} 
 
 /* --------- 6.4 Gallery ---------- */
 
@@ -1727,18 +1726,13 @@ button:hover {
 #clients img {
     display: inline-block;
     padding: 15px 25px;
-    /* width: 600px; */
+    width: 100%;
     /* Vaste breedte */
     height: 90px;
     /* Vaste hoogte */
-    object-fit: cover;
     /* Zorgt ervoor dat de afbeelding netjes binnen de container past zonder te vervormen */
     border-radius: 5px;
     margin-bottom: 1.3rem;
-}
-
-.clients_img {
-    width: 200px;
 }
 
 .client-overlay {
@@ -1770,6 +1764,7 @@ button:hover {
     text-align: center;
     display: inline-block;
 }
+
 
 /* --------- 6.7 Pricing Table ---------- */
 

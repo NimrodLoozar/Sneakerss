@@ -45,14 +45,15 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Sneakerss - 2024</title>
-    <!-- Voeg hier je CSS en andere head elementen toe -->
+    <link rel="stylesheet" href="assets/css/create.css">
 </head>
 <body>
     <?php if (isset($feedback)): ?>
         <h3><?php echo $feedback; ?></h3>
     <?php else: ?>
-        <h3>Vul het formulier in om contact met ons op te nemen.</h3>
-        <!-- Hier kun je het HTML-formulier toevoegen -->
+        <div class="container">
+            <h3>Vul het formulier in om contact met ons op te nemen.</h3>
+        </div>
     <?php endif; ?>
 </body>
 </html>
