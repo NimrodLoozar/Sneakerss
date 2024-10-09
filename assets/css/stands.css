@@ -13,10 +13,30 @@ body {
 #wrapper {
     margin: 0 auto;
     max-width: 1200px;
+    min-height: 80vh;
 }
 
 main {
     padding: 20px;
+}
+
+h2 {   
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #f0a500;
+}
+.plein ul {
+    list-style: none;
+}
+
+.plein ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border-left: 4px solid #f0a500;
 }
 
 header {
@@ -74,48 +94,13 @@ aside li {
     text-decoration: none;
 }
 
-.pre-order-number p {
-    font-size: 5rem;
-}
 
-.pre-order-button {
-    background-color: #28a745;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    margin: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.underline {
+    height: 3px;
+    background-color: #f0a500;
+    width: 100%;
+    margin-top: 5px;
 }
-
-.pre-order-button:hover {
-    background-color: #218838;
-}
-
-.pre-order-button:active {
-    background-color: #1e7e34;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.pre-oreder-button:focus {
-    outline: none;
-}
-
-.pre-orders {
-    min-height: 60vh;
-}
-
-.pre-orders li {
-    padding: 10px;
-    min-height: 1rem;
-    margin: 10px;
-    background-color: #f9f9f9;
-    border-left: 4px solid #f0a500;
-}
-
 
 footer {
     min-height: 10rem;
