@@ -606,7 +606,9 @@ ul li ul:hover {
     min-width: 200px;
     text-align: left;
     padding-top: 20px;
-    box-shadow: 0px 3px 5px -1px #ccc;
+    padding-bottom: 20px;
+    box-shadow: 0px 3px 5px -1px red;
+    border-radius: 25px;
 }
 
 ul li ul li {
@@ -619,12 +621,16 @@ ul li ul li {
 
 ul li ul li a:hover {
     padding-left: 10px;
-    border-left: 2px solid #3ca0e7;
+    border-left: 2px solid red;
     transition: all 0.3s ease; 
 }
 
 ul li ul li a { 
     transition: all 0.5s ease;
+}
+
+#headerFAQ ul li ul li a{
+    color: #ba0d1b;
 }
 
 #header nav ul li a,
