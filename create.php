@@ -1,45 +1,61 @@
 <?php
 include 'config/config.php';
 
-// We gebruiken nu de variabelen uit config.php
-try {
-    // De $pdo-verbinding is al gemaakt in config.php, dus we hoeven dit niet opnieuw te doen
+function validate_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
-    // Controleer of het formulier is verzonden
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Sanitize de input
-        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $phonenumber = filter_input(INPUT_POST, 'phonenumber', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        $question = filter_input(INPUT_POST, 'question', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $errors = [];
 
-        // Prepare the query
-        $sql = "INSERT INTO contact (Firstname, Lastname, PhoneNumber, Email, Question)
-                VALUES (:firstname, :lastname, :phonenumber, :email, :question)";
-        $statement = $pdo->prepare($sql);
+    // Validate and sanitize inputs
+    $firstname = validate_input(filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    $lastname = validate_input(filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    $phonenumber = validate_input(filter_input(INPUT_POST, 'phonenumber', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    $email = validate_input(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+    $question = validate_input(filter_input(INPUT_POST, 'question', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
-        // Bind the parameters
-        $statement->bindParam(':firstname', $firstname, PDO::PARAM_STR);
-        $statement->bindParam(':lastname', $lastname, PDO::PARAM_STR);
-        $statement->bindParam(':phonenumber', $phonenumber, PDO::PARAM_STR);
-        $statement->bindParam(':email', $email, PDO::PARAM_STR);
-        $statement->bindParam(':question', $question, PDO::PARAM_STR);
+    // Check for empty fields
+    if (empty($firstname)) $errors[] = "Voornaam is verplicht.";
+    if (empty($lastname)) $errors[] = "Achternaam is verplicht.";
+    if (empty($email)) $errors[] = "E-mail is verplicht.";
+    if (empty($question)) $errors[] = "Vraag is verplicht.";
 
-        // Voer de query uit in de database
-        $statement->execute();
-
-        // Geef feedback aan de gebruiker
-        $feedback = "We hebben uw formulier ontvangen. We nemen zo snel mogelijk contact met u op!";
-
-        // Met een header() functie kun je automatisch naar een andere pagina navigeren
-        header('Refresh:2.5; url=index.html');
+    // Validate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Ongeldig e-mailadres.";
     }
-} catch (PDOException $e) {
-    die("Fout bij het verwerken van het formulier: " . $e->getMessage());
+
+    // Validate phone number (simple check, can be improved)
+    if (!empty($phonenumber) && !preg_match("/^[0-9]{10}$/", $phonenumber)) {
+        $errors[] = "Ongeldig telefoonnummer.";
+    }
+
+    // If no errors, process the form
+    if (empty($errors)) {
+        try {
+            $sql = "INSERT INTO contact (Firstname, Lastname, PhoneNumber, Email, Question)
+                    VALUES (:firstname, :lastname, :phonenumber, :email, :question)";
+            $statement = $pdo->prepare($sql);
+            $statement->execute([
+                ':firstname' => $firstname,
+                ':lastname' => $lastname,
+                ':phonenumber' => $phonenumber,
+                ':email' => $email,
+                ':question' => $question
+            ]);
+            $feedback = "We hebben uw formulier ontvangen. We nemen zo snel mogelijk contact met u op!";
+            header('Refresh:2.5; url=index.html');
+        } catch (PDOException $e) {
+            error_log("Database Error: " . $e->getMessage());
+            $errors[] = "Er is een fout opgetreden bij het verwerken van uw aanvraag. Probeer het later opnieuw.";
+        }
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -48,12 +64,19 @@ try {
     <link rel="stylesheet" href="assets/css/create.css">
 </head>
 <body>
-    <?php if (isset($feedback)): ?>
-        <h3><?php echo $feedback; ?></h3>
-    <?php else: ?>
-        <div class="container">
+    <div class="container">
+        <?php if (isset($feedback)): ?>
+            <h3><?php echo htmlspecialchars($feedback); ?></h3>
+        <?php elseif (!empty($errors)): ?>
+            <h3>Er zijn fouten opgetreden:</h3>
+            <ul>
+                <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
             <h3>Vul het formulier in om contact met ons op te nemen.</h3>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
+    </div>
 </body>
 </html>
