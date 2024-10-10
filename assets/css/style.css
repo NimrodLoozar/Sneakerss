@@ -73,37 +73,37 @@ body {
 }
 
 @media (max-width: 2560px) {
-    main{
+    main {
         margin-top: 30rem;
     }
 }
 
 @media (max-width: 1920px) {
-    main{
+    main {
         margin-top: 10rem;
     }
 }
 
 @media (max-width: 1440px) {
-    main{
+    main {
         margin-top: 0;
     }
 }
 
 @media (max-width: 425px) {
-    main{
+    main {
         margin-top: 3rem;
     }
 }
 
 @media (max-width: 375px) {
-    main{
+    main {
         margin-top: 1rem;
     }
 }
 
 @media (max-width: 320px) {
-    main{
+    main {
         margin-top: 1rem;
     }
 }
@@ -584,8 +584,8 @@ section {
 }
 
 #header nav ul li,
-#headerFAQ nav ul li{
-position: relative;
+#headerFAQ nav ul li {
+    position: relative;
 }
 
 ul li ul {
@@ -598,7 +598,8 @@ ul li ul {
     display: none;
     background: white;
 }
-ul li:hover > ul,
+
+ul li:hover>ul,
 ul li ul:hover {
     visibility: visible;
     opacity: 1;
@@ -622,14 +623,14 @@ ul li ul li {
 ul li ul li a:hover {
     padding-left: 10px;
     border-left: 2px solid red;
-    transition: all 0.3s ease; 
+    transition: all 0.3s ease;
 }
 
-ul li ul li a { 
+ul li ul li a {
     transition: all 0.5s ease;
 }
 
-#headerFAQ ul li ul li a{
+#headerFAQ ul li ul li a {
     color: #ba0d1b;
 }
 
@@ -965,7 +966,7 @@ h6 {
 }
 
 #banner .section-heading:before,
-#bannerFAQ .section-heading:before{
+#bannerFAQ .section-heading:before {
     content: "";
     display: block;
     width: 30px;
@@ -985,7 +986,7 @@ h6 {
     z-index: -1;
 }
 
-.hVideo{
+.hVideo {
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -1351,7 +1352,7 @@ button:hover {
     .what-is-sneakerness {
         max-width: 100%;
     }
-} 
+}
 
 /* --------- 6.4 Gallery ---------- */
 
@@ -3228,6 +3229,7 @@ button:hover {
 
 #resultSection {
     margin-top: 20px;
+    text-align: left;
 }
 
 .no-results {

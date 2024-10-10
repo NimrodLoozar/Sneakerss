@@ -11,6 +11,8 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+DROP DATABASE IF EXist `astronomie`;
+CREATE DATABASE `astronomie`;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -58,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Username` varchar(20) NOT NULL,
   `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `Password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `PreOrder` BIT NOT NULL DEFAULT 0,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -66,9 +69,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Gegevens worden geëxporteerd voor tabel `user`
 --
 
-INSERT INTO `user` (`id`, `Username`, `Email`, `Password`, `date`) VALUES
-(44, 'stmakpabot ', 'marvinakpabot@gmail.com', '$2y$10$XzVjteqbWnm32cu0yDFLCOLScGmXZC8RaCXExIQD2DQo6LGW7m5r2', '2024-06-23 22:05:35'),
-(45, 'hoi', 'hoi@hl.nl', '$2y$10$FtMY3Xht736MgrPNSN2w8OkPWXFD2EGw7WQ/WxitHARZykL.DfP/O', '2024-06-23 23:54:55');
+INSERT INTO `user` (`id`, `Username`, `Email`, `Password`, `date`, `PreOrder`) VALUES
+(44, 'stmakpabot ', 'marvinakpabot@gmail.com', '$2y$10$XzVjteqbWnm32cu0yDFLCOLScGmXZC8RaCXExIQD2DQo6LGW7m5r2', '2024-06-23 22:05:35', 1),
+(45, 'hoi', 'hoi@hl.nl', '$2y$10$FtMY3Xht736MgrPNSN2w8OkPWXFD2EGw7WQ/WxitHARZykL.DfP/O', '2024-06-23 23:54:55', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
