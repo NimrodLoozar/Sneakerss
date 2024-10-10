@@ -16,24 +16,15 @@
             <div class="logo">Sneakerness</div>
             <nav>
                 <ul>
-                    <li>
-                        <a href="#">Home</a>
-                        <ul class="dropdown">
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#testimonials">Testimonials</a></li>
-                            <li><a href="#clients">Clients</a></li>
-                            <li><a href="#sneaker">Exclusive</a></li>
-                            <li><a href="#pricing">Pricing</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/agenda.html">Agenda</a>
-                    </li>
-                    <li>
-                        <a href="/FAQ.html">FAQ</a>
-                    </li>
-                    <li><a href="pre-order-waitlist.php" class="active">Pre-order nu!</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#pricing">Agenda</a></li>
+                    <li><a href="FAQ.html" class="active">FAQ</a></li>
+                    <li><a href="pre-order-waitlist.php">Pre-order nu!</a></li>
                 </ul>
             </nav>
             <aside>
