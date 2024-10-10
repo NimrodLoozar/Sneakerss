@@ -20,15 +20,23 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#clients">Clients</a></li>
-                    <li><a href="#pricing">Agenda</a></li>
-                    <li><a href="FAQ.html" class="active">FAQ</a></li>
-                    <li><a href="pre-order-waitlist.php">Pre-order nu!</a></li>
+                    <li>
+                        <a href="/index.html" class="active">Home</a>
+                        <ul class="dropdown">
+                            <li><a href="/index.html#about">About</a></li>
+                            <li><a href="/index.html#services">Services</a></li>
+                            <li><a href="/index.html#testimonials">Testimonials</a></li>
+                            <li><a href="/index.html#clients">Clients</a></li>
+                            <li><a href="/index.html#exclusive">Exclusive</a></li>
+                            <li><a href="/index.html#pricing">Pricing</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/agenda.html">Agenda</a>
+                    </li>
+                    <li>
+                        <a href="/FAQ.html">FAQ</a>
+                    </li>
                 </ul>
             </nav>
             <aside>
