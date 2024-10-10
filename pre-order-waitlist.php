@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="assets/css/pre-order-waitlist.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <!-- Namari Color CSS -->
+        <link rel="stylesheet" href="assets/css/namari-color.css">
+    <!-- Animate CSS-->
+    <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -16,15 +20,24 @@
             <div class="logo">Sneakerness</div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#clients">Clients</a></li>
-                    <li><a href="#pricing">Agenda</a></li>
-                    <li><a href="FAQ.html" class="active">FAQ</a></li>
-                    <li><a href="pre-order-waitlist.php">Pre-order nu!</a></li>
+                    <li>
+                        <a href="/index.html">Home</a>
+                        <ul class="dropdown">
+                            <li><a href="/index.html#about">About</a></li>
+                            <li><a href="/index.html#services">Services</a></li>
+                            <li><a href="/index.html#testimonials">Testimonials</a></li>
+                            <li><a href="/index.html#clients">Clients</a></li>
+                            <li><a href="/index.html#sneaker">Exclusive</a></li>
+                            <li><a href="/index.html#pricing">Pricing</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="agenda.html">Agenda</a>
+                    </li>
+                    <li>
+                        <a href="/FAQ.html">FAQ</a>
+                    </li>
+                    <li><a href="#" class="active">Pre-order nu!</a></li>
                 </ul>
             </nav>
             <aside>
@@ -125,6 +138,25 @@
             <p>Sneakerness®</p>
         </div>
     </footer>
+    
+    <script src="assets/js/jquery.1.8.3.min.js"></script>
+    <script src="assets/Js/banner_slideshow.js"></script>
+    <script src="assets/js/featherlight.min.js"></script>
+    <script src="assets/js/featherlight.gallery.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="Standindeling.js"></script>
+    <script src="assets/Js/recentie_slide.js"></script>
+    <script src="assets/js/jquery.enllax.min.js"></script>
+    <script src="assets/js/jquery.scrollUp.min.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/js/jquery.stickyNavbar.min.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/images-loaded.min.js"></script>
+    <script src="assets/js/lightbox.min.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script src="assets/Js/progressBar.js"></script>
+    <script src="ExclusieveSneakers.js"></script>
+    <script src="assets/Js/Wat_is_Sneakerness.js"></script>
 </body>
 
 </html>
