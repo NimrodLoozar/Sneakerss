@@ -3331,9 +3331,11 @@ button:hover {
     padding: 10px;
     background-color: #f9f9f9;
     margin-bottom: 10px;
-    border-left: 4px solid #ba0d1b;
     width: 80%;
     margin-left: 40px;
+    border: 1px solid #ba0d1b;
+    border-left: 4px solid #ba0d1b;
+    border-radius: 4px;
 }
 
 .event-time {
