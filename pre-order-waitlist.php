@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="assets/css/pre-order-waitlist.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-        <!-- Namari Color CSS -->
-        <link rel="stylesheet" href="assets/css/namari-color.css">
+    <!-- Namari Color CSS -->
+    <link rel="stylesheet" href="assets/css/namari-color.css">
     <!-- Animate CSS-->
     <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div id="wrapper">
-    <header>
+        <header>
             <div class="logo">Sneakerness</div>
             <nav>
                 <ul>
@@ -70,10 +70,10 @@
                 </ul>
             </aside>
         </header>
+        <h2>Wil jij op de lijst staan? Pre-order nu!</h2>
         <div class="button-container">
-            <h2>Wil jij op de lijst staan? Pre-order nu!</h2>
-            <button class="pre-order-button">
-                Pre-order nu!
+            <button class="pre-order-button" onclick="preOrderButton()">
+                pre-order!
             </button>
         </div>
         <?php
@@ -138,7 +138,7 @@
             <p>Sneakerness®</p>
         </div>
     </footer>
-    
+    <script src="assets/Js/pre-order.js"></script>
     <script src="assets/js/jquery.1.8.3.min.js"></script>
     <script src="assets/Js/banner_slideshow.js"></script>
     <script src="assets/js/featherlight.min.js"></script>

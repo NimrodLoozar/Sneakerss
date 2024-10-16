@@ -79,6 +79,47 @@ ul li ul li a {
     text-transform: uppercase;
 }
 
+.pre-order-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contact-form label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    font-weight: 300;
+}
+
+.pre-order-form input[type=text],
+.pre-order-form input[type=email],
+.pre-order-form input[type=password],
+.pre-order-form input[type=date],
+.pre-order-form textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.pre-order-form input[type=submit] {
+    background-color: #e30613;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pre-order-form input[type=submit]:hover {
+    background-color: #fdb8bc;
+}
+
 ul {
     list-style: none;
 }
@@ -167,7 +208,7 @@ aside li {
 .pre-order-number p {
     font-size: 5rem;
 }
-.pre-order-button {
+button {
     background-color: #031512;
     color: white;
     padding: 12px 24px;
@@ -180,17 +221,17 @@ aside li {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.pre-order-button:hover {
+button:hover {
     background-color: #031512;
     transform: scale(1.05); /* Slightly increases the size */
 }
 
-.pre-order-button:active {
+button:active {
     background-color: #031512;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.pre-order-button:focus {
+button:focus {
     outline: none;
 }
 
