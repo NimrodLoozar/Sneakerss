@@ -1032,7 +1032,7 @@ h6 {
     /* Breng de actieve slide naar voren */
 }
 
-.slideshow-container-1 {
+.slideshow-container-1, .video {
     top: 0;
     display: grid;
     overflow: hidden;
@@ -1220,10 +1220,51 @@ h6 {
 }
 
 .introductionFAQ {
-    position: absolute;
-    top: 65vh;
-    left: 45vh;
+   /* position: relative; */
+    justify-content: center;
+    display: flex;
+    
+}
 
+.absolute{
+    position: absolute;
+    /* top: 80vh;     */
+}
+
+@media (max-width: 2560px) {
+    .absolute{
+        top: 80vh;
+    }
+ }
+
+@media (max-width: 1920px) {
+    .absolute{
+        top: 73vh;
+    }
+}
+
+@media (max-width: 1440px) {
+    .absolute{
+        top: 70vh;
+    }
+}
+
+@media (max-width: 425px) {
+    .absolute{
+        top: 73vh;
+    }
+}
+
+@media (max-width: 375px) {
+    .absolute{
+        top: 73vh;
+    }
+}
+
+@media (max-width: 320px) {
+    .absolute{
+        top: 73vh;
+    }
 }
 
 /* --------- 6.2 Features ---------- */
@@ -1537,7 +1578,6 @@ button:hover {
         dimensions: maximize lightbox with for small screens margin-left: 10px;
         margin-right: 10px;
         max-height: 98%;
-
         padding: 10px 10px 0;
         border-bottom: 10px solid transparent;
     }
@@ -1798,8 +1838,7 @@ button:hover {
 .client-overlay {
     background: rgba(0, 0, 0, 0.8);
     position: absolute;
-    top;
-    0;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
@@ -1901,11 +1940,15 @@ button:hover {
 /*------------------------------------------------------------------------------------------*/
 
 #landing-footer {
-    clear: both;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-#landing-footer .row {
-    padding: 0;
+#landing-footer div {
+    padding: 0 75px 0 75px;
+    justify-content: space-around;
+    display: flex;
 }
 
 #landing-footer p {
@@ -2880,6 +2923,10 @@ button:hover {
 }
 
 /* 8. contact form */
+
+.contact{
+    height: 90vh;
+}
 
 .contact-title {
     text-align: center;

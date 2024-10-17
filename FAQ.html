@@ -6,7 +6,7 @@
   <title>Sneakerss - 2024</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <link rel="shortcut icon" href="assets/img/favicon.ico" title="Favicon" />
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/namari-color.css">
@@ -14,29 +14,6 @@
   <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
-
-<style>
-
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- <script>
-  $(document).ready(function () {
-    $(".faq-item h3").on("click", function () {
-      $(".faq-item p").slideUp();
-      $(".faq-item .arrow").html('&rarr;');
-
-      var content = $(this).next('p');
-      var arrow = $(this).find('.arrow');
-      if (content.is(":visible")) {
-        content.slideUp();
-        arrow.html('&rarr;');
-      } else {
-        content.slideDown();
-        arrow.html('&#9733;');
-      }
-    });
-  });
-</script> -->
 
 <body>
   <!-- Preloader -->
@@ -47,7 +24,6 @@
       <div></div>
     </div>
   </div>
-
   <!--End of Preloader-->
   <div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
     <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
@@ -173,7 +149,7 @@
                 </li>
                 <li>
                   <a href="/pre-order-waitlist.php">Pre-order nu!</a>
-              </li>
+                </li>
               </ul>
               <div id="progress-bar"></div>
             </nav>
@@ -201,299 +177,295 @@
         </div>
       </div><!--End of Row-->
     </header>
-    <div class="video">
-      <video class="myVideo" src="assets/img/banner-images/SNEAKERNESS-Main-Teaser-HP_comp.mp4" loop autoplay
-        muted></video>
-    </div>
-    <!--Main Content Area-->
-    <main id="content">
-      <!--Introduction-->
-      <section class="introductionFAQ scrollto">
-        <div class="row clearfix">
-          <div class="col-3">
-            <!-- <div id="faq" class="section-heading">
-              <h3>OVER ONS</h3>
-              <h2 class="section-title">Meest Gestelde Vragen</h2>
-              <p>
-                Hier kunt u de 20 meest gestelde vragen zien zit er vraag er
-                niet bij kunt u het altijd nog mailen en wij proberen zo snel
-                mogelijk te beantwoorden.
-              </p>
-            </div> -->
-
-
-            <div class="faq-container wow fadeInUp" data-wow-delay="0.2s">
-              <h1>FAQ Zoeken</h1>
-              <input type="text" id="searchInput" placeholder="Zoek in de FAQ..." />
-              <button id="searchButton" onclick="searchFAQ()">Zoek</button>
-              <div id="resultSection">
-
-                <section class="faq-section">
-                  <div class="container">
-                    <!-- <h2></h2> -->
-                    <div class="faq">
-                      <!-- FAQ 1-10 -->
-                      <div class="faq-item hidden">
-                        <h3>Wat is de levertijd van mijn sneakers?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          De levertijd is doorgaans 2-5 werkdagen, afhankelijk van je locatie en beschikbaarheid van
-                          het
-                          product.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Welke betaalmethodes accepteren jullie?<span class="arrow">&rarr;</span></h3>
-                        <p>Wij accepteren iDeal, creditcard, PayPal en Klarna voor achteraf betalen.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe kan ik mijn bestelling retourneren?<span class="arrow">&rarr;</span></h3>
-                        <p>Retourneren kan binnen 30 dagen, mits de sneakers ongedragen en in de originele verpakking
-                          zijn.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hebben jullie een fysieke winkel?<span class="arrow">&rarr;</span></h3>
-                        <p>We zijn volledig online, maar bieden snelle verzending en eenvoudig retourneren.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Bieden jullie ook maatwerk sneakers aan?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Ja, we bieden maatwerkopties voor geselecteerde modellen. Bekijk onze maatwerkpagina voor
-                          meer
-                          informatie.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe kan ik mijn bestelling volgen?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Nadat je bestelling is verzonden, ontvang je een track & trace-code via e-mail om je pakket
-                          te
-                          volgen.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Krijg ik een bevestiging van mijn bestelling?<span class="arrow">&rarr;</span></h3>
-                        <p>Ja, je ontvangt een bevestigingsmail zodra je bestelling is geplaatst.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Kan ik mijn bestelling nog wijzigen na het plaatsen?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Je kunt je bestelling binnen 1 uur na plaatsing wijzigen. Neem contact op met onze
-                          klantenservice
-                          voor hulp.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Wat moet ik doen als ik de verkeerde maat heb besteld?<span class="arrow">&rarr;</span>
-                        </h3>
-                        <p>
-                          Als je de verkeerde maat hebt besteld, kun je de sneakers retourneren en de juiste maat
-                          bestellen.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Verzenden jullie internationaal?<span class="arrow">&rarr;</span></h3>
-                        <p>Ja, we verzenden wereldwijd. De verzendkosten en levertijden variëren per land.</p>
-                      </div>
-
-                      <!-- FAQ 11-20 -->
-                      <div class="faq-item hidden">
-                        <h3>Wat zijn de verzendkosten?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Verzending binnen Nederland is gratis. Voor internationale bestellingen worden de kosten
-                          berekend bij
-                          het afrekenen.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Kan ik mijn sneakers retourneren als ze niet passen?<span class="arrow">&rarr;</span></h3>
-                        <p>Ja, je kunt de sneakers binnen 30 dagen retourneren als ze niet passen.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe lang duurt het voordat mijn retour is verwerkt?<span class="arrow">&rarr;</span></h3>
-                        <p>Het verwerken van een retour duurt meestal 5-7 werkdagen nadat we het pakket hebben
-                          ontvangen.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Krijg ik mijn geld terug als ik retourneer?<span class="arrow">&rarr;</span></h3>
-                        <p>Ja, je krijgt een volledige terugbetaling binnen 7 dagen nadat je retour is verwerkt.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Kan ik sneakers reserveren?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          We bieden geen reserveringen aan, maar je kunt je aanmelden voor een notificatie als een
-                          model
-                          weer
-                          op voorraad is.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Bieden jullie cadeaubonnen aan?<span class="arrow">&rarr;</span></h3>
-                        <p>Ja, we bieden digitale cadeaubonnen aan die je online kunt gebruiken.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe kan ik contact opnemen met de klantenservice?<span class="arrow">&rarr;</span></h3>
-                        <p>Je kunt ons bereiken via e-mail of de live chat op onze website.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe weet ik welke maat ik moet kiezen?<span class="arrow">&rarr;</span></h3>
-                        <p>Gebruik onze maattabel op de productpagina om de juiste maat te vinden.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe onderhoud ik mijn sneakers?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Bekijk onze onderhoudsgids op de website voor tips over het schoonmaken en verzorgen van je
-                          sneakers.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Zijn jullie sneakers duurzaam geproduceerd?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          We werken samen met merken die duurzame productiemethoden hanteren. Bekijk de productdetails
-                          voor
-                          meer informatie.
-                        </p>
-                      </div>
-
-                      <!-- FAQ 21-30 -->
-                      <div class="faq-item hidden">
-                        <h3>Kunnen jullie maatwerk sneakers repareren?<span class="arrow">&rarr;</span></h3>
-                        <p>Ja, we bieden een reparatieservice voor maatwerk sneakers. Neem contact op voor meer
-                          informatie.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Zijn alle sneakers op voorraad?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Onze voorraad wordt regelmatig bijgewerkt. Als een model niet op voorraad is, kun je een
-                          notificatie
-                          aanvragen.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe kan ik een account aanmaken?<span class="arrow">&rarr;</span></h3>
-                        <p>Je kunt een account aanmaken door je te registreren via de aanmeldpagina op onze website.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hebben jullie een loyaliteitsprogramma?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Ja, we bieden een loyaliteitsprogramma waarbij je punten kunt sparen voor korting op
-                          toekomstige
-                          aankopen.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe kan ik mijn accountgegevens wijzigen?<span class="arrow">&rarr;</span></h3>
-                        <p>Log in op je account en ga naar "Accountinstellingen" om je gegevens te wijzigen.</p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Wat moet ik doen als mijn sneakers beschadigd aankomen?<span class="arrow">&rarr;</span>
-                        </h3>
-                        <p>
-                          Neem binnen 48 uur na ontvangst contact met ons op met foto’s van de beschadiging voor een
-                          snelle
-                          oplossing.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Kan ik sneakers pre-orderen?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Ja, we bieden pre-orders aan voor geselecteerde sneakers. Je kunt de verwachte levertijd
-                          zien
-                          op
-                          de
-                          productpagina.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Wat zijn de voordelen van een account bij Sneakerss?<span class="arrow">&rarr;</span></h3>
-                        <p>Met een account kun je je bestellingen volgen, eerdere aankopen bekijken en sneller
-                          afrekenen.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>Hoe weet ik of mijn betaling is gelukt?<span class="arrow">&rarr;</span></h3>
-                        <p>
-                          Na een succesvolle betaling ontvang je een bevestigingsmail. Controleer je spamfolder als je
-                          niets
-                          ontvangt.
-                        </p>
-                      </div>
-                      <div class="faq-item hidden">
-                        <h3>
-                          Kunnen jullie aanpassingen doen op reeds gemaakte bestellingen?
-                          <span class="arrow">&rarr;</span>
-                        </h3>
-                        <p>
-                          Bestellingen kunnen binnen 1 uur na plaatsing worden aangepast. Neem contact op met de
-                          klantenservice.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </div>
-
-            <section>
-              <p>Staat je vraag niet tussen de lijst?
-                <br>
-                <a href="/index.html" class="button">Neem contact met ons op</a>
-              </p>
-            </section>
-          </div>
-        </div>
-      </section>
-    </main>
+  </div>
+  <div class="video">
+    <video class="myVideo" src="assets/img/banner-images/SNEAKERNESS-Main-Teaser-HP_comp.mp4" loop autoplay
+      muted></video>
   </div>
 
-   <!--Footer-->
-   <footer id="landing-footer" class="clearfix">
-    <div class="row clearfix">
 
-        <p id="copyright" class="col-2">Made with love by <a href=""> Team Nimród</a>
-        </p>
 
-        <!--Social Icons in Footer-->
-        <ul class="col-2 social-icons">
-            <li>
-                <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
-                    <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" title="Google+" href="http://google.com/+username">
-                    <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" title="Twitter" href="http://www.twitter.com/username">
-                    <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
-                    <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" title="behance" href="http://www.behance.net">
-                    <i class="fa fa-behance fa-1x"></i><span>Behance</span>
-                </a>
-            </li>
-        </ul>
-        <!--End of Social Icons in Footer-->
+
+
+  <!--Main Content Area-->
+  <main id="content">
+    <!--Introduction-->
+    <section class="introductionFAQ scrollto">
+      <div class="absolute clearfix">
+        <div class="col-3">
+          <div class="faq-container wow fadeInUp" data-wow-delay="0.2s">
+            <h1>FAQ Zoeken</h1>
+            <input type="text" id="searchInput" placeholder="Zoek in de FAQ..." />
+            <button id="searchButton" onclick="searchFAQ()">Zoek</button>
+            <div id="resultSection">
+
+              <section class="faq-section">
+                <div class="container">
+                  <!-- <h2></h2> -->
+                  <div class="faq">
+                    <!-- FAQ 1-10 -->
+                    <div class="faq-item hidden">
+                      <h3>Wat is de levertijd van mijn sneakers?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        De levertijd is doorgaans 2-5 werkdagen, afhankelijk van je locatie en beschikbaarheid van
+                        het
+                        product.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Welke betaalmethodes accepteren jullie?<span class="arrow">&rarr;</span></h3>
+                      <p>Wij accepteren iDeal, creditcard, PayPal en Klarna voor achteraf betalen.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe kan ik mijn bestelling retourneren?<span class="arrow">&rarr;</span></h3>
+                      <p>Retourneren kan binnen 30 dagen, mits de sneakers ongedragen en in de originele verpakking
+                        zijn.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hebben jullie een fysieke winkel?<span class="arrow">&rarr;</span></h3>
+                      <p>We zijn volledig online, maar bieden snelle verzending en eenvoudig retourneren.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Bieden jullie ook maatwerk sneakers aan?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Ja, we bieden maatwerkopties voor geselecteerde modellen. Bekijk onze maatwerkpagina voor
+                        meer
+                        informatie.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe kan ik mijn bestelling volgen?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Nadat je bestelling is verzonden, ontvang je een track & trace-code via e-mail om je pakket
+                        te
+                        volgen.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Krijg ik een bevestiging van mijn bestelling?<span class="arrow">&rarr;</span></h3>
+                      <p>Ja, je ontvangt een bevestigingsmail zodra je bestelling is geplaatst.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Kan ik mijn bestelling nog wijzigen na het plaatsen?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Je kunt je bestelling binnen 1 uur na plaatsing wijzigen. Neem contact op met onze
+                        klantenservice
+                        voor hulp.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Wat moet ik doen als ik de verkeerde maat heb besteld?<span class="arrow">&rarr;</span>
+                      </h3>
+                      <p>
+                        Als je de verkeerde maat hebt besteld, kun je de sneakers retourneren en de juiste maat
+                        bestellen.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Verzenden jullie internationaal?<span class="arrow">&rarr;</span></h3>
+                      <p>Ja, we verzenden wereldwijd. De verzendkosten en levertijden variëren per land.</p>
+                    </div>
+
+                    <!-- FAQ 11-20 -->
+                    <div class="faq-item hidden">
+                      <h3>Wat zijn de verzendkosten?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Verzending binnen Nederland is gratis. Voor internationale bestellingen worden de kosten
+                        berekend bij
+                        het afrekenen.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Kan ik mijn sneakers retourneren als ze niet passen?<span class="arrow">&rarr;</span></h3>
+                      <p>Ja, je kunt de sneakers binnen 30 dagen retourneren als ze niet passen.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe lang duurt het voordat mijn retour is verwerkt?<span class="arrow">&rarr;</span></h3>
+                      <p>Het verwerken van een retour duurt meestal 5-7 werkdagen nadat we het pakket hebben
+                        ontvangen.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Krijg ik mijn geld terug als ik retourneer?<span class="arrow">&rarr;</span></h3>
+                      <p>Ja, je krijgt een volledige terugbetaling binnen 7 dagen nadat je retour is verwerkt.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Kan ik sneakers reserveren?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        We bieden geen reserveringen aan, maar je kunt je aanmelden voor een notificatie als een
+                        model
+                        weer
+                        op voorraad is.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Bieden jullie cadeaubonnen aan?<span class="arrow">&rarr;</span></h3>
+                      <p>Ja, we bieden digitale cadeaubonnen aan die je online kunt gebruiken.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe kan ik contact opnemen met de klantenservice?<span class="arrow">&rarr;</span></h3>
+                      <p>Je kunt ons bereiken via e-mail of de live chat op onze website.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe weet ik welke maat ik moet kiezen?<span class="arrow">&rarr;</span></h3>
+                      <p>Gebruik onze maattabel op de productpagina om de juiste maat te vinden.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe onderhoud ik mijn sneakers?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Bekijk onze onderhoudsgids op de website voor tips over het schoonmaken en verzorgen van je
+                        sneakers.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Zijn jullie sneakers duurzaam geproduceerd?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        We werken samen met merken die duurzame productiemethoden hanteren. Bekijk de productdetails
+                        voor
+                        meer informatie.
+                      </p>
+                    </div>
+
+                    <!-- FAQ 21-30 -->
+                    <div class="faq-item hidden">
+                      <h3>Kunnen jullie maatwerk sneakers repareren?<span class="arrow">&rarr;</span></h3>
+                      <p>Ja, we bieden een reparatieservice voor maatwerk sneakers. Neem contact op voor meer
+                        informatie.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Zijn alle sneakers op voorraad?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Onze voorraad wordt regelmatig bijgewerkt. Als een model niet op voorraad is, kun je een
+                        notificatie
+                        aanvragen.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe kan ik een account aanmaken?<span class="arrow">&rarr;</span></h3>
+                      <p>Je kunt een account aanmaken door je te registreren via de aanmeldpagina op onze website.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hebben jullie een loyaliteitsprogramma?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Ja, we bieden een loyaliteitsprogramma waarbij je punten kunt sparen voor korting op
+                        toekomstige
+                        aankopen.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe kan ik mijn accountgegevens wijzigen?<span class="arrow">&rarr;</span></h3>
+                      <p>Log in op je account en ga naar "Accountinstellingen" om je gegevens te wijzigen.</p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Wat moet ik doen als mijn sneakers beschadigd aankomen?<span class="arrow">&rarr;</span>
+                      </h3>
+                      <p>
+                        Neem binnen 48 uur na ontvangst contact met ons op met foto’s van de beschadiging voor een
+                        snelle
+                        oplossing.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Kan ik sneakers pre-orderen?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Ja, we bieden pre-orders aan voor geselecteerde sneakers. Je kunt de verwachte levertijd
+                        zien
+                        op
+                        de
+                        productpagina.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Wat zijn de voordelen van een account bij Sneakerss?<span class="arrow">&rarr;</span></h3>
+                      <p>Met een account kun je je bestellingen volgen, eerdere aankopen bekijken en sneller
+                        afrekenen.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>Hoe weet ik of mijn betaling is gelukt?<span class="arrow">&rarr;</span></h3>
+                      <p>
+                        Na een succesvolle betaling ontvang je een bevestigingsmail. Controleer je spamfolder als je
+                        niets
+                        ontvangt.
+                      </p>
+                    </div>
+                    <div class="faq-item hidden">
+                      <h3>
+                        Kunnen jullie aanpassingen doen op reeds gemaakte bestellingen?
+                        <span class="arrow">&rarr;</span>
+                      </h3>
+                      <p>
+                        Bestellingen kunnen binnen 1 uur na plaatsing worden aangepast. Neem contact op met de
+                        klantenservice.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <section class="clearfix row">
+            <p>Staat je vraag niet tussen de lijst?
+              <br>
+              <a href="/index.html" class="button">Neem contact met ons op</a>
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!--Footer-->
+  <footer id="landing-footer" class="clearfix">
+    <div class="clearfix">
+
+      <p id="copyright" class="col-2">Made with love by <a href=""> Team Nimród</a>
+      </p>
+
+      <!--Social Icons in Footer-->
+      <ul class="col-2 social-icons">
+        <li>
+          <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
+            <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" title="Google+" href="http://google.com/+username">
+            <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" title="Twitter" href="http://www.twitter.com/username">
+            <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
+            <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" title="behance" href="http://www.behance.net">
+            <i class="fa fa-behance fa-1x"></i><span>Behance</span>
+          </a>
+        </li>
+      </ul>
+      <!--End of Social Icons in Footer-->
     </div>
-</footer>
-<!--End of Footer-->
+  </footer>
+  <!--End of Footer-->
 
+  <!-- Include JavaScript resources -->
   <script src="assets/Js/faq_search.js"></script>
   <script src="assets/js/jquery.1.8.3.min.js"></script>
   <script src="assets/Js/banner_slideshow.js"></script>
   <script src="assets/js/featherlight.min.js"></script>
   <script src="assets/js/featherlight.gallery.min.js"></script>
   <script src="assets/js/wow.min.js"></script>
-  <script src="Standindeling.js"></script>
+  <script src="assets/Js/Standindeling.js"></script>
   <script src="assets/Js/recentie_slide.js"></script>
   <script src="assets/js/jquery.enllax.min.js"></script>
   <script src="assets/js/jquery.scrollUp.min.js"></script>
@@ -504,7 +476,8 @@
   <script src="assets/js/lightbox.min.js"></script>
   <script src="assets/js/site.js"></script>
   <script src="assets/Js/progressBar.js"></script>
-  <script src="ExclusieveSneakers.js"></script>
+  <script src="assets/Js/ExclusieveSneakers.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 
 </html>

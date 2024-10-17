@@ -25,7 +25,8 @@ a, .la-ball-triangle-path {
     color:#ba0d1b ;
 }
 
-a:hover, #header.nav-solid nav a:hover {
+a:hover, #header.nav-solid nav a:hover,
+a:hover, #headerFAQ.nav-solid nav a:hover {
     color:#ba0d1b ;
 }
 
@@ -38,7 +39,8 @@ a:hover, #header.nav-solid nav a:hover {
 
 /* Border Color */
 
-#banner .section-heading:before, .testimonial.classic footer:before {
+#banner .section-heading:before, .testimonial.classic footer:before,
+#bannerFAQ .section-heading:before, .testimonial.classic footer:before {
     background: #ba0d1b ;
 }
 
@@ -150,10 +152,11 @@ a:hover, #header.nav-solid nav a:hover {
 
 /* Banner Background and Text Colors */
 
-#banner {
+/* #banner,
+#bannerFAQ {
     background: url("../images/banner-images/banner-image-1.jpg") no-repeat center top;
     background-size: cover;
-}
+} */
 
 
 /*------------------------------------------------------------------------------------------*/
@@ -334,7 +337,8 @@ input[type="submit"]:hover {
 
 /* Button Text */
 
-#banner .button {
+#banner .button,
+#bannerFAQ .button {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
     font-size: 16px;
     color: #080808;
@@ -343,14 +347,16 @@ input[type="submit"]:hover {
 
 /* Button Color */
 
-#banner .button {
+#banner .button,
+#bannerFAQ .button {
     border-color: #080808;
 }
 
 
 /* Button Hover Color */
 
-#banner .button:hover {
+#banner .button:hover,
+#bannerFAQ .button:hover {
     color: #ba0d1b ;
     border-color: #ba0d1b ;
 }
