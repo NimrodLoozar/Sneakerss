@@ -2930,6 +2930,7 @@ button:hover {
 /* Stijlen voor de Exclusive Underground Sneakers sectie */
 .exclusive-underground {
     background-color: #1a1a1a;
+    border-radius: 15px 15px 0 0;
     color: #f5f5f5;
     padding: 50px 20px;
     text-align: center;
@@ -3003,6 +3004,7 @@ button:hover {
 .podium-section {
     background-color: #000;
     /* Dark background for the podium */
+    border-radius: 0 0 15px 15px;
     padding: 100px 20px;
     /* Extra padding to create a podium-like feel */
     text-align: center;
@@ -3348,4 +3350,30 @@ button:hover {
 
 .event-description {
     margin-left: 10px;
+}
+
+/* Countdown */
+.countdown-container {
+    text-align: center;
+    justify-content: center;
+    width: -webkit-fill-available;
+    font-size: 50px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.countdown div {
+    margin: 10px;
+}
+
+.countdown span {
+    font-size: 150px;
+    background-color: #000000;
+    border-radius: 25px;
+    padding: 10px;
+    color: red; /* Later kun je deze kleur aanpassen */
+}
+
+.flex{
+    display: flex;
 }
