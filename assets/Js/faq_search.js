@@ -1,16 +1,18 @@
 $(document).ready(function () {
     $(".faq-item h3").on("click", function () {
         $(".faq-item p").slideUp();
-        $(".faq-item .arrow").html('&rarr;');
+        $(".faq-item .arrow").html('&#10095;');
 
         var content = $(this).next('p');
         var arrow = $(this).find('.arrow');
         if (content.is(":visible")) {
             content.slideUp();
-            arrow.html('&rarr;');
+            arrow.html('&#10095;');
+            arrow.toggleClass('rotatedDown');
         } else {
             content.slideDown();
-            arrow.html('&#9733;');
+            arrow.html('&#10094;');
+            arrow.toggleClass('rotatedDown');
         }
     });
 });
