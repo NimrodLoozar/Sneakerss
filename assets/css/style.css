@@ -428,6 +428,14 @@ section {
     display: inline-block;
 }
 
+.banner img.pre-order-img {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    inset: 0;
+    object-fit: cover;
+}
+
 #banner #logo h1,
 #bannerFAQ #loog h1 {
     font-size: 28px;
@@ -1032,7 +1040,8 @@ h6 {
     /* Breng de actieve slide naar voren */
 }
 
-.slideshow-container-1, .video {
+.slideshow-container-1,
+.video {
     top: 0;
     display: grid;
     overflow: hidden;
@@ -1220,49 +1229,49 @@ h6 {
 }
 
 .introductionFAQ {
-   /* position: relative; */
+    /* position: relative; */
     justify-content: center;
     display: flex;
-    
+
 }
 
-.absolute{
+.absolute {
     position: absolute;
     /* top: 80vh;     */
 }
 
 @media (max-width: 2560px) {
-    .absolute{
+    .absolute {
         top: 80vh;
     }
- }
+}
 
 @media (max-width: 1920px) {
-    .absolute{
+    .absolute {
         top: 73vh;
     }
 }
 
 @media (max-width: 1440px) {
-    .absolute{
+    .absolute {
         top: 70vh;
     }
 }
 
 @media (max-width: 425px) {
-    .absolute{
+    .absolute {
         top: 73vh;
     }
 }
 
 @media (max-width: 375px) {
-    .absolute{
+    .absolute {
         top: 73vh;
     }
 }
 
 @media (max-width: 320px) {
-    .absolute{
+    .absolute {
         top: 73vh;
     }
 }
@@ -2924,7 +2933,7 @@ button:hover {
 
 /* 8. contact form */
 
-.contact{
+.contact {
     height: 90vh;
 }
 
@@ -3223,7 +3232,7 @@ button:hover {
     width: 100%;
 }
 
-.faq-item:hover h3{
+.faq-item:hover h3 {
     color: #45a049;
 }
 
@@ -3427,9 +3436,107 @@ button:hover {
     background-color: #000000;
     border-radius: 25px;
     padding: 10px;
-    color: red; /* Later kun je deze kleur aanpassen */
+    color: red;
+    /* Later kun je deze kleur aanpassen */
 }
 
-.flex{
+.flex {
     display: flex;
+}
+
+/* Pre-order */
+
+.pre-order-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contact-form label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    font-weight: 300;
+}
+
+.pre-order-form input[type=text],
+.pre-order-form input[type=email],
+.pre-order-form input[type=password],
+.pre-order-form input[type=date],
+.pre-order-form textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.pre-order-form input[type=submit] {
+    background-color: #e30613;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pre-order-form input[type=submit]:hover {
+    background-color: #fdb8bc;
+}
+
+.pre-order-number p {
+    font-size: 5rem;
+}
+
+button {
+    background-color: #031512;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    margin: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #031512;
+    transform: scale(1.05);
+    /* Slightly increases the size */
+}
+
+button:active {
+    background-color: #031512;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:focus {
+    outline: none;
+}
+
+.pre-orders {
+    min-height: 60vh;
+    /* width: 120%; */
+}
+
+.pre-orders li {
+    padding: 10px;
+    min-height: 1rem;
+    margin: 10px;
+    height: 3rem;
+    font-size: larger;
+    align-content: center;
+    background-color: #f9f9f9;
+    border-left: 4px solid #ba0d1b;
+    list-style: none;
+}
+
+.pre-order-main {
+    display: flex;
+    justify-content: center;
 }
