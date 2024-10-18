@@ -165,7 +165,7 @@
     </div>
 
     <div class="banner">
-        <img class="pre-order-img" src="assets/img/banner-images/360_F_511859547_copfPck0xkK5NdXk3KUZfd0Yh75VY0zr.jpg" alt="">
+        <img class="pre-order-img" src="https://t3.ftcdn.net/jpg/04/47/45/18/360_F_447451812_qESxM59uYu4VEziwYgAnhxrYbbWlEaXR.jpg" alt="">
     </div>
 
     <main class="pre-order-main">
