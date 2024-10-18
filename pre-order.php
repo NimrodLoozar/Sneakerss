@@ -2,11 +2,12 @@
 include 'config/config.php';
 
 // Function to sanitize and validate input
-function validate_input($data, $field) {
+function validate_input($data, $field)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
-    
+
     switch ($field) {
         case 'username':
             if (empty($data)) {
@@ -15,7 +16,7 @@ function validate_input($data, $field) {
                 return ['value' => $data, 'error' => "Gebruikersnaam mag niet langer zijn dan 50 karakters."];
             }
             return ['value' => $data, 'error' => ''];
-        
+
         case 'email':
             if (empty($data)) {
                 return ['value' => '', 'error' => "E-mail is verplicht."];
@@ -23,7 +24,7 @@ function validate_input($data, $field) {
                 return ['value' => $data, 'error' => "Ongeldig e-mailadres."];
             }
             return ['value' => $data, 'error' => ''];
-        
+
         case 'password':
             if (empty($data)) {
                 return ['value' => '', 'error' => "Wachtwoord is verplicht."];
@@ -31,7 +32,7 @@ function validate_input($data, $field) {
                 return ['value' => '', 'error' => "Wachtwoord moet minstens 8 karakters lang zijn."];
             }
             return ['value' => $data, 'error' => ''];
-        
+
         case 'birthdate':
             if (empty($data)) {
                 return ['value' => '', 'error' => "Geboortedatum is verplicht."];
@@ -41,7 +42,7 @@ function validate_input($data, $field) {
                 return ['value' => $data, 'error' => "Ongeldige datumnotatie. Gebruik YYYY-MM-DD."];
             }
             return ['value' => $data, 'error' => ''];
-        
+
         default:
             return ['value' => $data, 'error' => ''];
     }
@@ -93,11 +94,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ':birthdate' => $form_data['birthdate']
             ]);
             $feedback = "Uw pre-order is geregistreerd. Bedankt voor uw interesse!";
-            
+
             // Set a session variable for feedback
             session_start();
             $_SESSION['feedback'] = $feedback;
-            
+
             // Redirect using JavaScript for a smoother transition
             echo "<script>setTimeout(function() { window.location.href = 'index.html'; }, 2500);</script>";
             exit;
@@ -112,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,6 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Animate CSS-->
     <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <!-- Preloader -->
     <div id="preloader">
@@ -134,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <div id="wrapper">
-    <header>
+        <header>
             <div class="logo">Sneakerness</div>
             <nav>
                 <ul>
@@ -188,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </ul>
             </aside>
         </header>
-        
+
         <main id="content" role="main">
             <?php if (!empty($errors)): ?>
                 <div class="error-messages">
@@ -209,22 +212,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="username">Gebruikersnaam:</label>
                     <input type="text" id="username" name="username" maxlength="50" required value="<?php echo htmlspecialchars($form_data['username']); ?>">
                 </div>
-                
+
                 <div>
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" maxlength="255" required value="<?php echo htmlspecialchars($form_data['email']); ?>">
                 </div>
-                
+
                 <div>
                     <label for="password">Wachtwoord:</label>
                     <input type="password" id="password" name="password" maxlength="255" required>
                 </div>
-                
+
                 <div>
                     <label for="birthdate">Geboortedatum:</label>
                     <input type="date" id="birthdate" name="birthdate" required value="<?php echo htmlspecialchars($form_data['birthdate']); ?>">
                 </div>
-                
+
                 <div>
                     <button type="submit">Pre-order nu!</button>
                 </div>
@@ -275,4 +278,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="ExclusieveSneakers.js"></script>
     <script src="assets/Js/Wat_is_Sneakerness.js"></script>
 </body>
+
 </html>

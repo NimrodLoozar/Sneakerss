@@ -1,7 +1,8 @@
 <?php
 include 'config/config.php';
 
-function validate_input($data) {
+function validate_input($data)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -58,11 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <title>Sneakerss - 2024</title>
     <link rel="stylesheet" href="assets/css/create.css">
 </head>
+
 <body>
     <div class="container">
         <?php if (isset($feedback)): ?>
@@ -79,4 +82,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
     </div>
 </body>
+
 </html>
