@@ -786,7 +786,7 @@
                         Ontdek de merken die de sneakerindustrie hebben gevormd, allemaal te vinden hier.
                     </p>
                 </div>
-                
+
                 <div id="vendor-list" class="vendor-list">
                     <div class="vendor-item">
                         <h2>Nike</h2>
@@ -865,16 +865,16 @@
                     </div>
                     <!-- Voeg hier meer verkopers toe -->
                 </div>
-                
-                
-                
+
+
+
                 <div id="error-message" class="error-message" style="display: none;">
                     Lijst van verkopers niet beschikbaar, probeer later opnieuw.
                 </div>
-                
+
                 <script>
                     const vendorsAvailable = true; // Verander deze waarde naar 'false' om de foutmelding te testen
-                
+
                     if (!vendorsAvailable) {
                         document.getElementById('vendor-list').style.display = 'none';
                         document.getElementById('error-message').style.display = 'block';
@@ -935,16 +935,7 @@
         <p id="error-message" class="error_hidden">Geen exclusieve sneakers beschikbaar</p>
         <!-- <br> -->
 
-        <section class="row clearfix scrollto wow fadeInUp" data-wow-delay="0.9s">
-            <div class="countdown-container flex clearfix scrollto">
-                <div class="countdown clearfix scrollto">
-                    <div class="col-3"><span id="days"></span> D</div>
-                    <div class="col-3"><span id="hours"></span> H</div>
-                    <div class="col-3"><span id="minutes"></span> Min.</div>
-                    <div class="col-3"><span id="seconds"></span> Sec.</div>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Exclusive Underground Sneakers Section -->
         <section id="exclusive" class="row scrollto clearfix exclusive-underground wow fadeInUp" data-wow-delay="0.1s"">
@@ -1279,39 +1270,43 @@
 
     <!--Footer-->
     <footer id="landing-footer" class="clearfix">
-        <div class="clearfix">
+        <div class="padding clearfix">
 
             <p id="copyright" class="col-2">Made with love by <a href=""> Team Nimród</a>
             </p>
 
             <!--Social Icons in Footer-->
-            <ul class="col-2 social-icons">
-                <li>
-                    <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
-                        <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" title="Google+" href="http://google.com/+username">
-                        <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" title="Twitter" href="http://www.twitter.com/username">
-                        <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
-                        <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" title="behance" href="http://www.behance.net">
-                        <i class="fa fa-behance fa-1x"></i><span>Behance</span>
-                    </a>
-                </li>
-            </ul>
+
+            <section class="col-2 row clearfix wow fadeInUp" data-wow-delay="0.9s">
+                <div class="countdown-container flex clearfix">
+                    <div class="countdown clearfix">
+                        <div class="col-3">
+                            <div class="row">
+                                <span id="days"></span>
+                                <p>D</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span id="hours"></span>
+                                <p>Hr</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span id="minutes"></span>
+                                <p>Min.</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <span id="seconds"></span>
+                                <p>Sec.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <!--End of Social Icons in Footer-->
         </div>
     </footer>

@@ -1955,9 +1955,9 @@ button:hover {
     width: 100%;
 }
 
-#landing-footer div {
+#landing-footer .padding {
     padding: 0 75px 0 75px;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     display: flex;
 }
 
@@ -3448,20 +3448,22 @@ button:hover {
     text-align: center;
     justify-content: center;
     width: -webkit-fill-available;
-    font-size: 50px;
+    font-size: 20px;
     background-color: #fff;
     border-radius: 15px;
 }
 
 .countdown div {
     margin: 10px;
+    width: 50px;
+    padding-left: 10px;
 }
 
 .countdown span {
-    font-size: 120px;
+    font-size: 30px;
     /* background-color: #000000; */
     border-radius: 25px;
-    padding: 10px;
+    /* padding: 10px; */
     color: red;
     /* Later kun je deze kleur aanpassen */
 }
