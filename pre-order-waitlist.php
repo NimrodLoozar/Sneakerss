@@ -116,7 +116,7 @@
                         <nav id="nav-main">
                             <ul>
                                 <li>
-                                    <a href="/" class="active">Home</a>
+                                    <a href="/" class="active links">Home</a>
                                     <ul class="dropdown">
                                         <li><a href="/#about">About</a></li>
                                         <li><a href="/#services">Services</a></li>
@@ -127,13 +127,13 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/agenda">Agenda</a>
+                                    <a href="/agenda" class="links">Agenda</a>
                                 </li>
                                 <li>
-                                    <a href="/FAQ">FAQ</a>
+                                    <a href="/FAQ" class="links">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="#">Pre-order nu!</a>
+                                    <a href="#" class="links">Pre-order nu!</a>
                                 </li>
                             </ul>
                             <div id="progress-bar"></div>
@@ -225,6 +225,36 @@
             </div>
         </div>
     </main>
+    <section class="col-1 countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
+        <div class="countdown-container flex">
+            <div class="countdown">
+                <div class="col-3">
+                    <div class="">
+                        <span id="days"></span>
+                        <p>D</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="">
+                        <span id="hours"></span>
+                        <p>Hr</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="">
+                        <span id="minutes"></span>
+                        <p>Min.</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="">
+                        <span id="seconds"></span>
+                        <p>Sec.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <footer id="landing-footer" class="clearfix">
         <div class="clearfix">
 
@@ -262,49 +292,27 @@
             <!--End of Social Icons in Footer-->
         </div>
     </footer>
-    <!-- <footer>
-            <div>
-                <h3>
-                    Meer van ons
-                </h3>
-                <ul>
-                    <li><a href="FAQ.html">FAQ</a></li>
-                    <li><a href="about.html">Over Ons</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>
-                    Volg Ons
-                </h3>
-                <ul>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">YouTube</a></li>
-                </ul>
-            </div>
-            <div>
-                <p>Sneakerness®</p>
-            </div>
-    </footer> -->
-    <script src="assets/Js/pre-order.js"></script>
-    <script src="assets/js/jquery.1.8.3.min.js"></script>
-    <script src="assets/Js/banner_slideshow.js"></script>
-    <script src="assets/js/featherlight.min.js"></script>
-    <script src="assets/js/featherlight.gallery.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="Standindeling.js"></script>
-    <script src="assets/Js/recentie_slide.js"></script>
-    <script src="assets/js/jquery.enllax.min.js"></script>
-    <script src="assets/js/jquery.scrollUp.min.js"></script>
-    <script src="assets/js/jquery.easing.min.js"></script>
-    <script src="assets/js/jquery.stickyNavbar.min.js"></script>
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/images-loaded.min.js"></script>
-    <script src="assets/js/lightbox.min.js"></script>
-    <script src="assets/js/site.js"></script>
-    <script src="assets/Js/progressBar.js"></script>
-    <script src="ExclusieveSneakers.js"></script>
-    <script src="assets/Js/Wat_is_Sneakerness.js"></script>
+
 </body>
+<script src="assets/Js/countdown.js"></script>
+<script src="assets/Js/pre-order.js"></script>
+<script src="assets/js/jquery.1.8.3.min.js"></script>
+<script src="assets/Js/banner_slideshow.js"></script>
+<script src="assets/js/featherlight.min.js"></script>
+<script src="assets/js/featherlight.gallery.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="Standindeling.js"></script>
+<script src="assets/Js/recentie_slide.js"></script>
+<script src="assets/js/jquery.enllax.min.js"></script>
+<script src="assets/js/jquery.scrollUp.min.js"></script>
+<script src="assets/js/jquery.easing.min.js"></script>
+<script src="assets/js/jquery.stickyNavbar.min.js"></script>
+<script src="assets/js/jquery.waypoints.min.js"></script>
+<script src="assets/js/images-loaded.min.js"></script>
+<script src="assets/js/lightbox.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/Js/progressBar.js"></script>
+<script src="ExclusieveSneakers.js"></script>
+<script src="assets/Js/Wat_is_Sneakerness.js"></script>
 
 </html>

@@ -28,6 +28,7 @@
 9. Exclusive sneakers & Podium
 10. Agenda
 11. verkopers lijst
+12. info stands
 
 
 /*------------------------------------------------------------------------------------------*/
@@ -3441,9 +3442,28 @@ button:hover {
     border-bottom: 1px solid #ccc;
 }
 
+/* Styling for Exclusive Partners */
+.exclusive {
+    background-color: #fdb8bc; 
+    border-left: 5px solid #ba0d1b;
+    margin-bottom: 2%;
+}
+
+.partner-check {
+    font-size: 0.9em;
+    color: #ba0d1b;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
 .vendor-item h2 {
     color: #ba0d1b;
 }
+
+.vendor-item:hover {
+    background-color: #ffa8ac;
+}
+
 
 .error-message {
     color: red;
@@ -3457,6 +3477,7 @@ button:hover {
     z-index: 999;
     bottom: 0;
     right: 1rem;
+    padding-top: 3rem;
 }
 
 .countdown-container {
@@ -3468,7 +3489,7 @@ button:hover {
     font-size: 10px;
     background-color: #fff;
     border-radius: 15px;
-    animation: shakeX 10s; 
+    animation: bounce 2s infinite 5s;
 }
 
 .countdown div {
@@ -3593,3 +3614,129 @@ button:focus {
     border-radius: 20px;
     box-shadow: #000 5px 5px 10px .1px;
 }
+
+/* 12. info styling */
+
+.plein {
+    max-width: 100%;  /* Maximaal 100% van het scherm, voorkomt overflow */
+    margin: 0 auto;
+    padding: 10px; /* Voeg padding toe voor wat ruimte */
+}
+
+.plein li {
+    border-left: 5px solid #ccc5b9;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+.plein h1, .plein p {
+    text-align: center;
+    padding: 10px;
+}
+
+.plein h2 {
+    color: #e30613;
+}
+
+.plein p {
+    font-size: 16px;
+    background-color: #324046;
+    color: #e30613;
+    padding: 10px;
+    margin: 10px auto;
+    border: solid 1px #ccc;
+    max-width: 100%; /* Flexibel binnen de container */
+    border-radius: 25px;
+}
+
+/* Media query voor mobiele telefoons */
+@media (max-width: 768px) {
+    .plein {
+        padding: 10px;
+    }
+
+    .plein h1 {
+        font-size: 24px; /* Iets kleinere tekst op mobiel */
+    }
+
+    .plein p {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 14px;
+    }
+
+    .plein ul {
+        padding: 0;
+    }
+
+    .plein li {
+        font-size: 14px;
+    }
+}
+
+/* 13. evenementboard */
+
+.eventboard-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.eventboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    grid-gap: 30px; /* Met deze pas je de ruimte tussen de afbeeldingen af */
+    padding: 0 20px;
+  }
+  
+  .eventboard {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .eventboard img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .eventboard-button {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eventboard-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  
+  /* Responsive grid */
+  @media (max-width: 1024px) {
+    .eventboard-grid {
+      grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .eventboard-grid {
+      grid-template-columns: 1fr; 
+    }
+  
+    .eventboard img {
+      height: 300px;
+    }
+  }
