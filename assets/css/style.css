@@ -3617,10 +3617,10 @@ button:focus {
 
 /* 12. info styling */
 
-.plein {
-    max-width: 100%;  /* Maximaal 100% van het scherm, voorkomt overflow */
+/* .plein {
+    max-width: 100%;  Maximaal 100% van het scherm, voorkomt overflow
     margin: 0 auto;
-    padding: 10px; /* Voeg padding toe voor wat ruimte */
+    padding: 10px; Voeg padding toe voor wat ruimte
 }
 
 .plein li {
@@ -3649,18 +3649,18 @@ button:focus {
     padding: 10px;
     margin: 10px auto;
     border: solid 1px #ccc;
-    max-width: 100%; /* Flexibel binnen de container */
+    max-width: 100%;  Flexibel binnen de container
     border-radius: 25px;
 }
 
-/* Media query voor mobiele telefoons */
+ Media query voor mobiele telefoons 
 @media (max-width: 768px) {
     .plein {
         padding: 10px;
     }
 
     .plein h1 {
-        font-size: 24px; /* Iets kleinere tekst op mobiel */
+        font-size: 24px; Iets kleinere tekst op mobiel 
     }
 
     .plein p {
@@ -3676,7 +3676,7 @@ button:focus {
     .plein li {
         font-size: 14px;
     }
-}
+} */
 
 /* 13. evenementboard */
 
@@ -3740,3 +3740,57 @@ button:focus {
       height: 300px;
     }
   }
+.plein {
+    max-width: 100%;  /* Maximaal 100% van het scherm, voorkomt overflow */
+    margin: 0 auto;
+    padding: 10px; /* Voeg padding toe voor wat ruimte */
+}
+
+.pleinPlek {
+    border-left: 5px solid #ccc5b9;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.plein h1, .plein p {
+    text-align: center;
+    padding: 10px;
+}
+
+.plein h2 {
+    color: #e30613;
+}
+
+.plein h3 {
+    font-size: 16px;
+}
+
+.plein p {
+    font-size: 16px;
+    background-color: #324046;
+    color: #e30613;
+    padding: 10px;
+    margin: 10px auto;
+    border: solid 1px #ccc;
+    max-width: 100%; /* Flexibel binnen de container */
+    border-radius: 25px;
+}
+.plein-titel {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.plekken {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    display: block;
+}
