@@ -3447,16 +3447,19 @@ button:hover {
 .countdown-container {
     text-align: center;
     justify-content: center;
-    width: -webkit-fill-available;
+    width: 30%;
+    position: absolute;
+    z-index: 999;
+    inset: 1rem 10rem 1rem 1rem;
     font-size: 20px;
     background-color: #fff;
     border-radius: 15px;
 }
 
 .countdown div {
-    margin: 10px;
-    width: 50px;
-    padding-left: 10px;
+    margin: -40px 0px -44px 0px;
+    width: 60px;
+    padding-left: 0;
 }
 
 .countdown span {
