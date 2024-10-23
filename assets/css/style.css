@@ -3442,7 +3442,7 @@ button:hover {
 
 .partner-check {
     font-size: 0.9em;
-    color: green;
+    color: #ba0d1b;
     font-weight: bold;
     margin-left: 10px;
 }
@@ -3453,7 +3453,6 @@ button:hover {
 
 .vendor-item:hover {
     background-color: #ffa8ac;
-    cursor: pointer;
 }
 
 
