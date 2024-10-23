@@ -3433,9 +3433,29 @@ button:hover {
     border-bottom: 1px solid #ccc;
 }
 
+/* Styling for Exclusive Partners */
+.exclusive {
+    background-color: #fdb8bc; 
+    border-left: 5px solid #ba0d1b;
+    margin-bottom: 2%;
+}
+
+.partner-check {
+    font-size: 0.9em;
+    color: green;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
 .vendor-item h2 {
     color: #ba0d1b;
 }
+
+.vendor-item:hover {
+    background-color: #ffa8ac;
+    cursor: pointer;
+}
+
 
 .error-message {
     color: red;
