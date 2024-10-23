@@ -142,21 +142,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <nav>
                 <ul>
                     <li>
-                        <a href="/index.html">Home</a>
+                        <a href="/">Home</a>
                         <ul class="dropdown">
-                            <li><a href="/index.html#about">About</a></li>
-                            <li><a href="/index.html#services">Services</a></li>
-                            <li><a href="/index.html#testimonials">Testimonials</a></li>
-                            <li><a href="/index.html#clients">Clients</a></li>
-                            <li><a href="/index.html#sneaker">Exclusive</a></li>
-                            <li><a href="/index.html#pricing">Pricing</a></li>
+                            <li><a href="/#about">About</a></li>
+                            <li><a href="/#services">Services</a></li>
+                            <li><a href="/#testimonials">Testimonials</a></li>
+                            <li><a href="/#clients">Clients</a></li>
+                            <li><a href="/#sneaker">Exclusive</a></li>
+                            <li><a href="/#pricing">Pricing</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="agenda.html">Agenda</a>
+                        <a href="/agenda">Agenda</a>
                     </li>
                     <li>
-                        <a href="/FAQ.html">FAQ</a>
+                        <a href="/FAQ">FAQ</a>
                     </li>
                     <li><a href="#" class="active">Pre-order nu!</a></li>
                 </ul>

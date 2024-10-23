@@ -25,7 +25,7 @@
                         <!--Logo-->
                         <div id="logo">
                             <!--Logo that is shown on the banner-->
-                            <a href="/index.html">
+                            <a href="/">
                                 <svg class="img-fluid" viewBox="0 0 410 54" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -116,21 +116,21 @@
                         <nav id="nav-main">
                             <ul>
                                 <li>
-                                    <a href="/index.html" class="active">Home</a>
+                                    <a href="/" class="active">Home</a>
                                     <ul class="dropdown">
-                                        <li><a href="/index.html#about">About</a></li>
-                                        <li><a href="/index.html#services">Services</a></li>
-                                        <li><a href="/index.html#testimonials">Testimonials</a></li>
-                                        <li><a href="/index.html#clients">Clients</a></li>
-                                        <li><a href="/index.html#exclusive">Exclusive</a></li>
-                                        <li><a href="/index.html#pricing">Pricing</a></li>
+                                        <li><a href="/#about">About</a></li>
+                                        <li><a href="/#services">Services</a></li>
+                                        <li><a href="/#testimonials">Testimonials</a></li>
+                                        <li><a href="/#clients">Clients</a></li>
+                                        <li><a href="/#exclusive">Exclusive</a></li>
+                                        <li><a href="/#pricing">Pricing</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/agenda.html">Agenda</a>
+                                    <a href="/agenda">Agenda</a>
                                 </li>
                                 <li>
-                                    <a href="/FAQ.html">FAQ</a>
+                                    <a href="/FAQ">FAQ</a>
                                 </li>
                                 <li>
                                     <a href="#">Pre-order nu!</a>

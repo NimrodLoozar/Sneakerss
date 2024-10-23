@@ -40,7 +40,7 @@
             <!--Logo-->
             <div id="logo">
               <!--Logo that is shown on the banner-->
-              <a href="index.html">
+              <a href="/">
                 <svg class="img-fluid" viewBox="0 0 410 54" version="1.1" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink">
                   <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -131,24 +131,24 @@
             <nav id="nav-main">
               <ul>
                 <li>
-                  <a href="/index.html">Home</a>
+                  <a href="/">Home</a>
                   <ul class="dropdown">
-                    <li><a href="/index.html#about">About</a></li>
-                    <li><a href="/index.html#services">Services</a></li>
-                    <li><a href="/index.html#testimonials">Testimonials</a></li>
-                    <li><a href="/index.html#clients">Clients</a></li>
-                    <li><a href="/index.html#sneaker">Exclusive</a></li>
-                    <li><a href="/index.html#pricing">Pricing</a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/#services">Services</a></li>
+                    <li><a href="/#testimonials">Testimonials</a></li>
+                    <li><a href="/#clients">Clients</a></li>
+                    <li><a href="/#sneaker">Exclusive</a></li>
+                    <li><a href="/#pricing">Pricing</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="/agenda.html">Agenda</a>
+                  <a href="/agenda">Agenda</a>
                 </li>
                 <li>
                   <a href="#" class="active">FAQ</a>
                 </li>
                 <li>
-                  <a href="/pre-order-waitlist.php">Pre-order nu!</a>
+                  <a href="/pre-order-waitlist">Pre-order nu!</a>
                 </li>
               </ul>
               <div id="progress-bar"></div>
@@ -417,7 +417,36 @@
     </section>
   </main>
 
-
+  <section class="col-1 countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
+    <div class="countdown-container flex clearfix">
+      <div class="countdown clearfix">
+        <div class="col-3">
+          <div class="">
+            <span id="days"></span>
+            <p>D</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="">
+            <span id="hours"></span>
+            <p>Hr</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="">
+            <span id="minutes"></span>
+            <p>Min.</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="">
+            <span id="seconds"></span>
+            <p>Sec.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!--Footer-->
   <footer id="landing-footer" class="clearfix">
     <div class="clearfix">
@@ -459,6 +488,7 @@
   <!--End of Footer-->
 
   <!-- Include JavaScript resources -->
+  <script src="assets/Js/countdown.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="assets/Js/faq_search.js"></script>
   <script src="assets/js/jquery.1.8.3.min.js"></script>

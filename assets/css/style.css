@@ -644,10 +644,18 @@ ul li ul li a {
     color: #ba0d1b;
 }
 
-#header nav ul li a,
-#headerFAQ nav ul li a {
+#header nav ul li a.links,
+#headerFAQ nav ul li a.links {
     height: 71px;
     line-height: 71px;
+    display: block;
+    padding: 0 10px;
+}
+
+#header nav ul li ul li a,
+#headerFAQ nav ul li ul li a {
+    line-height: normal;
+    line-height: 50px;
     display: block;
     padding: 0 10px;
 }
@@ -1243,37 +1251,37 @@ h6 {
 
 @media (max-width: 2560px) {
     .absolute {
-        top: 80vh;
+        top: 78vh;
     }
 }
 
 @media (max-width: 1920px) {
     .absolute {
-        top: 73vh;
+        top: 72vh;
     }
 }
 
 @media (max-width: 1440px) {
     .absolute {
-        top: 70vh;
+        top: 69vh;
     }
 }
 
 @media (max-width: 425px) {
     .absolute {
-        top: 73vh;
+        top: 71vh;
     }
 }
 
 @media (max-width: 375px) {
     .absolute {
-        top: 73vh;
+        top: 71vh;
     }
 }
 
 @media (max-width: 320px) {
     .absolute {
-        top: 73vh;
+        top: 71vh;
     }
 }
 
@@ -3444,29 +3452,35 @@ button:hover {
 }
 
 /* Countdown */
+.countdown-pre-container{
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    right: 1rem;
+}
+
 .countdown-container {
     text-align: center;
     justify-content: center;
-    width: 30%;
-    position: absolute;
-    z-index: 999;
-    inset: 1rem 10rem 1rem 1rem;
-    font-size: 20px;
+    margin-bottom: 5rem;
+    float: right;
+    width: 13%;
+    font-size: 10px;
     background-color: #fff;
     border-radius: 15px;
+    animation: shakeX 10s; 
 }
 
 .countdown div {
-    margin: -40px 0px -44px 0px;
+    margin-top: 0px;
     width: 60px;
     padding-left: 0;
 }
 
 .countdown span {
-    font-size: 30px;
+    font-size: 20px;
     /* background-color: #000000; */
     border-radius: 25px;
-    /* padding: 10px; */
     color: red;
     /* Later kun je deze kleur aanpassen */
 }
@@ -3570,4 +3584,12 @@ button:focus {
 .pre-order-main {
     display: flex;
     justify-content: center;
+}
+
+/* nieuws letter */
+.nieuwsletter{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: #000 5px 5px 10px .1px;
 }
