@@ -28,6 +28,7 @@
 9. Exclusive sneakers & Podium
 10. Agenda
 11. verkopers lijst
+12. info stands
 
 
 /*------------------------------------------------------------------------------------------*/
@@ -3585,3 +3586,5 @@ button:focus {
     display: flex;
     justify-content: center;
 }
+
+/* 12. info styling */
