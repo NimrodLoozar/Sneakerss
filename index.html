@@ -905,6 +905,28 @@
                     Lijst van verkopers niet beschikbaar, probeer later opnieuw.
                 </div>
 
+                <?php
+                $sql = "SELECT r.company_name, s.stand_number, p.plain_name FROM reservations r 
+                        JOIN stands s ON r.stand_id = s.id 
+                        JOIN plains p ON s.plain_id = p.id";
+                $stmt = $pdo->query($sql);
+                $reservations = $stmt->fetchAll();
+                ?>
+
+                <div class="reservations">
+                    <h3>Bedrijven aanwezig:</h3>
+                    <ul>
+                        <?php foreach($reservations as $res): ?>
+                        <li>
+                            <?php echo $res['company_name']; ?> - Stand:
+                            <?php echo $res['stand_number']; ?>, Plein:
+                            <?php echo $res['plain_name']; ?>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+
+
                 <script>
                     const vendorsAvailable = true; // Verander deze waarde naar 'false' om de foutmelding te testen
 
