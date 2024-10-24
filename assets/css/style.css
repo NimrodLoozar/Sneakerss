@@ -1104,7 +1104,8 @@ ul li ul li a {
 /* Social Elements when Solid*/
 
 #header.nav-solid .social-icons a,
-#headerFAQ.nav-solid .social-icons a {
+#headerFAQ.nav-solid .social-icons a,
+.interface-icons a {
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
@@ -1113,7 +1114,8 @@ ul li ul li a {
 }
 
 #header.nav-solid .social-icons a:hover,
-#headerFAQ.nav-solid .social-icons a:hover {
+#headerFAQ.nav-solid .social-icons a:hover,
+.interface-icons a {
     opacity: 1;
     color: #e4473c;
 }
@@ -1245,18 +1247,31 @@ nav#nav-mobile a:hover {
     text-align: right;
 }
 
-.social-icons {
+.interface-icons li {
+    text-align: center;
+}
+.interface-icons a {
+}
+.interface-icons li:first-of-type::after {
+    content: '|';
+    padding-left: 1rem;
+}
+
+.social-icons,
+.interface-icons {
     display: inline-block;
     list-style: none;
 }
 
-.social-icons a {
+.social-icons a,
+.interface-icons a {
     display: inline-block;
     width: 32px;
     text-align: center;
 }
 
-.social-icons a:hover {
+.social-icons a:hover,
+.interface-icons a:hover {
     opacity: 0.7;
 }
 
@@ -1265,7 +1280,8 @@ nav#nav-mobile a:hover {
 }
 
 #header .social-icons,
-#headerFAQ .social-icons {
+#headerFAQ .social-icons,
+.interface-icons {
     margin-top: 27px;
     margin-right: 100px;
 }
@@ -3145,7 +3161,8 @@ button:hover {
     }
 
     #header ul.social-icons,
-    #headerFAQ ul.social-icons {
+    #headerFAQ ul.social-icons,
+    .interface-icons {
         margin-top: 0;
     }
 
@@ -4228,4 +4245,81 @@ button:focus {
 
 .borderbox {
     box-sizing: content-box;
+}
+
+/* Registratie */
+
+.register-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h2 {
+    text-align: center;
+}
+
+.register-input[type="text"],
+.register-input[type="email"],
+.register-input[type="password"] {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.register-button {
+    background: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.register-button:hover {
+    background: #4cae4c;
+}
+
+/* Login */
+
+.login-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+    text-align: center;
+}
+
+.login-input[type="text"],
+.login-input[type="password"] {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.login-input[type="submit"] {
+    background: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.login-input[type="submit"]:hover {
+    background: #4cae4c;
 }

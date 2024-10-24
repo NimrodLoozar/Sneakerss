@@ -1,3 +1,27 @@
+<?php
+// Fouten weergeven voor debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+
+include 'config/config.php'; // Zorg ervoor dat je je databaseverbinding hebt
+
+// Ophalen van goedgekeurde reserveringen
+$query = "SELECT * FROM reservations WHERE status = 'approved'";
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+$reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$sql = "SELECT r.company_name, s.stand_number, p.plain_name FROM reservations r 
+        JOIN stands s ON r.stand_id = s.id 
+        JOIN plains p ON s.plain_id = p.id";
+$stmt = $pdo->query($sql);
+$reservations = $stmt->fetchAll();
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -95,7 +119,7 @@
                             </a>
                         </div>
                         <!--End of Logo-->
-                        <aside>
+                        <aside class="row">
                             <!--Social Icons in Header-->
                             <ul class="social-icons">
                                 <li>
@@ -124,6 +148,22 @@
                                     </a>
                                 </li>
                             </ul>
+                            <?php
+                            if (isset($_SESSION['user_id'])) {
+                                echo ('<ul class="interface-icons">
+                                <li><a href="/logout.php">Uitloggen</a></li>
+                            </ul>');
+                            } else {
+                                echo ('<ul class="interface-icons">
+                                <li>
+                                    <a href="/register">Register</a>
+                                </li>
+                                <li>
+                                    <a href="/login">Login</a>
+                                </li>
+                            </ul>');
+                            }
+                            ?>
                             <!--End of Social Icons in Header-->
                         </aside>
 
@@ -893,6 +933,13 @@
                                             </p>
                                             <p><strong>Locatie:</strong> Stand AA++, Oost</p>
                                         </div>
+                                        <?php foreach ($reservations as $res): ?>
+                                            <div class="vendor-item col-3">
+                                                <h2><?php echo htmlspecialchars($res['company_name']); ?></h2>
+                                                <p><strong>Trivia:</strong> Populair onder skateboarders en geliefd om hun casual stijl.</p>
+                                                <p><strong>Locatie:</strong> Stand <?php echo htmlspecialchars($res['stand_number']); ?>, <?php echo htmlspecialchars($res['plain_name']); ?></p>
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
@@ -904,28 +951,6 @@
                 <div id="error-message" class="error-message" style="display: none;">
                     Lijst van verkopers niet beschikbaar, probeer later opnieuw.
                 </div>
-
-                <?php
-                $sql = "SELECT r.company_name, s.stand_number, p.plain_name FROM reservations r 
-                        JOIN stands s ON r.stand_id = s.id 
-                        JOIN plains p ON s.plain_id = p.id";
-                $stmt = $pdo->query($sql);
-                $reservations = $stmt->fetchAll();
-                ?>
-
-                <div class="reservations">
-                    <h3>Bedrijven aanwezig:</h3>
-                    <ul>
-                        <?php foreach($reservations as $res): ?>
-                        <li>
-                            <?php echo $res['company_name']; ?> - Stand:
-                            <?php echo $res['stand_number']; ?>, Plein:
-                            <?php echo $res['plain_name']; ?>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-
 
                 <script>
                     const vendorsAvailable = true; // Verander deze waarde naar 'false' om de foutmelding te testen

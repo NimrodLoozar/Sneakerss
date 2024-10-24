@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 24, 2024 at 04:24 PM
--- Server version: 9.0.1
--- PHP Version: 8.3.11
+-- Generation Time: Oct 24, 2024 at 07:23 PM
+-- Server version: 8.2.0
+-- PHP Version: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,10 +58,10 @@ INSERT INTO `contact` (`id`, `Firstname`, `Lastname`, `PhoneNumber`, `Email`, `Q
 DROP TABLE IF EXISTS `events`;
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `date` date NOT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` varchar(255) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `location` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -69,9 +69,26 @@ CREATE TABLE IF NOT EXISTS `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `name`, `date`, `location`, `created_at`) VALUES
-(1, 'Sneakerness Amsterdam', '2024-11-12', 'RAI Amsterdam', '2024-10-24 14:04:16'),
-(2, 'Sneakerness Rotterdam', '2024-12-05', 'Ahoy Rotterdam', '2024-10-24 14:04:16');
+INSERT INTO `events` (`id`, `name`, `start_date`, `end_date`, `location`) VALUES
+(1, 'Sneakerness Van Nelle Fabriek', '2024-10-26', '2024-10-27', 'Van Nelle Fabriek'),
+(2, 'Sneakerness Millenáris Budapest', '2024-11-02', '2024-11-03', 'Millenáris Budapest');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE IF NOT EXISTS `messages` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `message` text NOT NULL,
+  `is_read` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -82,21 +99,23 @@ INSERT INTO `events` (`id`, `name`, `date`, `location`, `created_at`) VALUES
 DROP TABLE IF EXISTS `plains`;
 CREATE TABLE IF NOT EXISTS `plains` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `event_id` int NOT NULL,
-  `plain_name` varchar(100) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `event_id` int DEFAULT NULL,
+  `plain_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `event_id` (`event_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `plains`
 --
 
-INSERT INTO `plains` (`id`, `event_id`, `plain_name`, `created_at`) VALUES
-(1, 1, 'Main Hall', '2024-10-24 14:04:16'),
-(2, 1, 'Outdoor Area', '2024-10-24 14:04:16'),
-(3, 2, 'Expo Hall', '2024-10-24 14:04:16');
+INSERT INTO `plains` (`id`, `event_id`, `plain_name`) VALUES
+(1, 1, 'Plein A'),
+(2, 1, 'Plein B'),
+(3, 1, 'Plein C'),
+(4, 2, 'Plein D'),
+(5, 2, 'Plein E'),
+(6, 2, 'Plein F');
 
 -- --------------------------------------------------------
 
@@ -107,23 +126,20 @@ INSERT INTO `plains` (`id`, `event_id`, `plain_name`, `created_at`) VALUES
 DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE IF NOT EXISTS `reservations` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `stand_id` int NOT NULL,
-  `company_name` varchar(255) NOT NULL,
-  `reserved_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int DEFAULT NULL,
+  `stand_id` int DEFAULT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `stand_id` (`stand_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`id`, `user_id`, `stand_id`, `company_name`, `reserved_at`) VALUES
-(1, 1, 1, 'John’s Sneakers', '2024-10-24 14:04:16'),
-(2, 2, 3, 'Jane’s Shoes', '2024-10-24 14:04:16'),
-(3, 3, 1, 'kutklotenaam', '2024-10-24 14:35:34');
+INSERT INTO `reservations` (`id`, `user_id`, `stand_id`, `company_name`) VALUES
+(1, 3, 1, 'Sneaker Design');
 
 -- --------------------------------------------------------
 
@@ -134,24 +150,78 @@ INSERT INTO `reservations` (`id`, `user_id`, `stand_id`, `company_name`, `reserv
 DROP TABLE IF EXISTS `stands`;
 CREATE TABLE IF NOT EXISTS `stands` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `plain_id` int NOT NULL,
-  `stand_number` int NOT NULL,
+  `plain_id` int DEFAULT NULL,
+  `stand_number` varchar(50) NOT NULL,
   `is_available` tinyint(1) DEFAULT '1',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `plain_id` (`plain_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `stands`
 --
 
-INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`, `created_at`) VALUES
-(1, 1, 1, 0, '2024-10-24 14:04:16'),
-(2, 1, 2, 1, '2024-10-24 14:04:16'),
-(3, 2, 1, 1, '2024-10-24 14:04:16'),
-(4, 2, 2, 0, '2024-10-24 14:04:16'),
-(5, 3, 1, 1, '2024-10-24 14:04:16');
+INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`) VALUES
+(1, 1, '1', 0),
+(2, 1, '2', 1),
+(3, 1, '3', 1),
+(4, 1, '4', 1),
+(5, 1, '5', 1),
+(6, 1, '6', 1),
+(7, 1, '7', 1),
+(8, 1, '8', 1),
+(9, 1, '9', 1),
+(10, 1, '10', 1),
+(11, 2, '1', 1),
+(12, 2, '2', 1),
+(13, 2, '3', 1),
+(14, 2, '4', 1),
+(15, 2, '5', 1),
+(16, 2, '6', 1),
+(17, 2, '7', 1),
+(18, 2, '8', 1),
+(19, 2, '9', 1),
+(20, 2, '10', 1),
+(21, 3, '1', 1),
+(22, 3, '2', 1),
+(23, 3, '3', 1),
+(24, 3, '4', 1),
+(25, 3, '5', 1),
+(26, 3, '6', 1),
+(27, 3, '7', 1),
+(28, 3, '8', 1),
+(29, 3, '9', 1),
+(30, 3, '10', 1),
+(31, 4, '1', 1),
+(32, 4, '2', 1),
+(33, 4, '3', 1),
+(34, 4, '4', 1),
+(35, 4, '5', 1),
+(36, 4, '6', 1),
+(37, 4, '7', 1),
+(38, 4, '8', 1),
+(39, 4, '9', 1),
+(40, 4, '10', 1),
+(41, 5, '1', 1),
+(42, 5, '2', 1),
+(43, 5, '3', 1),
+(44, 5, '4', 1),
+(45, 5, '5', 1),
+(46, 5, '6', 1),
+(47, 5, '7', 1),
+(48, 5, '8', 1),
+(49, 5, '9', 1),
+(50, 5, '10', 1),
+(51, 6, '1', 1),
+(52, 6, '2', 1),
+(53, 6, '3', 1),
+(54, 6, '4', 1),
+(55, 6, '5', 1),
+(56, 6, '6', 1),
+(57, 6, '7', 1),
+(58, 6, '8', 1),
+(59, 6, '9', 1),
+(60, 6, '10', 1);
 
 -- --------------------------------------------------------
 
@@ -210,18 +280,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_admin` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
-(1, 'John Doe', 'john@example.com', 'passwordhash1', '2024-10-24 14:04:16'),
-(2, 'Jane Smith', 'jane@example.com', 'passwordhash2', '2024-10-24 14:04:16'),
-(3, 'Nimród Lobozár', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `is_admin`) VALUES
+(1, 'John Doe', 'john@example.com', 'passwordhash1', '2024-10-24 14:04:16', 0),
+(2, 'Jane Smith', 'jane@example.com', 'passwordhash2', '2024-10-24 14:04:16', 0),
+(3, 'Nimród Lobozár', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
