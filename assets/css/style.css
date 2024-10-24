@@ -3954,7 +3954,7 @@ button:hover {
 /* Pre-order */
 
 .pre-order-form {
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -3975,7 +3975,16 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 20px;
+}
+
+.pre-order-form h2 {
+    font-size: 50px;
+    font-weight: 500;
+}
+
+.pre-order-form label {
+    font-size: 20px;
 }
 
 .pre-order-form input[type=submit] {
@@ -3995,7 +4004,7 @@ button:hover {
 }
 
 .pre-order-number p {
-    font-size: 5rem;
+    font-size: 10rem;
 }
 
 button {

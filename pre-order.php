@@ -108,43 +108,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
-// HTML part starts here
 ?>
 <!DOCTYPE html>
 <html lang="nl">
 
-<head>
+<head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sneakers Agenda - Pre-order</title>
-    <!-- <link rel="stylesheet" href="assets/css/pre-order-waitlist.css"> -->
+    <title>Sneakerss - 2024</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="assets/img/favicon.ico" title="Favicon" />
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/namari-color.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <!-- Namari Color CSS -->
-    <link rel="stylesheet" href="assets/css/namari-color.css">
-    <!-- Animate CSS-->
     <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div id="status" class="la-ball-triangle-path">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-    <!--End of Preloader-->
-    <div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
-        <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
-        <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;">
-        </div>
-        <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
-        <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
-    </div>
     <div id="wrapper">
         <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
             <div id="header" class="nav-collapse">
@@ -216,8 +199,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </a>
                                 </li>
                                 <li>
-                                    <a target="_blank" title="Google" href="http://google.com">
-                                        <i class="fa fa-google fa-1x"></i><span>Google</span>
+                                    <a target="_blank" title="Google+" href="http://google.com/+username">
+                                        <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
                                     </a>
                                 </li>
                                 <li>
@@ -237,14 +220,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </li>
                             </ul>
                             <!--End of Social Icons in Header-->
-                            <ul class="interface-icons">
-                                <li>
-                                    <a href="/register">Register</a>
-                                </li>
-                                <li>
-                                    <a href="/login">Login</a>
-                                </li>
-                            </ul>
                         </aside>
 
 
@@ -252,13 +227,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <nav id="nav-main">
                             <ul>
                                 <li>
-                                    <a href="/" class="links">Home</a>
+                                    <a href="/" class="active links">Home</a>
                                     <ul class="dropdown">
                                         <li><a href="/#about">About</a></li>
                                         <li><a href="/#services">Services</a></li>
                                         <li><a href="/#testimonials">Testimonials</a></li>
                                         <li><a href="/#clients">Clients</a></li>
-                                        <li><a href="/#vendor-list">Aanwezige</a></li>
                                         <li><a href="/#exclusive">Exclusive</a></li>
                                         <li><a href="/#pricing">Pricing</a></li>
                                     </ul>
@@ -267,13 +241,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <a href="/agenda" class="links">Agenda</a>
                                 </li>
                                 <li>
-                                    <a href="/informatieStands" class="links">Info Stands</a>
-                                </li>
-                                <li>
                                     <a href="/FAQ" class="links">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="/pre-order-waitlist" class="links">Pre-order nu!</a>
+                                    <a href="#" class="links">Pre-order nu!</a>
                                 </li>
                             </ul>
                             <div id="progress-bar"></div>
@@ -293,7 +264,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-38">
 
                     <div class="section-heading">
-                        <h1>Welkom bij Sneakerness</h1>
+                        <h1>Welkom bij Pre-Order</h1>
                         <h2>Jouw ultieme sneakerbestemming</h2>
                         <p>Ontdek de nieuwste en meest exclusieve sneakers, ontmoet andere sneakerliefhebbers en geniet
                             van unieke evenementen. Mis het niet!</p>
@@ -303,9 +274,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div><!--End of Row-->
         </header>
     </div>
-    <section class="countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
-        <div class="col-12 countdown-container flex">
-            <div class="countdown row">
+
+    <div class="banner">
+        <img class="pre-order-img" src="https://t3.ftcdn.net/jpg/04/47/45/18/360_F_447451812_qESxM59uYu4VEziwYgAnhxrYbbWlEaXR.jpg" alt="">
+    </div>
+
+    <main class="pre-order-main" id="content" role="main">
+
+        <section>
+            <div class="form">
+
+                <?php if (!empty($errors)): ?>
+                    <div class="error-messages">
+                        <?php foreach ($errors as $error): ?>
+                            <p><?php echo htmlspecialchars($error); ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (isset($feedback)): ?>
+                    <div class="success-message">
+                        <p><?php echo htmlspecialchars($feedback); ?></p>
+                    </div>
+                <?php endif; ?>
+
+
+
+                <form class="pre-order-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <h2>Vul dit formulier in om een pre-order te plaatsen!</h2>
+                    <div>
+                        <label for="username">Gebruikersnaam:</label>
+                        <input type="text" id="username" name="username" maxlength="50" required value="<?php echo htmlspecialchars($form_data['username']); ?>">
+                    </div>
+
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" maxlength="255" required value="<?php echo htmlspecialchars($form_data['email']); ?>">
+                    </div>
+
+                    <div>
+                        <label for="password">Wachtwoord:</label>
+                        <input type="password" id="password" name="password" maxlength="255" required>
+                    </div>
+
+                    <div>
+                        <label for="birthdate">Geboortedatum:</label>
+                        <input type="date" id="birthdate" name="birthdate" required value="<?php echo htmlspecialchars($form_data['birthdate']); ?>">
+                    </div>
+
+                    <div>
+                        <button type="submit">Pre-order nu!</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <section class="col-1 countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
+        <div class="countdown-container flex">
+            <div class="countdown">
                 <div class="col-3">
                     <div class="">
                         <span id="days"></span>
