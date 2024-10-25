@@ -142,6 +142,98 @@ $allreservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </ul>
     <?php endif; ?>
 
+    <h2>Beheer Secties</h2>
+    <?php
+    $sql = "SELECT id, section_name, is_visible FROM sections";
+    $stmt = $pdo->query($sql);
+    $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    ?>
+
+    <ul>
+        <?php foreach ($sections as $section): ?>
+            <li>
+                <?php echo htmlspecialchars($section['section_name']); ?>
+                <label class="switch">
+                    <input type="checkbox" class="toggle-visibility" data-id="<?php echo $section['id']; ?>"
+                        <?php echo $section['is_visible'] ? 'checked' : ''; ?>>
+                    <span class="slider"></span>
+                </label>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
+    <script>
+        document.querySelectorAll('.toggle-visibility').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const sectionId = this.getAttribute('data-id');
+                const isVisible = this.checked ? 1 : 0;
+
+                fetch('toggle_section_visibility.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'section_id': sectionId,
+                        'is_visible': isVisible
+                    })
+                }).then(response => response.json()).then(data => {
+                    // Handle response if needed
+                });
+            });
+        });
+    </script>
+
+    <style>
+        /* Stijling voor de schuifknop */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+    </style>
+
+
+
     <ul>
         <li><a href="logout.php">Uitloggen</a></li>
         <li><a href="/">Home</a></li>

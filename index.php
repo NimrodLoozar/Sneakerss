@@ -20,6 +20,17 @@ $stmt = $pdo->query($sql);
 $reservations = $stmt->fetchAll();
 
 
+// Haal zichtbaarheid op van alle secties in één keer
+$sql = "SELECT section_name, is_visible FROM sections";
+$stmt = $pdo->query($sql);
+$visibility = $stmt->fetchAll(PDO::FETCH_KEY_PAIR); // Maakt een array zoals ['about' => 1, 'experience' => 0]
+
+// Functie om zichtbaarheid van een sectie te controleren
+function isSectionVisible($section)
+{
+    global $visibility;
+    return isset($visibility[$section]) && $visibility[$section];
+}
 ?>
 
 <!DOCTYPE html>
@@ -241,300 +252,319 @@ $reservations = $stmt->fetchAll();
     <!--Main Content Area-->
     <main id="content">
         <!--Introduction-->
-        <section id="about" class="introduction scrollto">
-            <div class="row clearfix">
-                <div class="col">
-                    <div class="section-heading">
+        <?php
+        // Haal zichtbaarheid op van 'about' sectie
+        //$sql = "SELECT is_visible FROM sections WHERE section_name = 'about'";
+        //$stmt = $pdo->query($sql);
+        //$aboutVisible = $stmt->fetchColumn();
+        ?>
 
-                        <div class="text-with-image scrollto wow fadeInUp" data-wow-delay="0.1s"">
+        <?php if (isSectionVisible('about')): ?>
+            <section id="about" class="introduction scrollto">
+                <div class="row clearfix">
+                    <div class="col">
+                        <div class="section-heading">
+
+                            <div class="text-with-image scrollto wow fadeInUp" data-wow-delay="0.1s"">
                             <span>
                                 <h3>OVER ONS</h3>
                     
                                 <h2 class=" section-title">Wat is Sneakerness?</h2>
-                            <p>Bij Sneakerness brengen we sneakerliefhebbers van over de hele wereld samen.
-                                Onze passie voor sneakers laat ons evenementen creëren die de essentie van de
-                                cultuur van kicks brengen.
-                                Ervaar wat veel meer is dan alleen een schoen.
-                                Komen jij en jouw vrienden ook langs? Boek een ticket hier op onze site! </p>
-                            </span>
-                            <img id="imgRight" class="what-is-sneakerness" src="assets/img/gallery-images/jordan.jpg">
+                                <p>Bij Sneakerness brengen we sneakerliefhebbers van over de hele wereld samen.
+                                    Onze passie voor sneakers laat ons evenementen creëren die de essentie van de
+                                    cultuur van kicks brengen.
+                                    Ervaar wat veel meer is dan alleen een schoen.
+                                    Komen jij en jouw vrienden ook langs? Boek een ticket hier op onze site! </p>
+                                </span>
+                                <img id="imgRight" class="what-is-sneakerness" src="assets/img/gallery-images/jordan.jpg">
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div class="section-heading">
 
-                    <div class="section-heading">
-
-                        <div class="text-with-image scrollto wow fadeInLeft" data-wow-delay="0.1s"">
+                            <div class="text-with-image scrollto wow fadeInLeft" data-wow-delay="0.1s"">
                                 <img class=" what-is-sneakerness"
-                            src="assets/img/gallery-images/evenement-img (3).png">
-                            <span id="imgLeft">
-                                <h3>Experience</h3>
-                                <h2 class="section-title">Maak deel uit van een wereldwijde gemeenschap van
-                                    enthousiastelingen.</h2>
-                                <p>Sneakerness brengt schoenenfanaten samen die hun passie vieren. Een unieke mix van 's
-                                    werelds toonaangevende merken en winkels biedt meer dan alleen een kijkje in de
-                                    sneakercultuur. Ontdek exclusieve prototypes, koop zeldzame exemplaren of laat je
-                                    inspireren door geweldige vintage ontwerpen. Ruil in voor jeugdherinneringen,
-                                    ontmoet je eerste echte liefde opnieuw en zie hoe die ene fantasie van een schoen
-                                    waar je al die jaren naar op zoek bent voor je ogen werkelijkheid wordt... Of kom
-                                    gewoon eens langs om te zien waar het allemaal om draait. En misschien besef je het
-                                    eerder vroeg dan laat: misschien ben je zelf altijd al een sneakerhead geweest.</p>
+                                src="assets/img/gallery-images/evenement-img (3).png">
+                                <span id="imgLeft">
+                                    <h3>Experience</h3>
+                                    <h2 class="section-title">Maak deel uit van een wereldwijde gemeenschap van
+                                        enthousiastelingen.</h2>
+                                    <p>Sneakerness brengt schoenenfanaten samen die hun passie vieren. Een unieke mix van 's
+                                        werelds toonaangevende merken en winkels biedt meer dan alleen een kijkje in de
+                                        sneakercultuur. Ontdek exclusieve prototypes, koop zeldzame exemplaren of laat je
+                                        inspireren door geweldige vintage ontwerpen. Ruil in voor jeugdherinneringen,
+                                        ontmoet je eerste echte liefde opnieuw en zie hoe die ene fantasie van een schoen
+                                        waar je al die jaren naar op zoek bent voor je ogen werkelijkheid wordt... Of kom
+                                        gewoon eens langs om te zien waar het allemaal om draait. En misschien besef je het
+                                        eerder vroeg dan laat: misschien ben je zelf altijd al een sneakerhead geweest.</p>
 
 
-                            </span>
+                                </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="section-heading">
-                        <div class="text-with-image scrollto wow fadeInRight" data-wow-delay="0.1s"">
+                        <div class="section-heading">
+                            <div class="text-with-image scrollto wow fadeInRight" data-wow-delay="0.1s"">
                                     <span>
                                         <h3>Onze gemeenschap</h3>
                                         <h2 class=" section-title">Sneakerness brengt samen wat bij elkaar hoort</h2>
-                            <p>Sneakerness is een samenzijn voor een diverse groep mensen uit verschillende
-                                gemeenschappen – maar ze delen allemaal dezelfde passie. Uit deze passie is
-                                Sneakerness ontstaan: vrienden die samenkomen om een ​​platform op te zetten voor
-                                degenen die geen genoeg kunnen krijgen van sneakers en de cultuur die daarbij hoort.
-                                Een cultuur die zo breed en divers mogelijk is: het verbindt particuliere verkopers
-                                en merken, atleten en artiesten, muzikanten en ontwerpers, dansers en dj's,
-                                chef-koks en entertainers. Levend in het tijdperk van netwerken realiseren we ons
-                                dat deze mensen en hun talenten met elkaar verbonden zijn – en het enige dat nodig
-                                is om van hun individuele scènes iets groters te maken, is een kans om ze allemaal
-                                samen te brengen. Dit is de visie waarin we vanaf dag één hebben geloofd – en dat
-                                doen we nog steeds.</p>
-                            </span>
-                            <img id="imgRight" class="what-is-sneakerness"
-                                src="assets/img/gallery-images/evenement-img (5).png">
+                                <p>Sneakerness is een samenzijn voor een diverse groep mensen uit verschillende
+                                    gemeenschappen – maar ze delen allemaal dezelfde passie. Uit deze passie is
+                                    Sneakerness ontstaan: vrienden die samenkomen om een ​​platform op te zetten voor
+                                    degenen die geen genoeg kunnen krijgen van sneakers en de cultuur die daarbij hoort.
+                                    Een cultuur die zo breed en divers mogelijk is: het verbindt particuliere verkopers
+                                    en merken, atleten en artiesten, muzikanten en ontwerpers, dansers en dj's,
+                                    chef-koks en entertainers. Levend in het tijdperk van netwerken realiseren we ons
+                                    dat deze mensen en hun talenten met elkaar verbonden zijn – en het enige dat nodig
+                                    is om van hun individuele scènes iets groters te maken, is een kans om ze allemaal
+                                    samen te brengen. Dit is de visie waarin we vanaf dag één hebben geloofd – en dat
+                                    doen we nog steeds.</p>
+                                </span>
+                                <img id="imgRight" class="what-is-sneakerness"
+                                    src="assets/img/gallery-images/evenement-img (5).png">
+                            </div>
                         </div>
                     </div>
-                </div>
-        </section>
+            </section>
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'About' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
+
         <div class="hVideo">
             <video class="myHVideo" src="assets/img/banner-images/SNEAKERNESS-Main-Teaser-HP_comp.mp4" loop autoplay
                 muted></video>
         </div>
 
+        <?php if (isSectionVisible('services')): ?>
+            <!--Content Section-->
+            <section id="services" class="scrollto clearfix">
 
-        <!--Content Section-->
-        <section id="services" class="scrollto clearfix">
+                <div class="row no-padding-bottom clearfix">
+                    <!--Content of the Right Side-->
+                    <div class="col-9">
+                        <div class="section-heading scrollto wow fadeInUp" data-wow-delay="0.1s">
+                            <h3>SERVICES</h3>
+                            <h2 class="section-title">Onze Diensten</h2>
+                            <p class="section-subtitle">Bij Sneakerness bieden we een breed scale aan diensten om
+                                jouw
+                                sneakerervaring onvergetelijk te maken.</p>
+                            <p>Van exclusieve releases tot live customization, we hebben alles wat je nodig hebt om
+                                je
+                                sneakercollectie naar een hoger niveau te tillen.</p>
+                            <p>Kom langs en ervaar het zelf!</p>
 
-            <div class="row no-padding-bottom clearfix">
-                <!--Content of the Right Side-->
-                <div class="col-9">
-                    <div class="section-heading scrollto wow fadeInUp" data-wow-delay="0.1s">
-                        <h3>SERVICES</h3>
-                        <h2 class="section-title">Onze Diensten</h2>
-                        <p class="section-subtitle">Bij Sneakerness bieden we een breed scale aan diensten om
-                            jouw
-                            sneakerervaring onvergetelijk te maken.</p>
-                        <p>Van exclusieve releases tot live customization, we hebben alles wat je nodig hebt om
-                            je
-                            sneakercollectie naar een hoger niveau te tillen.</p>
-                        <p>Kom langs en ervaar het zelf!</p>
-
-                        <div class="row">
+                            <div class="row">
 
 
-                            <!--Icon Block-->
-                            <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
-                                <!--Icon-->
-                                <div class="icon">
-                                    <img class="fa fa-rocket fa-2x" src="assets/img/icons/exclusive.png" alt="">
+                                <!--Icon Block-->
+                                <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
+                                    <!--Icon-->
+                                    <div class="icon">
+                                        <img class="fa fa-rocket fa-2x" src="assets/img/icons/exclusive.png" alt="">
+                                    </div>
+                                    <!--Icon Block Description-->
+                                    <div class="icon-block-description">
+                                        <h4>Exclusieve Releases</h4>
+                                        <p>Ontdek de nieuwste en meest exclusieve sneakerreleases van topmerken,
+                                            alleen
+                                            verkrijgbaar tijdens Sneakerness.</p>
+                                    </div>
                                 </div>
-                                <!--Icon Block Description-->
-                                <div class="icon-block-description">
-                                    <h4>Exclusieve Releases</h4>
-                                    <p>Ontdek de nieuwste en meest exclusieve sneakerreleases van topmerken,
-                                        alleen
-                                        verkrijgbaar tijdens Sneakerness.</p>
+                                <!--End of Icon Block-->
+
+                                <!--Icon Block-->
+                                <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
+                                    <!--Icon-->
+                                    <div class="icon">
+                                        <img class="fa fa-rocket fa-2x" src="assets/img/icons/community.png" alt="">
+                                    </div>
+                                    <!--Icon Block Description-->
+                                    <div class="icon-block-description">
+                                        <h4>Sneaker Community</h4>
+                                        <p>Verbind je met sneakerheads van over de hele wereld, deel verhalen en
+                                            bewonder
+                                            elkaars unieke collecties.</p>
+                                    </div>
                                 </div>
+                                <!--End of Icon Block-->
+
+                                <!--Icon Block-->
+                                <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
+                                    <!--Icon-->
+                                    <div class="icon">
+                                        <img class="fa fa-rocket fa-2x" src="assets/img/icons/speed-limit.png" alt="">
+                                    </div>
+                                    <!--Icon Block Description-->
+                                    <div class="icon-block-description">
+                                        <h4>Limited Editions</h4>
+                                        <p>Vind zeldzame en unieke sneakers die je nergens anders kunt krijgen. De
+                                            perfecte kans
+                                            om je collectie uit te breiden met bijzondere paren.</p>
+                                    </div>
+                                </div>
+                                <!--End of Icon Block-->
+
+                                <!--Icon Block-->
+                                <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
+                                    <!--Icon-->
+                                    <div class="icon">
+                                        <img class="fa fa-rocket fa-2x" src="assets/img/icons/live.png" alt="">
+                                    </div>
+                                    <!--Icon Block Description-->
+                                    <div class="icon-block-description">
+                                        <h4>Live Customization</h4>
+                                        <p>Ervaar live sneaker customizing door de beste artiesten en ontwerp je
+                                            eigen unieke
+                                            paar tijdens het event.</p>
+                                    </div>
+                                </div>
+                                <!--End of Icon Block-->
+
+
                             </div>
-                            <!--End of Icon Block-->
-
-                            <!--Icon Block-->
-                            <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
-                                <!--Icon-->
-                                <div class="icon">
-                                    <img class="fa fa-rocket fa-2x" src="assets/img/icons/community.png" alt="">
-                                </div>
-                                <!--Icon Block Description-->
-                                <div class="icon-block-description">
-                                    <h4>Sneaker Community</h4>
-                                    <p>Verbind je met sneakerheads van over de hele wereld, deel verhalen en
-                                        bewonder
-                                        elkaars unieke collecties.</p>
-                                </div>
-                            </div>
-                            <!--End of Icon Block-->
-
-                            <!--Icon Block-->
-                            <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
-                                <!--Icon-->
-                                <div class="icon">
-                                    <img class="fa fa-rocket fa-2x" src="assets/img/icons/speed-limit.png" alt="">
-                                </div>
-                                <!--Icon Block Description-->
-                                <div class="icon-block-description">
-                                    <h4>Limited Editions</h4>
-                                    <p>Vind zeldzame en unieke sneakers die je nergens anders kunt krijgen. De
-                                        perfecte kans
-                                        om je collectie uit te breiden met bijzondere paren.</p>
-                                </div>
-                            </div>
-                            <!--End of Icon Block-->
-
-                            <!--Icon Block-->
-                            <div class="col-6 icon-block icon-top wow fadeInUp" data-wow-delay="0.7s">
-                                <!--Icon-->
-                                <div class="icon">
-                                    <img class="fa fa-rocket fa-2x" src="assets/img/icons/live.png" alt="">
-                                </div>
-                                <!--Icon Block Description-->
-                                <div class="icon-block-description">
-                                    <h4>Live Customization</h4>
-                                    <p>Ervaar live sneaker customizing door de beste artiesten en ontwerp je
-                                        eigen unieke
-                                        paar tijdens het event.</p>
-                                </div>
-                            </div>
-                            <!--End of Icon Block-->
-
 
                         </div>
+                    </div>
+                </div>
+
+            </section>
+            <!--End of Introduction-->
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Services' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
+
+        <?php if (isSectionVisible('gallery')): ?>
+            <!--Gallery-->
+            <aside id="gallery" class="row text-center scrollto clearfix" data-featherlight-gallery
+                data-featherlight-filter="a">
+
+                <a href="assets/img/sneakers/sneaker (1)-small.png" data-wow-delay="0.4s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (1)-small.png" data-wow-delay="0.4s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/sneaker (2)-small.png" data-wow-delay="0.6s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (2)-small.png" data-wow-delay="0.6s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/sneaker (8)-small.png" data-wow-delay="0.8s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (8)-small.png" data-wow-delay="0.8s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/sneaker (4)-small.png" data-wow-delay="1.0s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (4)-small.png" data-wow-delay="1.0s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/sneaker (5)-small.png" data-wow-delay="1.2s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (5)-small.png" data-wow-delay="1.2s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/sneaker (6)-small.png" data-wow-delay="1.4s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (6)-small.png" data-wow-delay="1.4s"
+                        alt="Landing Page" /></a>
+
+                <a href="assets/img/sneakers/ssneaker-new (2).png" data-wow-delay="1.8s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src="assets/img/sneakers/ssneaker-new (2)-small.png" data-wow-delay="0.4s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/ssneaker-new (3).png" data-wow-delay="2.0s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src="assets/img/sneakers/ssneaker-new (3)-small.png" data-wow-delay="0.6s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/ssneaker-new (7).png" data-wow-delay="2.2s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src="assets/img/sneakers/sneaker (13)-small.png" data-wow-delay="0.8s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/ssneaker-new (5).png" data-wow-delay="2.4s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src="assets/img/sneakers/ssneaker-new (5)-small.png" data-wow-delay="1.0s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/ssneaker-new (8).png" data-wow-delay="2.6s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src="assets/img/sneakers/sneaker (11)-small.png" data-wow-delay="1.2s"
+                        alt="Landing Page" /></a>
+                <a href="assets/img/sneakers/ssneaker-new (9).png" data-wow-delay="2.8s" data-featherlight="image"
+                    class="col-2 wow fadeIn"><img src="assets/img/sneakers/ssneaker-new (9)-small.png" data-wow-delay="1.4s"
+                        alt="Landing Page" /></a>
+            </aside>
+            <!--End of Gallery-->
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Gallery' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
+
+        <?php if (isSectionVisible('banner-content')): ?>
+            <div id="banner-content" class="row clearfix">
+                <div class="col-38">
+
+                    <div class="nieuwsletter wow fadeInLeft scrollto text-center" data-wow-delay="0.4s">
+                        <h1><strong>Nieuwtjes</strong></h1>
+                    </div>
+                    <div class="wow fadeInLeft scrollto" data-wow-delay="0.4s">
+                        <h2> <strong>Ben jij klaar voor hét sneaker evenement van het jaar?</strong> </h2>
+                        <p> Op 28 oktober
+                            verzamelen sneakerheads uit het hele land zich om de nieuwste releases,
+                            zeldzame parels en limited editions te ontdekken. Van exclusieve pop-up
+                            shops tot live customizing sessies en meet & greets met bekende sneaker
+                            designers – dit event wil je niet missen!
+                        </p>
+                    </div>
+                    <div class="nieuwsletter wow fadeInLeft scrollto" data-wow-delay="0.4s">
+                        <h1><strong>Wat kun je verwachten?</strong></h1>
+                        <p>
+                            🎤 Live DJ-sets om de vibe compleet te maken <br>
+                            🎨 Customization workshops door top-artiesten <br>
+                            🏆 Sneaker Battles – wie heeft de beste kicks? <br>
+                            🎁 Giveaways en exclusieve deals voor alle bezoekers <br> </p>
+                        </p>
+                        Locatie: Nellefabriek, Rotterdam <br>
+                        Tijd: 12:00 – 18:00 uur <br> <br>
+
+                        Zorg dat je erbij bent! Tickets zijn beperkt, dus mis je kans niet. <br> <br>
+
+                        👟 Keep it fresh, keep it exclusive! 👟 <br> <br>
+                        </p>
+
+                        <a href="/"><button>Blijf op de hoogte</button></a>
+                    </div>
+                </div>
+                <div class="col-61">
+
+                    <div class="wow fadeInRight scrollto" data-wow-delay="0.4s">
+
+                        <h2><strong>Nieuwste Sneaker Releases Onthuld</strong></h2>
+
+                        <p> Dit is jouw kans om als eerste de nieuwste sneaker releases te zien!
+                            Van high-performance sportmodellen tot streetwear-iconen, we hebben
+                            samenwerkingen met merken als Nike, Adidas, en Yeezy. Ontdek limited edition
+                            sneakers die nergens anders verkrijgbaar zijn – exclusief beschikbaar op ons evenement!
+                        </p>
 
                     </div>
+                    <div class="nieuwsletter wow fadeInRight scrollto" data-wow-delay="0.4s">
 
+                        <h1><strong>👀 Sneak Peek:</strong></h1>
+                        <p>
+                            <strong>Nike Air Max 97 'Midnight Edition'</strong> – een elegante, donkere kleurstelling met
+                            reflecterende details. <br>
+                            <strong>Adidas Ultraboost 'Neon Wave'</strong> – perfecte balans tussen comfort en stijl. <br>
+                            <strong>Yeezy Boost 350 V3</strong> – de nieuwste iteratie, strakker dan ooit tevoren! <br> <br>
+                            Kom langs bij de release-stands en bemachtig je paar voordat ze uitverkocht zijn!
+                        <p>
 
-        </section>
-        <!--End of Introduction-->
+                    </div>
+                    <div class="wow fadeInRight scrollto" data-wow-delay="0.4s">
 
+                        <h1><strong>Sneakerheads Marketplace </strong></h1>
+                        <p>Op zoek naar die ene zeldzame sneaker? Bezoek de Sneakerheads Marketplace,
+                            waar je kunt kopen, verkopen en ruilen met andere liefhebbers. Van klassieke
+                            modellen tot de nieuwste grails, hier vind je alles wat je sneakerhart begeert.
+                        </p>
 
-        <!--Gallery-->
-        <aside id="gallery" class="row text-center scrollto clearfix" data-featherlight-gallery
-            data-featherlight-filter="a">
+                        <p>
+                            <strong>Zorg ervoor dat je je favoriete sneakers meeneemt – je weet nooit wat je
+                                tegenkomt!</strong>
+                        </p>
 
-            <a href="assets/img/sneakers/sneaker (1)-small.png" data-wow-delay="0.4s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (1)-small.png" data-wow-delay="0.4s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/sneaker (2)-small.png" data-wow-delay="0.6s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (2)-small.png" data-wow-delay="0.6s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/sneaker (8)-small.png" data-wow-delay="0.8s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (8)-small.png" data-wow-delay="0.8s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/sneaker (4)-small.png" data-wow-delay="1.0s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (4)-small.png" data-wow-delay="1.0s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/sneaker (5)-small.png" data-wow-delay="1.2s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (5)-small.png" data-wow-delay="1.2s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/sneaker (6)-small.png" data-wow-delay="1.4s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src=" assets/img/sneakers/sneaker (6)-small.png" data-wow-delay="1.4s"
-                    alt="Landing Page" /></a>
-
-            <a href="assets/img/sneakers/ssneaker-new (2).png" data-wow-delay="1.8s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src="assets/img/sneakers/ssneaker-new (2)-small.png" data-wow-delay="0.4s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/ssneaker-new (3).png" data-wow-delay="2.0s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src="assets/img/sneakers/ssneaker-new (3)-small.png" data-wow-delay="0.6s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/ssneaker-new (7).png" data-wow-delay="2.2s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src="assets/img/sneakers/sneaker (13)-small.png" data-wow-delay="0.8s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/ssneaker-new (5).png" data-wow-delay="2.4s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src="assets/img/sneakers/ssneaker-new (5)-small.png" data-wow-delay="1.0s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/ssneaker-new (8).png" data-wow-delay="2.6s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src="assets/img/sneakers/sneaker (11)-small.png" data-wow-delay="1.2s"
-                    alt="Landing Page" /></a>
-            <a href="assets/img/sneakers/ssneaker-new (9).png" data-wow-delay="2.8s" data-featherlight="image"
-                class="col-2 wow fadeIn"><img src="assets/img/sneakers/ssneaker-new (9)-small.png" data-wow-delay="1.4s"
-                    alt="Landing Page" /></a>
-        </aside>
-        <!--End of Gallery-->
-        </div>
-        <div id="banner-content" class="row clearfix">
-            <div class="col-38">
-
-                <div class="nieuwsletter wow fadeInLeft scrollto text-center" data-wow-delay="0.4s">
-                    <h1><strong>Nieuwtjes</strong></h1>
-                </div>
-                <div class="wow fadeInLeft scrollto" data-wow-delay="0.4s">
-                    <h2> <strong>Ben jij klaar voor hét sneaker evenement van het jaar?</strong> </h2>
-                    <p> Op 28 oktober
-                        verzamelen sneakerheads uit het hele land zich om de nieuwste releases,
-                        zeldzame parels en limited editions te ontdekken. Van exclusieve pop-up
-                        shops tot live customizing sessies en meet & greets met bekende sneaker
-                        designers – dit event wil je niet missen!
-                    </p>
-                </div>
-                <div class="nieuwsletter wow fadeInLeft scrollto" data-wow-delay="0.4s">
-                    <h1><strong>Wat kun je verwachten?</strong></h1>
-                    <p>
-                        🎤 Live DJ-sets om de vibe compleet te maken <br>
-                        🎨 Customization workshops door top-artiesten <br>
-                        🏆 Sneaker Battles – wie heeft de beste kicks? <br>
-                        🎁 Giveaways en exclusieve deals voor alle bezoekers <br> </p>
-                    </p>
-                    Locatie: Nellefabriek, Rotterdam <br>
-                    Tijd: 12:00 – 18:00 uur <br> <br>
-
-                    Zorg dat je erbij bent! Tickets zijn beperkt, dus mis je kans niet. <br> <br>
-
-                    👟 Keep it fresh, keep it exclusive! 👟 <br> <br>
-                    </p>
-
-                    <a href="/"><button>Blijf op de hoogte</button></a>
+                        <img class="nieuwsletter wow fadeInRight scrollto" src="/assets/img/sneakers/sneaker (5)-small.png"
+                            alt="" data-wow-delay="0.4s">
+                    </div>
                 </div>
             </div>
-            <div class="col-61">
+            <!--End Nieuws ashutosh-->
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Nieuwtjes' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
 
-                <div class="wow fadeInRight scrollto" data-wow-delay="0.4s">
-
-                    <h2><strong>Nieuwste Sneaker Releases Onthuld</strong></h2>
-
-                    <p> Dit is jouw kans om als eerste de nieuwste sneaker releases te zien!
-                        Van high-performance sportmodellen tot streetwear-iconen, we hebben
-                        samenwerkingen met merken als Nike, Adidas, en Yeezy. Ontdek limited edition
-                        sneakers die nergens anders verkrijgbaar zijn – exclusief beschikbaar op ons evenement!
-                    </p>
-
-                </div>
-                <div class="nieuwsletter wow fadeInRight scrollto" data-wow-delay="0.4s">
-
-                    <h1><strong>👀 Sneak Peek:</strong></h1>
-                    <p>
-                        <strong>Nike Air Max 97 'Midnight Edition'</strong> – een elegante, donkere kleurstelling met
-                        reflecterende details. <br>
-                        <strong>Adidas Ultraboost 'Neon Wave'</strong> – perfecte balans tussen comfort en stijl. <br>
-                        <strong>Yeezy Boost 350 V3</strong> – de nieuwste iteratie, strakker dan ooit tevoren! <br> <br>
-                        Kom langs bij de release-stands en bemachtig je paar voordat ze uitverkocht zijn!
-                    <p>
-
-                </div>
-                <div class="wow fadeInRight scrollto" data-wow-delay="0.4s">
-
-                    <h1><strong>Sneakerheads Marketplace </strong></h1>
-                    <p>Op zoek naar die ene zeldzame sneaker? Bezoek de Sneakerheads Marketplace,
-                        waar je kunt kopen, verkopen en ruilen met andere liefhebbers. Van klassieke
-                        modellen tot de nieuwste grails, hier vind je alles wat je sneakerhart begeert.
-                    </p>
-
-                    <p>
-                        <strong>Zorg ervoor dat je je favoriete sneakers meeneemt – je weet nooit wat je
-                            tegenkomt!</strong>
-                    </p>
-
-                    <img class="nieuwsletter wow fadeInRight scrollto" src="/assets/img/sneakers/sneaker (5)-small.png"
-                        alt="" data-wow-delay="0.4s">
-                </div>
-            </div>
-        </div>
-
-
-        <!--End Nieuws ashutosh-->
-        </div>
-        </div>
-        <!--End Content Right Side-->
         <div class="slideshow-container-2">
             <div class="banner-text">
                 <img class="mySlides-2"
@@ -555,804 +585,820 @@ $reservations = $stmt->fetchAll();
                     src="https://i0.wp.com/billypenn.com/wp-content/uploads/2023/02/sneakercon-conventionctr-11-scaled.jpg?resize=1024%2C683&ssl=1" />
             </div>
         </div>
-        </div>
-        </section>
-        <!--End of Content Section-->
 
+        <?php if (isSectionVisible('testimonials')): ?>
+            <!--Testimonials-->
+            <aside id="testimonials" class="scrollto text-center scrollto wow fadeInRight" data-wow-delay="0.1s"
+                data-enllax-ratio=".2">
+                <div class="section-heading">
+                    <h3>RECENCIES</h3>
+                    <h2 class="section-title">Wat onze klanten hebben ervaart</h2>
+                </div>
+                <div class="testimonial-slider">
+                    <button class="prev" onclick="prevSlide()">❮</button>
+                    <div class="testimonial-wrapper">
+                        <div class="testimonial-slides">
+                            <!--User Testimonial-->
+                            <blockquote class="testimonial classic">
+                                <img loading="lazy" src="assets/img/user-images/user-1.jpg" alt="User" />
+                                <q><strong>Een droom voor sneakerfans!</strong></q>
+                                <q>Sneakerness® had alles: zeldzame kicks, een geweldige sfeer, en vriendelijke verkopers.
+                                    Ik vond unieke sneakers en de customizers waren een leuke verrassing. Volgend jaar ben
+                                    ik er weer bij!</q>
+                                <footer>John Doe - Sneakerhead</footer>
+                            </blockquote>
+                            <!-- End of Testimonial-->
 
+                            <!--User Testimonial-->
+                            <blockquote class="testimonial classic">
+                                <img loading="lazy" src="assets/img/user-images/user-2.jpg" alt="User" />
+                                <q><strong>Leuk, maar prijzig!</strong> Het was indrukwekkend voor verzamelaars, maar als
+                                    nieuwkomer voelde het soms overweldigend. De prijzen voor vroege toegang zijn hoog, en
+                                    ik miste wat variatie in de stands. Een leuke ervaring, maar misschien niet voor
+                                    herhaling vatbaar.</q>
+                                <footer>Roslyn Doe - Sneakerhead</footer>
+                            </blockquote>
+                            <!-- End of Testimonial-->
 
-        <!--Testimonials-->
-        <aside id="testimonials" class="scrollto text-center scrollto wow fadeInRight" data-wow-delay="0.1s"
-            data-enllax-ratio=".2">
-            <div class="section-heading">
-                <h3>RECENCIES</h3>
-                <h2 class="section-title">Wat onze klanten hebben ervaart</h2>
-            </div>
-            <div class="testimonial-slider">
-                <button class="prev" onclick="prevSlide()">❮</button>
-                <div class="testimonial-wrapper">
-                    <div class="testimonial-slides">
-                        <!--User Testimonial-->
-                        <blockquote class="testimonial classic">
-                            <img loading="lazy" src="assets/img/user-images/user-1.jpg" alt="User" />
-                            <q><strong>Een droom voor sneakerfans!</strong></q>
-                            <q>Sneakerness® had alles: zeldzame kicks, een geweldige sfeer, en vriendelijke verkopers.
-                                Ik vond unieke sneakers en de customizers waren een leuke verrassing. Volgend jaar ben
-                                ik er weer bij!</q>
-                            <footer>John Doe - Sneakerhead</footer>
-                        </blockquote>
-                        <!-- End of Testimonial-->
+                            <!--User Testimonial-->
+                            <blockquote class="testimonial classic">
+                                <img loading="lazy" src="assets/img/user-images/user-3.jpg" alt="User" />
+                                <q><strong>Eerste beste!</strong></q>
+                                <q>Als standhouder was dit mijn eerste keer bij Sneakerness®, en het was een succes! Goed
+                                    georganiseerd en ik heb veel nieuwe klanten ontmoet. Soms was het druk bij de ingang,
+                                    maar verder een geweldige ervaring. Ik kom zeker terug!</q>
+                                <footer>Trevor Doe - Ondernemer</footer>
+                            </blockquote>
+                            <!-- End of Testimonial-->
 
-                        <!--User Testimonial-->
-                        <blockquote class="testimonial classic">
-                            <img loading="lazy" src="assets/img/user-images/user-2.jpg" alt="User" />
-                            <q><strong>Leuk, maar prijzig!</strong> Het was indrukwekkend voor verzamelaars, maar als
-                                nieuwkomer voelde het soms overweldigend. De prijzen voor vroege toegang zijn hoog, en
-                                ik miste wat variatie in de stands. Een leuke ervaring, maar misschien niet voor
-                                herhaling vatbaar.</q>
-                            <footer>Roslyn Doe - Sneakerhead</footer>
-                        </blockquote>
-                        <!-- End of Testimonial-->
+                            <!--User Testimonial-->
+                            <blockquote class="testimonial classic">
+                                <img loading="lazy" src="assets/img/user-images/user-1.jpg" alt="User" />
+                                <q><strong>De muziek was fantastisch!</strong> Ik kwam voor de sneakers, maar de DJ’s
+                                    maakten het evenement echt bijzonder. De combinatie van muziek en sneakers zorgde voor
+                                    een geweldige sfeer. Een aanrader, ook als je geen sneakerhead bent!</q>
+                                <footer>Henny Doe - Sneakerliefhebber</footer>
+                            </blockquote>
+                            <!-- End of Testimonial-->
 
-                        <!--User Testimonial-->
-                        <blockquote class="testimonial classic">
-                            <img loading="lazy" src="assets/img/user-images/user-3.jpg" alt="User" />
-                            <q><strong>Eerste beste!</strong></q>
-                            <q>Als standhouder was dit mijn eerste keer bij Sneakerness®, en het was een succes! Goed
-                                georganiseerd en ik heb veel nieuwe klanten ontmoet. Soms was het druk bij de ingang,
-                                maar verder een geweldige ervaring. Ik kom zeker terug!</q>
-                            <footer>Trevor Doe - Ondernemer</footer>
-                        </blockquote>
-                        <!-- End of Testimonial-->
+                            <!--User Testimonial-->
+                            <blockquote class="testimonial classic">
+                                <img loading="lazy" src="assets/img/user-images/user-2.jpg" alt="User" />
+                                <q>Een geweldige gezinsdag! De kindvriendelijke activiteiten waren top, en de sfeer was
+                                    relaxed. Ondanks de drukte was het nooit te chaotisch. De toegang is aan de hoge kant
+                                    voor gezinnen, maar het was zeker de moeite waard!</q>
+                                <footer>Boa Doe - Sneakerhead</footer>
+                            </blockquote>
+                            <!-- End of Testimonial-->
 
-                        <!--User Testimonial-->
-                        <blockquote class="testimonial classic">
-                            <img loading="lazy" src="assets/img/user-images/user-1.jpg" alt="User" />
-                            <q><strong>De muziek was fantastisch!</strong> Ik kwam voor de sneakers, maar de DJ’s
-                                maakten het evenement echt bijzonder. De combinatie van muziek en sneakers zorgde voor
-                                een geweldige sfeer. Een aanrader, ook als je geen sneakerhead bent!</q>
-                            <footer>Henny Doe - Sneakerliefhebber</footer>
-                        </blockquote>
-                        <!-- End of Testimonial-->
+                            <!--User Testimonial-->
+                            <blockquote class="testimonial classic">
+                                <img loading="lazy" src="assets/img/user-images/user-3.jpg" alt="User" />
+                                <q>Een geweldige gezinsdag! De kindvriendelijke activiteiten waren top, en de sfeer was
+                                    relaxed. Ondanks de drukte was het nooit te chaotisch. De toegang is aan de hoge kant
+                                    voor gezinnen, maar het was zeker de moeite waard!</q>
+                                <footer>Ryan Doe - Sneakerhead</footer>
+                            </blockquote>
+                            <!-- End of Testimonial-->
 
-                        <!--User Testimonial-->
-                        <blockquote class="testimonial classic">
-                            <img loading="lazy" src="assets/img/user-images/user-2.jpg" alt="User" />
-                            <q>Een geweldige gezinsdag! De kindvriendelijke activiteiten waren top, en de sfeer was
-                                relaxed. Ondanks de drukte was het nooit te chaotisch. De toegang is aan de hoge kant
-                                voor gezinnen, maar het was zeker de moeite waard!</q>
-                            <footer>Boa Doe - Sneakerhead</footer>
-                        </blockquote>
-                        <!-- End of Testimonial-->
-
-                        <!--User Testimonial-->
-                        <blockquote class="testimonial classic">
-                            <img loading="lazy" src="assets/img/user-images/user-3.jpg" alt="User" />
-                            <q>Een geweldige gezinsdag! De kindvriendelijke activiteiten waren top, en de sfeer was
-                                relaxed. Ondanks de drukte was het nooit te chaotisch. De toegang is aan de hoge kant
-                                voor gezinnen, maar het was zeker de moeite waard!</q>
-                            <footer>Ryan Doe - Sneakerhead</footer>
-                        </blockquote>
-                        <!-- End of Testimonial-->
-
+                        </div>
                     </div>
+                    <button class="next" onclick="nextSlide()">❯</button>
                 </div>
-                <button class="next" onclick="nextSlide()">❯</button>
-            </div>
-        </aside>
-        <!--End of Testimonials-->
+            </aside>
+            <!--End of Testimonials-->
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'testimonials' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
 
-        <!--Clients-->
-        <section id="clients" class="scrollto clearfix wow fadeInUp" data-wow-delay="0.1s">
-            <div class=" row clearfix">
-                <div class="col-9">
-                    <div class="section-heading">
-                        <h3>CLIENTS</h3>
-                        <h2 class="section-title">Onze Partners</h2>
-                        <p class="section-subtitle">
-                            We zijn trots om samen te werken met enkele van de grootste namen in de
-                            sneakerindustrie. Onze partners helpen ons om van Sneakerness een onvergetelijke
-                            ervaring te maken.
-                        </p>
-                    </div>
-
-                </div>
-                <div class="scrollto clearfix">
-                    <ul class="row">
-                        <a href="https://www.puma.com" target="_blank" data-wow-delay="0.2s" class="col-3 wow fadeIn">
-                            <img
-                                src="https://sneakerbaron.nl/wp-content/themes/the-baron/assets/images/brands/black/puma.svg" />
-                            <div class="client-overlay"><span>Puma</span></div>
-                        </a>
-                        <a href="https://www.adidas.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
-                            <img
-                                src="https://sneakerbaron.nl/wp-content/themes/the-baron/assets/images/brands/black/adidas.svg" />
-                            <div class="client-overlay"><span>Adidas</span></div>
-                        </a>
-                        <a href="https://www.fila.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
-                            <img
-                                src="https://sneakerbaron.nl/wp-content/themes/the-baron/assets/images/brands/black/fila.svg" />
-                            <div class="client-overlay"><span>Fila</span></div>
-                        </a>
-                        <a href="https://www.nike.com" target="_blank" data-wow-delay="0.8s" class="col-3 wow fadeIn">
-                            <img
-                                src="https://sneakerbaron.nl/wp-content/themes/the-baron/assets/images/brands/black/nike.svg" />
-                            <div class="client-overlay"><span>Nike</span></div>
-                        </a>
-                        <a href="https://www.alexandermcqueen.com" target="_blank" data-wow-delay="0.2s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/alexander-mcqueen.svg" alt="Company" />
-                            <div class="client-overlay"><span>alexander-mcqueen</span></div>
-                        </a>
-                        <a href="https://www.arkkcopenhagen.com" target="_blank" data-wow-delay="0.4s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/arkk.svg" alt="Company" />
-                            <div class="client-overlay"><span>arkk</span></div>
-                        </a>
-                        <a href="https://www.asics.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/asics.svg" alt="Company" />
-                            <div class="client-overlay"><span>asics</span></div>
-                        </a>
-                        <a href="https://www.autry-usa.com" target="_blank" data-wow-delay="0.8s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/autry.svg" alt="Company" />
-                            <div class="client-overlay"><span>autry</span></div>
-                        </a>
-                        <a href="https://www.balenciaga.com" target="_blank" data-wow-delay="0.2s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/balenciaga.svg" alt="Company" />
-                            <div class="client-overlay"><span>balenciaga</span></div>
-                        </a>
-                        <a href="https://www.birkenstock.com" target="_blank" data-wow-delay="0.4s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/birkenstock.svg" alt="Company" />
-                            <div class="client-overlay"><span>birkenstock</span></div>
-                        </a>
-                        <a href="https://www.buffalo-boots.com" target="_blank" data-wow-delay="0.6s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/buffalo.svg" alt="Company" />
-                            <div class="client-overlay"><span>buffalo</span></div>
-                        </a>
-                        <a href="https://www.comme-des-garcons.com" target="_blank" data-wow-delay="0.8s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/comme-des-garcons.svg" alt="Company" />
-                            <div class="client-overlay"><span>comme-des-garcons</span></div>
-                        </a>
-                        <a href="https://www.converse.com" target="_blank" data-wow-delay="0.2s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/converse.svg" alt="Company" />
-                            <div class="client-overlay"><span>converse</span></div>
-                        </a>
-                        <a href="https://www.crocs.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/crocs.svg" alt="Company" />
-                            <div class="client-overlay"><span>crocs</span></div>
-                        </a>
-                        <a href="https://www.diadora.com" target="_blank" data-wow-delay="0.6s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/diadora.svg" alt="Company" />
-                            <div class="client-overlay"><span>diadora</span></div>
-                        </a>
-                        <a href="https://www.etq-amsterdam.com" target="_blank" data-wow-delay="0.8s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/etq.svg" alt="Company" />
-                            <div class="client-overlay"><span>etq</span></div>
-                        </a>
-                        <a href="https://www.fillingpieces.com" target="_blank" data-wow-delay="0.2s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/filling-pieces.svg" alt="Company" />
-                            <div class="client-overlay"><span>filling-pieces</span></div>
-                        </a>
-                        <a href="https://www.gucci.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/gucci.svg" alt="Company" />
-                            <div class="client-overlay"><span>gucci</span></div>
-                        </a>
-                        <a href="https://www.hi-tec.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/hi-tec.svg" alt="Company" />
-                            <div class="client-overlay"><span>hi-tec</span></div>
-                        </a>
-                        <a href="https://www.hoka.com" target="_blank" data-wow-delay="0.8s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/hoka.svg" alt="Company" />
-                            <div class="client-overlay"><span>hoka</span></div>
-                        </a>
-                        <a href="https://www.hummel.net" target="_blank" data-wow-delay="0.2s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/hummel.svg" alt="Company" />
-                            <div class="client-overlay"><span>hummel</span></div>
-                        </a>
-                        <a href="https://www.nike.com/jordan" target="_blank" data-wow-delay="0.4s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/jordan.svg" alt="Company" />
-                            <div class="client-overlay"><span>jordan</span></div>
-                        </a>
-                        <a href="https://www.kangaroos.com" target="_blank" data-wow-delay="0.6s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/kangaroos.svg" alt="Company" />
-                            <div class="client-overlay"><span>kangaroos</span></div>
-                        </a>
-                        <a href="https://www.karhu.com" target="_blank" data-wow-delay="0.8s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/karhu.svg" alt="Company" />
-                            <div class="client-overlay"><span>karhu</span></div>
-                        </a>
-                        <a href="https://www.lacoste.com" target="_blank" data-wow-delay="0.2s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/lacoste.svg" alt="Company" />
-                            <div class="client-overlay"><span>lacoste</span></div>
-                        </a>
-                        <a href="https://www.mizuno.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/mizuno.svg" alt="Company" />
-                            <div class="client-overlay"><span>mizuno</span></div>
-                        </a>
-                        <a href="https://www.newbalance.com" target="_blank" data-wow-delay="0.6s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/new-balance.svg" alt="Company" />
-                            <div class="client-overlay"><span>new-balance</span></div>
-                        </a>
-                        <a href="https://www.nubikk.com" target="_blank" data-wow-delay="0.8s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/nubikk.svg" alt="Company" />
-                            <div class="client-overlay"><span>nubikk</span></div>
-                        </a>
-                        <a href="https://www.off---white.com" target="_blank" data-wow-delay="0.2s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/off-white.svg" alt="Company" />
-                            <div class="client-overlay"><span>off-white</span></div>
-                        </a>
-                        <a href="https://www.onitsukatiger.com" target="_blank" data-wow-delay="0.4s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/onitsuka-tiger.svg" alt="Company" />
-                            <div class="client-overlay"><span>onitsuka-tiger</span></div>
-                        </a>
-                        <a href="https://www.reebok.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/reebok.svg" alt="Company" />
-                            <div class="client-overlay"><span>reebok</span></div>
-                        </a>
-                        <a href="https://www.on-running.com" target="_blank" data-wow-delay="0.8s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/run-on-clouds.svg" alt="Company" />
-                            <div class="client-overlay"><span>run-on-clouds</span></div>
-                        </a>
-                        <a href="https://www.salomon.com" target="_blank" data-wow-delay="0.2s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/salomon.svg" alt="Company" />
-                            <div class="client-overlay"><span>salomon</span></div>
-                        </a>
-                        <a href="https://www.saucony.com" target="_blank" data-wow-delay="0.4s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/saucony.svg" alt="Company" />
-                            <div class="client-overlay"><span>saucony</span></div>
-                        </a>
-                        <a href="https://www.superga-usa.com" target="_blank" data-wow-delay="0.6s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/superga.svg" alt="Company" />
-                            <div class="client-overlay"><span>superga</span></div>
-                        </a>
-                        <a href="https://www.timberland.com" target="_blank" data-wow-delay="0.8s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/timberland.svg" alt="Company" />
-                            <div class="client-overlay"><span>timberland</span></div>
-                        </a>
-                        <a href="https://www.tommy.com" target="_blank" data-wow-delay="0.2s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/tommy-hilfiger.svg" alt="Company" />
-                            <div class="client-overlay"><span>tommy-hilfiger</span></div>
-                        </a>
-                        <a href="https://www.ugg.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/ugg.svg" alt="Company" />
-                            <div class="client-overlay"><span>ugg</span></div>
-                        </a>
-                        <a href="https://www.vans.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/vans.svg" alt="Company" />
-                            <div class="client-overlay"><span>vans</span></div>
-                        </a>
-                        <a href="https://www.veja-store.com" target="_blank" data-wow-delay="0.8s"
-                            class="col-3 wow fadeIn">
-                            <img src="assets/img/icons/veja.svg" alt="Company" />
-                            <div class="client-overlay"><span>veja</span></div>
-                        </a>
-                    </ul>
-                </div>
-
-                <!--Registratie lijst-->
-                <section id="vendor-list" class="flex borderbox clearfix scrollto wow fadeInUp" data-wow-delay=".4s">
-                    <div class="row">
-                        <div class="section-heading col-9">
-                            <h3>Geregistreerde Verkopers</h3>
-                            <h2 class="section-title">Wie is er allemaal aanwezig?</h2>
+        <?php if (isSectionVisible('clients')): ?>
+            <!--Clients-->
+            <section id="clients" class="scrollto clearfix wow fadeInUp" data-wow-delay="0.1s">
+                <div class=" row clearfix">
+                    <div class="col-9">
+                        <div class="section-heading">
+                            <h3>CLIENTS</h3>
+                            <h2 class="section-title">Onze Partners</h2>
                             <p class="section-subtitle">
-                                Ontdek de merken die de sneakerindustrie hebben gevormd, allemaal te vinden hier.
+                                We zijn trots om samen te werken met enkele van de grootste namen in de
+                                sneakerindustrie. Onze partners helpen ons om van Sneakerness een onvergetelijke
+                                ervaring te maken.
                             </p>
                         </div>
 
-                        <div class="vendor-list col-12">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="exclusive">
-                                                <h2>Nike <span class="partner-check">✔️ Sneakerness Partner</span></h2>
-                                                <p><strong>Trivia:</strong> Iconisch sport- en sneakermerk bekend om
-                                                    innovatie.
-                                                </p>
-                                                <p><strong>Locatie:</strong> Stand A, West, Zuid & Oost</p>
+                    </div>
+                    <div class="scrollto clearfix">
+                        <ul class="row">
+                            <a href="https://www.puma.com" target="_blank" data-wow-delay="0.2s" class="col-3 wow fadeIn">
+                                <img
+                                    src="https://sneakerbaron.nl/wp-content/themes/the-baron/assets/images/brands/black/puma.svg" />
+                                <div class="client-overlay"><span>Puma</span></div>
+                            </a>
+                            <a href="https://www.adidas.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
+                                <img
+                                    src="https://sneakerbaron.nl/wp-content/themes/the-baron/assets/images/brands/black/adidas.svg" />
+                                <div class="client-overlay"><span>Adidas</span></div>
+                            </a>
+                            <a href="https://www.fila.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
+                                <img
+                                    src="https://sneakerbaron.nl/wp-content/themes/the-baron/assets/images/brands/black/fila.svg" />
+                                <div class="client-overlay"><span>Fila</span></div>
+                            </a>
+                            <a href="https://www.nike.com" target="_blank" data-wow-delay="0.8s" class="col-3 wow fadeIn">
+                                <img
+                                    src="https://sneakerbaron.nl/wp-content/themes/the-baron/assets/images/brands/black/nike.svg" />
+                                <div class="client-overlay"><span>Nike</span></div>
+                            </a>
+                            <a href="https://www.alexandermcqueen.com" target="_blank" data-wow-delay="0.2s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/alexander-mcqueen.svg" alt="Company" />
+                                <div class="client-overlay"><span>alexander-mcqueen</span></div>
+                            </a>
+                            <a href="https://www.arkkcopenhagen.com" target="_blank" data-wow-delay="0.4s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/arkk.svg" alt="Company" />
+                                <div class="client-overlay"><span>arkk</span></div>
+                            </a>
+                            <a href="https://www.asics.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/asics.svg" alt="Company" />
+                                <div class="client-overlay"><span>asics</span></div>
+                            </a>
+                            <a href="https://www.autry-usa.com" target="_blank" data-wow-delay="0.8s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/autry.svg" alt="Company" />
+                                <div class="client-overlay"><span>autry</span></div>
+                            </a>
+                            <a href="https://www.balenciaga.com" target="_blank" data-wow-delay="0.2s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/balenciaga.svg" alt="Company" />
+                                <div class="client-overlay"><span>balenciaga</span></div>
+                            </a>
+                            <a href="https://www.birkenstock.com" target="_blank" data-wow-delay="0.4s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/birkenstock.svg" alt="Company" />
+                                <div class="client-overlay"><span>birkenstock</span></div>
+                            </a>
+                            <a href="https://www.buffalo-boots.com" target="_blank" data-wow-delay="0.6s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/buffalo.svg" alt="Company" />
+                                <div class="client-overlay"><span>buffalo</span></div>
+                            </a>
+                            <a href="https://www.comme-des-garcons.com" target="_blank" data-wow-delay="0.8s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/comme-des-garcons.svg" alt="Company" />
+                                <div class="client-overlay"><span>comme-des-garcons</span></div>
+                            </a>
+                            <a href="https://www.converse.com" target="_blank" data-wow-delay="0.2s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/converse.svg" alt="Company" />
+                                <div class="client-overlay"><span>converse</span></div>
+                            </a>
+                            <a href="https://www.crocs.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/crocs.svg" alt="Company" />
+                                <div class="client-overlay"><span>crocs</span></div>
+                            </a>
+                            <a href="https://www.diadora.com" target="_blank" data-wow-delay="0.6s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/diadora.svg" alt="Company" />
+                                <div class="client-overlay"><span>diadora</span></div>
+                            </a>
+                            <a href="https://www.etq-amsterdam.com" target="_blank" data-wow-delay="0.8s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/etq.svg" alt="Company" />
+                                <div class="client-overlay"><span>etq</span></div>
+                            </a>
+                            <a href="https://www.fillingpieces.com" target="_blank" data-wow-delay="0.2s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/filling-pieces.svg" alt="Company" />
+                                <div class="client-overlay"><span>filling-pieces</span></div>
+                            </a>
+                            <a href="https://www.gucci.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/gucci.svg" alt="Company" />
+                                <div class="client-overlay"><span>gucci</span></div>
+                            </a>
+                            <a href="https://www.hi-tec.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/hi-tec.svg" alt="Company" />
+                                <div class="client-overlay"><span>hi-tec</span></div>
+                            </a>
+                            <a href="https://www.hoka.com" target="_blank" data-wow-delay="0.8s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/hoka.svg" alt="Company" />
+                                <div class="client-overlay"><span>hoka</span></div>
+                            </a>
+                            <a href="https://www.hummel.net" target="_blank" data-wow-delay="0.2s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/hummel.svg" alt="Company" />
+                                <div class="client-overlay"><span>hummel</span></div>
+                            </a>
+                            <a href="https://www.nike.com/jordan" target="_blank" data-wow-delay="0.4s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/jordan.svg" alt="Company" />
+                                <div class="client-overlay"><span>jordan</span></div>
+                            </a>
+                            <a href="https://www.kangaroos.com" target="_blank" data-wow-delay="0.6s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/kangaroos.svg" alt="Company" />
+                                <div class="client-overlay"><span>kangaroos</span></div>
+                            </a>
+                            <a href="https://www.karhu.com" target="_blank" data-wow-delay="0.8s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/karhu.svg" alt="Company" />
+                                <div class="client-overlay"><span>karhu</span></div>
+                            </a>
+                            <a href="https://www.lacoste.com" target="_blank" data-wow-delay="0.2s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/lacoste.svg" alt="Company" />
+                                <div class="client-overlay"><span>lacoste</span></div>
+                            </a>
+                            <a href="https://www.mizuno.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/mizuno.svg" alt="Company" />
+                                <div class="client-overlay"><span>mizuno</span></div>
+                            </a>
+                            <a href="https://www.newbalance.com" target="_blank" data-wow-delay="0.6s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/new-balance.svg" alt="Company" />
+                                <div class="client-overlay"><span>new-balance</span></div>
+                            </a>
+                            <a href="https://www.nubikk.com" target="_blank" data-wow-delay="0.8s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/nubikk.svg" alt="Company" />
+                                <div class="client-overlay"><span>nubikk</span></div>
+                            </a>
+                            <a href="https://www.off---white.com" target="_blank" data-wow-delay="0.2s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/off-white.svg" alt="Company" />
+                                <div class="client-overlay"><span>off-white</span></div>
+                            </a>
+                            <a href="https://www.onitsukatiger.com" target="_blank" data-wow-delay="0.4s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/onitsuka-tiger.svg" alt="Company" />
+                                <div class="client-overlay"><span>onitsuka-tiger</span></div>
+                            </a>
+                            <a href="https://www.reebok.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/reebok.svg" alt="Company" />
+                                <div class="client-overlay"><span>reebok</span></div>
+                            </a>
+                            <a href="https://www.on-running.com" target="_blank" data-wow-delay="0.8s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/run-on-clouds.svg" alt="Company" />
+                                <div class="client-overlay"><span>run-on-clouds</span></div>
+                            </a>
+                            <a href="https://www.salomon.com" target="_blank" data-wow-delay="0.2s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/salomon.svg" alt="Company" />
+                                <div class="client-overlay"><span>salomon</span></div>
+                            </a>
+                            <a href="https://www.saucony.com" target="_blank" data-wow-delay="0.4s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/saucony.svg" alt="Company" />
+                                <div class="client-overlay"><span>saucony</span></div>
+                            </a>
+                            <a href="https://www.superga-usa.com" target="_blank" data-wow-delay="0.6s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/superga.svg" alt="Company" />
+                                <div class="client-overlay"><span>superga</span></div>
+                            </a>
+                            <a href="https://www.timberland.com" target="_blank" data-wow-delay="0.8s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/timberland.svg" alt="Company" />
+                                <div class="client-overlay"><span>timberland</span></div>
+                            </a>
+                            <a href="https://www.tommy.com" target="_blank" data-wow-delay="0.2s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/tommy-hilfiger.svg" alt="Company" />
+                                <div class="client-overlay"><span>tommy-hilfiger</span></div>
+                            </a>
+                            <a href="https://www.ugg.com" target="_blank" data-wow-delay="0.4s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/ugg.svg" alt="Company" />
+                                <div class="client-overlay"><span>ugg</span></div>
+                            </a>
+                            <a href="https://www.vans.com" target="_blank" data-wow-delay="0.6s" class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/vans.svg" alt="Company" />
+                                <div class="client-overlay"><span>vans</span></div>
+                            </a>
+                            <a href="https://www.veja-store.com" target="_blank" data-wow-delay="0.8s"
+                                class="col-3 wow fadeIn">
+                                <img src="assets/img/icons/veja.svg" alt="Company" />
+                                <div class="client-overlay"><span>veja</span></div>
+                            </a>
+                        </ul>
+                    </div>
+
+                    <!--Registratie lijst-->
+                    <section id="vendor-list" class="flex borderbox clearfix scrollto wow fadeInUp" data-wow-delay=".4s">
+                        <div class="row">
+                            <div class="section-heading col-9">
+                                <h3>Geregistreerde Verkopers</h3>
+                                <h2 class="section-title">Wie is er allemaal aanwezig?</h2>
+                                <p class="section-subtitle">
+                                    Ontdek de merken die de sneakerindustrie hebben gevormd, allemaal te vinden hier.
+                                </p>
+                            </div>
+
+                            <div class="vendor-list col-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="exclusive">
+                                                    <h2>Nike <span class="partner-check">✔️ Sneakerness Partner</span></h2>
+                                                    <p><strong>Trivia:</strong> Iconisch sport- en sneakermerk bekend om
+                                                        innovatie.
+                                                    </p>
+                                                    <p><strong>Locatie:</strong> Stand A, West, Zuid & Oost</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="exclusive">
+                                                    <h2>Adidas <span class="partner-check">✔️ Sneakerness Partner</span>
+                                                    </h2>
+                                                    <p><strong>Trivia:</strong> Leidend in sport- en streetwear met
+                                                        baanbrekende
+                                                        ontwerpen.
+                                                    </p>
+                                                    <p><strong>Locatie:</strong> Stand A+, Noord, West & Zuid</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="exclusive">
+                                                    <h2>Puma <span class="partner-check">✔️ Sneakerness Partner</span></h2>
+                                                    <p><strong>Trivia:</strong> Combineert mode en sport voor een
+                                                        onderscheidende
+                                                        stijl.
+                                                    </p>
+                                                    <p><strong>Locatie:</strong> Stand A++, Zuid & Oost</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="exclusive">
+                                                    <h2>Off-White <span class="partner-check">✔️ Sneakerness Partner</span>
+                                                    </h2>
+                                                    <p><strong>Trivia:</strong> Combineert streetwear met luxe mode in
+                                                        sneakerontwerpen.
+                                                    </p>
+                                                    <p><strong>Locatie:</strong> Stand AAA, Noord & Zuid</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="exclusive">
-                                                <h2>Adidas <span class="partner-check">✔️ Sneakerness Partner</span>
-                                                </h2>
-                                                <p><strong>Trivia:</strong> Leidend in sport- en streetwear met
-                                                    baanbrekende
-                                                    ontwerpen.
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="vendor-item col-3">
+                                                <h2>Reebok</h2>
+                                                <p><strong>Trivia:</strong> Innovatieve sneakers met een rijke geschiedenis
+                                                    in
+                                                    fitness.
                                                 </p>
-                                                <p><strong>Locatie:</strong> Stand A+, Noord, West & Zuid</p>
+                                                <p><strong>Locatie:</strong> Stand AA, Oost</p>
                                             </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="exclusive">
-                                                <h2>Puma <span class="partner-check">✔️ Sneakerness Partner</span></h2>
-                                                <p><strong>Trivia:</strong> Combineert mode en sport voor een
-                                                    onderscheidende
+                                            <div class="vendor-item col-3">
+                                                <h2>New Balance</h2>
+                                                <p><strong>Trivia:</strong> Bekend om comfort en kwaliteit in
+                                                    hardloopschoenen.
+                                                </p>
+                                                <p><strong>Locatie:</strong> Stand AA+, West</p>
+                                            </div>
+                                            <div class="vendor-item col-3">
+                                                <h2>Converse</h2>
+                                                <p><strong>Trivia:</strong> Iconisch merk met tijdloze sneakers, vooral de
+                                                    Chuck
+                                                    Taylor.
+                                                </p>
+                                                <p><strong>Locatie:</strong> Stand AA++, Zuid</p>
+                                            </div>
+                                            <div class="vendor-item col-3">
+                                                <h2>Vans</h2>
+                                                <p><strong>Trivia:</strong> Populair onder skateboarders en geliefd om hun
+                                                    casual
                                                     stijl.
                                                 </p>
-                                                <p><strong>Locatie:</strong> Stand A++, Zuid & Oost</p>
+                                                <p><strong>Locatie:</strong> Stand AA++, Oost</p>
                                             </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="exclusive">
-                                                <h2>Off-White <span class="partner-check">✔️ Sneakerness Partner</span>
-                                                </h2>
-                                                <p><strong>Trivia:</strong> Combineert streetwear met luxe mode in
-                                                    sneakerontwerpen.
-                                                </p>
-                                                <p><strong>Locatie:</strong> Stand AAA, Noord & Zuid</p>
-                                            </div>
+                                            <?php foreach ($reservations as $res): ?>
+                                                <div class="vendor-item col-3">
+                                                    <h2><?php echo htmlspecialchars($res['company_name']); ?></h2>
+                                                    <p><strong>Trivia:</strong> Populair onder skateboarders en geliefd om hun casual stijl.</p>
+                                                    <p><strong>Locatie:</strong> Stand <?php echo htmlspecialchars($res['stand_number']); ?>, <?php echo htmlspecialchars($res['plain_name']); ?></p>
+                                                </div>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="vendor-item col-3">
-                                            <h2>Reebok</h2>
-                                            <p><strong>Trivia:</strong> Innovatieve sneakers met een rijke geschiedenis
-                                                in
-                                                fitness.
-                                            </p>
-                                            <p><strong>Locatie:</strong> Stand AA, Oost</p>
-                                        </div>
-                                        <div class="vendor-item col-3">
-                                            <h2>New Balance</h2>
-                                            <p><strong>Trivia:</strong> Bekend om comfort en kwaliteit in
-                                                hardloopschoenen.
-                                            </p>
-                                            <p><strong>Locatie:</strong> Stand AA+, West</p>
-                                        </div>
-                                        <div class="vendor-item col-3">
-                                            <h2>Converse</h2>
-                                            <p><strong>Trivia:</strong> Iconisch merk met tijdloze sneakers, vooral de
-                                                Chuck
-                                                Taylor.
-                                            </p>
-                                            <p><strong>Locatie:</strong> Stand AA++, Zuid</p>
-                                        </div>
-                                        <div class="vendor-item col-3">
-                                            <h2>Vans</h2>
-                                            <p><strong>Trivia:</strong> Populair onder skateboarders en geliefd om hun
-                                                casual
-                                                stijl.
-                                            </p>
-                                            <p><strong>Locatie:</strong> Stand AA++, Oost</p>
-                                        </div>
-                                        <?php foreach ($reservations as $res): ?>
-                                            <div class="vendor-item col-3">
-                                                <h2><?php echo htmlspecialchars($res['company_name']); ?></h2>
-                                                <p><strong>Trivia:</strong> Populair onder skateboarders en geliefd om hun casual stijl.</p>
-                                                <p><strong>Locatie:</strong> Stand <?php echo htmlspecialchars($res['stand_number']); ?>, <?php echo htmlspecialchars($res['plain_name']); ?></p>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
+                                <!-- Meer verkopers met aankoop van een ticket -->
                             </div>
-                            <!-- Meer verkopers met aankoop van een ticket -->
+                        </div>
+                    </section>
+
+                    <div id="error-message" class="error-message" style="display: none;">
+                        Lijst van verkopers niet beschikbaar, probeer later opnieuw.
+                    </div>
+
+                    <script>
+                        const vendorsAvailable = true; // Verander deze waarde naar 'false' om de foutmelding te testen
+
+                        if (!vendorsAvailable) {
+                            document.getElementById('vendor-list').style.display = 'none';
+                            document.getElementById('error-message').style.display = 'block';
+                        }
+                    </script>
+
+                </div>
+            </section>
+            <!-- End of Clients-->
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Clients' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
+
+        <?php if (isSectionVisible('sneaker')): ?>
+            <section id="sneaker" class="col scrollto clearfix no-padding-bottom wow fadeInRight" data-wow-delay="0.1s">
+                <div class=" row clearfix">
+                    <div class="col-9">
+
+                        <div class="section-heading">
+                            <h3>COLLABS</h3>
+                            <h2 class="section-title">Exclusieve Sneakers</h2>
+                            <p class="section-subtitle">
+                                We zijn trots om samen om de volgende sneakers te presenteren. Dit zijn maar een paar stuks
+                                van de duizenden sneakers die bij ons tevinden is.
+                            </p>
                         </div>
                     </div>
-                </section>
-
-                <div id="error-message" class="error-message" style="display: none;">
-                    Lijst van verkopers niet beschikbaar, probeer later opnieuw.
+                    <div class="row scrollto clearfix">
+                        <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.4s">
+                            <!-- Sneaker items zullen hier dynamisch geladen worden -->
+                            <ul>
+                                <img src="assets/img/sneakers/exclusieve/1000_F_710340762_jxdKEAHkmLfDe6WpIzxSnAiTAoPTXIKo.png"
+                                    alt="">
+                                <img src="assets/img/sneakers/exclusieve/futuristic-nike-sneaker-red-color-digital-art-3d-render_948904-115.png"
+                                    alt="">
+                                <img src="assets/img/sneakers/exclusieve/imag6.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/imag7.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/imag8.png" alt="">
+                            </ul>
+                        </div>
+                        <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.5s">
+                            <!-- Sneaker items zullen hier dynamisch geladen worden -->
+                            <ul>
+                                <img src="assets/img/sneakers/exclusieve/image.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/image2.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/image5.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/image10.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/image4.png" alt="">
+                            </ul>
+                        </div>
+                        <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.6s">
+                            <!-- Sneaker items zullen hier dynamisch geladen worden -->
+                            <ul>
+                                <img src="assets/img/sneakers/exclusieve/image3.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/image4.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/image9.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/image11.png" alt="">
+                                <img src="assets/img/sneakers/exclusieve/image12.png" alt="">
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+            </section>
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Sneaker' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
 
-                <script>
-                    const vendorsAvailable = true; // Verander deze waarde naar 'false' om de foutmelding te testen
-
-                    if (!vendorsAvailable) {
-                        document.getElementById('vendor-list').style.display = 'none';
-                        document.getElementById('error-message').style.display = 'block';
-                    }
-                </script>
-
-            </div>
-        </section>
-        <!-- End of Clients-->
-        <section id="sneaker" class="col scrollto clearfix no-padding-bottom wow fadeInRight" data-wow-delay="0.1s">
-            <div class=" row clearfix">
-                <div class="col-9">
-
-                    <div class="section-heading">
-                        <h3>COLLABS</h3>
-                        <h2 class="section-title">Exclusieve Sneakers</h2>
-                        <p class="section-subtitle">
-                            We zijn trots om samen om de volgende sneakers te presenteren. Dit zijn maar een paar stuks
-                            van de duizenden sneakers die bij ons tevinden is.
+        <?php if (isSectionVisible('exclusive')): ?>
+            <!-- Exclusive Underground Sneakers Section -->
+            <section id="exclusive" class="row scrollto clearfix exclusive-underground wow fadeInUp" data-wow-delay="0.1s">
+                <div class="row">
+                    <div class=" col-12">
+                        <h2>Exclusive Underground Sneakers</h2>
+                        <p>
+                            Deze sectie bevat de meest exclusieve en zeldzame sneakers die je nergens anders zult vinden bij
+                            onze
+                            vrienden bij GOAT.
                         </p>
                     </div>
-                </div>
-                <div class="row scrollto clearfix">
-                    <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Sneaker items zullen hier dynamisch geladen worden -->
-                        <ul>
-                            <img src="assets/img/sneakers/exclusieve/1000_F_710340762_jxdKEAHkmLfDe6WpIzxSnAiTAoPTXIKo.png"
-                                alt="">
-                            <img src="assets/img/sneakers/exclusieve/futuristic-nike-sneaker-red-color-digital-art-3d-render_948904-115.png"
-                                alt="">
-                            <img src="assets/img/sneakers/exclusieve/imag6.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/imag7.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/imag8.png" alt="">
-                        </ul>
-                    </div>
-                    <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.5s">
-                        <!-- Sneaker items zullen hier dynamisch geladen worden -->
-                        <ul>
-                            <img src="assets/img/sneakers/exclusieve/image.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/image2.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/image5.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/image10.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/image4.png" alt="">
-                        </ul>
-                    </div>
-                    <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.6s">
-                        <!-- Sneaker items zullen hier dynamisch geladen worden -->
-                        <ul>
-                            <img src="assets/img/sneakers/exclusieve/image3.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/image4.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/image9.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/image11.png" alt="">
-                            <img src="assets/img/sneakers/exclusieve/image12.png" alt="">
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <p id="error-message" class="error_hidden">Geen exclusieve sneakers beschikbaar</p>
-        <!-- <br> -->
-
-
-
-        <!-- Exclusive Underground Sneakers Section -->
-        <section id="exclusive" class="row scrollto clearfix exclusive-underground wow fadeInUp" data-wow-delay="0.1s">
-            <div class="row">
-                <div class=" col-12">
-                    <h2>Exclusive Underground Sneakers</h2>
-                    <p>
-                        Deze sectie bevat de meest exclusieve en zeldzame sneakers die je nergens anders zult vinden bij
-                        onze
-                        vrienden bij GOAT.
-                    </p>
-                </div>
-                <div class="col-12 clearfix">
-                    <div class="row jc-center sneaker-grid">
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/078/080/262/original/12130_00.png.png?action=crop&width=300" />
+                    <div class="col-12 clearfix">
+                        <div class="row jc-center sneaker-grid">
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/078/080/262/original/12130_00.png.png?action=crop&width=300" />
+                                </div>
+                                <p><strong>Air Yeezy 2</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/silhouette/air-yeezy-2"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Air Yeezy 2</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/silhouette/air-yeezy-2"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/100/186/767/original/712868_00.png.png?action=crop&width=400" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/100/186/767/original/712868_00.png.png?action=crop&width=400" />
+                                </div>
+                                <p><strong>Reebok Question Mid 'Ask Allen'</strong></p>
+                                <a href="https://www.goat.com/en-nl/search?query=Reebok%20Question%20Mid"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Reebok Question Mid 'Ask Allen'</strong></p>
-                            <a href="https://www.goat.com/en-nl/search?query=Reebok%20Question%20Mid"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/100/698/465/original/1305520_01.jpg.jpeg?action=crop&width=500" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/100/698/465/original/1305520_01.jpg.jpeg?action=crop&width=500" />
+                                </div>
+                                <p><strong>Air Jordan 17 Retro Low SP 'All Star - Lightning' 2024</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/air-jordan-17-retro-low-sp-all-star-lightning-2024-fj0395-100"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Air Jordan 17 Retro Low SP 'All Star - Lightning' 2024</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/air-jordan-17-retro-low-sp-all-star-lightning-2024-fj0395-100"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/092/006/203/original/1209354_01.jpg.jpeg?action=crop&width=500" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/092/006/203/original/1209354_01.jpg.jpeg?action=crop&width=500" />
+                                </div>
+                                <p><strong>Yeezy 500 'Bone White' 2023</strong></p>
+                                <a href="https://www.goat.com/en-nl/search?query=Yeezy%20500" target="_blank">Link</a>
                             </div>
-                            <p><strong>Yeezy 500 'Bone White' 2023</strong></p>
-                            <a href="https://www.goat.com/en-nl/search?query=Yeezy%20500" target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/089/598/804/original/1213730_01.jpg.jpeg?action=crop&width=500" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/089/598/804/original/1213730_01.jpg.jpeg?action=crop&width=500" />
+                                </div>
+                                <p><strong>Yeezy 500 'Utility Black' 2023</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/yeezy-500-utility-black-2023-f36640-23"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Yeezy 500 'Utility Black' 2023</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/yeezy-500-utility-black-2023-f36640-23"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/102/386/154/original/1438317_01.jpg.jpeg?action=crop&width=600" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/102/386/154/original/1438317_01.jpg.jpeg?action=crop&width=600" />
+                                </div>
+                                <p><strong>Air Foamposite One 'Royal' 2024</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/air-foamposite-one-royal-2024-fq8181-511"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Air Foamposite One 'Royal' 2024</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/air-foamposite-one-royal-2024-fq8181-511"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/102/529/460/original/1368684_01.jpg.jpeg?action=crop&width=600" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/102/529/460/original/1368684_01.jpg.jpeg?action=crop&width=600" />
+                                </div>
+                                <p><strong>Comme des Garçons Homme Plus x Air Foamposite One SP 'Cat Eye'</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/comme-des-garcons-homme-plus-x-air-foamposite-one-sp-black-white-dj7952-002"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Comme des Garçons Homme Plus x Air Foamposite One SP 'Cat Eye'</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/comme-des-garcons-homme-plus-x-air-foamposite-one-sp-black-white-dj7952-002"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/103/423/438/original/1397939_01.jpg.jpeg?action=crop&width=600" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/103/423/438/original/1397939_01.jpg.jpeg?action=crop&width=600" />
+                                </div>
+                                <p><strong>Air Foamposite One 'DMV Cherry Blossom'</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/air-foamposite-one-dmv-fz9902-900"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Air Foamposite One 'DMV Cherry Blossom'</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/air-foamposite-one-dmv-fz9902-900"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/099/923/869/original/469553_00.png.png?action=crop&width=400" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/099/923/869/original/469553_00.png.png?action=crop&width=400" />
+                                </div>
+                                <p><strong>Puma Clyde Court</strong></p>
+                                <a href="https://www.goat.com/en-nl/search?query=Puma%20Clyde%20Court:"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Puma Clyde Court</strong></p>
-                            <a href="https://www.goat.com/en-nl/search?query=Puma%20Clyde%20Court:"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/083/401/929/original/14741_01.jpg.jpeg?action=crop&width=500" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/083/401/929/original/14741_01.jpg.jpeg?action=crop&width=500" />
+                                </div>
+                                <p><strong>Air Jordan 1 Retro High OG 'Chicago'</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/air-jordan-1-retro-high-og-chicago-555088-101"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Air Jordan 1 Retro High OG 'Chicago'</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/air-jordan-1-retro-high-og-chicago-555088-101"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/101/381/354/original/687698_01.jpg.jpeg?action=crop&width=500" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/101/381/354/original/687698_01.jpg.jpeg?action=crop&width=500" />
+                                </div>
+                                <p><strong>Travis Scott x Air Jordan 6 'British Khaki'</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/travis-scott-x-air-jordan-6-retro-british-khaki-dh0690-200"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Travis Scott x Air Jordan 6 'British Khaki'</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/travis-scott-x-air-jordan-6-retro-british-khaki-dh0690-200"
-                                target="_blank">Link</a>
-                        </div>
-                        <div class="col-3 sneaker-item wow fadeInUp">
-                            <div class="sneaker-img">
-                                <img
-                                    src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/080/458/084/original/569208_01.jpg.jpeg?action=crop&width=500" />
+                            <div class="col-3 sneaker-item wow fadeInUp">
+                                <div class="sneaker-img">
+                                    <img
+                                        src="https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/080/458/084/original/569208_01.jpg.jpeg?action=crop&width=500" />
+                                </div>
+                                <p><strong>Dior x Air Jordan 1 High</strong></p>
+                                <a href="https://www.goat.com/en-nl/sneakers/dior-x-air-jordan-1-high-dior-aj1-low"
+                                    target="_blank">Link</a>
                             </div>
-                            <p><strong>Dior x Air Jordan 1 High</strong></p>
-                            <a href="https://www.goat.com/en-nl/sneakers/dior-x-air-jordan-1-high-dior-aj1-low"
-                                target="_blank">Link</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Exclusive' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
 
-        <!-- Special Podium Section for Nike Mag 'Back To The Future' -->
-        <section id="podium" class="row scrollto clearfix podium-section jc-center wow fadeInUp">
-            <div class="clearfix podium-item wow fadeInUp">
-                <img
-                    src="https://www.sneakerjagers.com/_next/image?url=https%3A%2F%2Fstatic.sneakerjagers.com%2Fnews%2Fnl%2F2022%2F07%2FOntwerp-zonder-titel-99.png&w=1080&q=100" />
-                <p><strong>Nike Mag 'Back To The Future'</strong></p>
-                <a href="https://www.goat.com/en-nl/sneakers/air-mag-back-to-the-future-417744-001"
-                    target="_blank">Link</a>
-                <a href="https://www.sneakerjagers.com/n/het-verhaal-achter-de-peperdure-nike-air-mag/187769?srsltid=AfmBOop54jlDX4PitOJmmqzRzgs_sMNxoNS-UomFQQlAFdfYr524nSqX"
-                    target="_blank">Learn
-                    more</a>
-            </div>
-        </section>
-        <br>
-
-
-
-        <section id="stand-map-section" class="row scrollto clearfix no-padding-bottom wow fadeInUp"
-            data-wow-delay="0.1s"">
-            <h1>Standplattegrond</h1>
-            <div id=" stand-map" class="map-container">
-            <img src="assets/img/sneaker-exit-august-2024.jpg" alt="Plattegrond van het evenement" id="map-image">
-            <!-- Dynamische verkoper-markers worden hier toegevoegd -->
-            </div>
-        </section>
-        <p id="error-message" class="error_hidden">Standindeling niet beschikbaar</p>
-        <br>
-        <br>
-
-
-        <!--Pricing-->
-
-        <section id="pricing" class="secondary-color text-center scrollto clearfix">
-            <div class="row clearfix">
-
-                <div class="col-12 section-heading">
-                    <h3>JOUW SNEAKER PASS</h3>
-                    <h2 class="section-title">Kies het juiste pakket voor jouw</h2>
+        <?php if (isSectionVisible('podium')): ?>
+            <!-- Special Podium Section for Nike Mag 'Back To The Future' -->
+            <section id="podium" class="row scrollto clearfix podium-section jc-center wow fadeInUp">
+                <div class="clearfix podium-item wow fadeInUp">
+                    <img
+                        src="https://www.sneakerjagers.com/_next/image?url=https%3A%2F%2Fstatic.sneakerjagers.com%2Fnews%2Fnl%2F2022%2F07%2FOntwerp-zonder-titel-99.png&w=1080&q=100" />
+                    <p><strong>Nike Mag 'Back To The Future'</strong></p>
+                    <a href="https://www.goat.com/en-nl/sneakers/air-mag-back-to-the-future-417744-001"
+                        target="_blank">Link</a>
+                    <a href="https://www.sneakerjagers.com/n/het-verhaal-achter-de-peperdure-nike-air-mag/187769?srsltid=AfmBOop54jlDX4PitOJmmqzRzgs_sMNxoNS-UomFQQlAFdfYr524nSqX"
+                        target="_blank">Learn
+                        more</a>
                 </div>
+            </section>
+            <br>
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Podium' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
 
-                <!--Prijsblok Student-->
-                <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="pricing-block-content">
-                        <h3>Student Sneakerhead</h3>
-                        <p class="pricing-sub">Voor studenten</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>14,99</div>
-                            <p>Voor studenten met echte sneakers</p>
-                        </div>
-                        <ul class="ticket-exclusives">
-                            <li>5 Exclusieve releases per jaar</li>
-                            <li>Korting op sneaker-evenementen</li>
-                            <li>Toegang tot online sneaker-workshops</li>
-                            <li>1 Jaar gratis updates</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
+        <?php if (isSectionVisible('stand-map-section')): ?>
+            <section id="stand-map-section" class="row scrollto clearfix no-padding-bottom wow fadeInUp"
+                data-wow-delay="0.1s">
+                <h1>Standplattegrond</h1>
+                <div id=" stand-map" class="map-container">
+                    <img src="assets/img/sneaker-exit-august-2024.jpg" alt="Plattegrond van het evenement" id="map-image">
+                    <!-- Dynamische verkoper-markers worden hier toegevoegd -->
+                </div>
+            </section>
+            <br>
+            <br>
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Stand Map' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
+
+        <?php if (isSectionVisible('pricing')): ?>
+            <!--Pricing-->
+            <section id="pricing" class="secondary-color text-center scrollto clearfix">
+                <div class="row clearfix">
+
+                    <div class="col-12 section-heading">
+                        <h3>JOUW SNEAKER PASS</h3>
+                        <h2 class="section-title">Kies het juiste pakket voor jouw</h2>
                     </div>
-                </div>
-                <!--Einde Prijsblok-->
 
-                <!--Prijsblok-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="pricing-block-content">
-                        <h3>Basis Sneakerhead</h3>
-                        <p class="pricing-sub">Het starterspakket</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>19,99</div>
-                            <p>Krijg toegang tot exclusieve sneakerreleases en communityfuncties</p>
+                    <!--Prijsblok Student-->
+                    <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="pricing-block-content">
+                            <h3>Student Sneakerhead</h3>
+                            <p class="pricing-sub">Voor studenten</p>
+                            <div class="pricing">
+                                <div class="price"><span> €</span>14,99</div>
+                                <p>Voor studenten met echte sneakers</p>
+                            </div>
+                            <ul class="ticket-exclusives">
+                                <li>5 Exclusieve releases per jaar</li>
+                                <li>Korting op sneaker-evenementen</li>
+                                <li>Toegang tot online sneaker-workshops</li>
+                                <li>1 Jaar gratis updates</li>
+                            </ul>
+                            <a href="#" class="button"> RESERVEER NU</a>
                         </div>
-                        <ul class="ticket-exclusives">
-                            <li>3 Exclusieve sneakerreleases</li>
-                            <li>Toegang tot online forums</li>
-                            <li>1 Jaar gratis updates</li>
-                            <li>Basis klantenondersteuning</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
-                </div>
-                <!--Einde Prijsblok-->
+                    <!--Einde Prijsblok-->
 
-                <!--Prijsblok-->
-                <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="pricing-block-content">
-                        <h3>Advanced Sneakerhead</h3>
-                        <p class="pricing-sub">Meest gekozen pakket</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>29,99</div>
-                            <p>Diepgaande toegang tot releases en events</p>
+                    <!--Prijsblok-->
+                    <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="pricing-block-content">
+                            <h3>Basis Sneakerhead</h3>
+                            <p class="pricing-sub">Het starterspakket</p>
+                            <div class="pricing">
+                                <div class="price"><span> €</span>19,99</div>
+                                <p>Krijg toegang tot exclusieve sneakerreleases en communityfuncties</p>
+                            </div>
+                            <ul class="ticket-exclusives">
+                                <li>3 Exclusieve sneakerreleases</li>
+                                <li>Toegang tot online forums</li>
+                                <li>1 Jaar gratis updates</li>
+                                <li>Basis klantenondersteuning</li>
+                            </ul>
+                            <a href="#" class="button"> RESERVEER NU</a>
                         </div>
-                        <ul class="ticket-exclusives">
-                            <li>10 Exclusieve sneakerreleases</li>
-                            <li>Toegang tot alle online forums en live chats</li>
-                            <li>2 Jaar gratis updates</li>
-                            <li>Premium klantenondersteuning</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
-                </div>
-                <!--Einde Prijsblok-->
+                    <!--Einde Prijsblok-->
 
-                <!--Prijsblok-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="pricing-block-content">
-                        <h3>Pro Sneakerhead</h3>
-                        <p class="pricing-sub">Voor de echte verzamelaars</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>49,99</div>
-                            <p>Volledige toegang tot alle exclusieve sneaker- en VIP-events</p>
+                    <!--Prijsblok-->
+                    <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="pricing-block-content">
+                            <h3>Advanced Sneakerhead</h3>
+                            <p class="pricing-sub">Meest gekozen pakket</p>
+                            <div class="pricing">
+                                <div class="price"><span> €</span>29,99</div>
+                                <p>Diepgaande toegang tot releases en events</p>
+                            </div>
+                            <ul class="ticket-exclusives">
+                                <li>10 Exclusieve sneakerreleases</li>
+                                <li>Toegang tot alle online forums en live chats</li>
+                                <li>2 Jaar gratis updates</li>
+                                <li>Premium klantenondersteuning</li>
+                            </ul>
+                            <a href="#" class="button"> RESERVEER NU</a>
                         </div>
-                        <ul class="ticket-exclusives">
-                            <li>Onbeperkte sneakerreleases</li>
-                            <li>VIP-toegang tot evenementen</li>
-                            <li>Levenslang gratis updates</li>
-                            <li>24/7 VIP klantenondersteuning</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
-                </div>
-                <!--Einde Prijsblok-->
+                    <!--Einde Prijsblok-->
 
-                <!--Prijsblok Familie-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="pricing-block-content" style="margin-bottom: 10%;">
-                        <h3>Familie Sneakerhead</h3>
-                        <p class="pricing-sub">Voor de hele familie</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>59,99</div>
-                            <p>Toegang tot releases en evenementen voor het hele gezinsleden</p>
+                    <!--Prijsblok-->
+                    <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="pricing-block-content">
+                            <h3>Pro Sneakerhead</h3>
+                            <p class="pricing-sub">Voor de echte verzamelaars</p>
+                            <div class="pricing">
+                                <div class="price"><span> €</span>49,99</div>
+                                <p>Volledige toegang tot alle exclusieve sneaker- en VIP-events</p>
+                            </div>
+                            <ul class="ticket-exclusives">
+                                <li>Onbeperkte sneakerreleases</li>
+                                <li>VIP-toegang tot evenementen</li>
+                                <li>Levenslang gratis updates</li>
+                                <li>24/7 VIP klantenondersteuning</li>
+                            </ul>
+                            <a href="#" class="button"> RESERVEER NU</a>
                         </div>
-                        <ul class="ticket-exclusives">
-                            <li>15 Exclusieve releases per jaar</li>
-                            <li>Toegang tot family events</li>
-                            <li>Workshops voor alle leeftijden</li>
-                            <li>2 Jaar gratis ondersteuning & updates</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
-                </div>
-                <!--Einde Prijsblok-->
+                    <!--Einde Prijsblok-->
 
-                <!--Prijsblok-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="pricing-block-content">
-                        <h3>Business Sneakerhead</h3>
-                        <p class="pricing-sub">Voor bedrijven en teams</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>99,99</div>
-                            <p>Complete toegang en ondersteuning voor zakelijke klanten</p>
+                    <!--Prijsblok Familie-->
+                    <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="pricing-block-content" style="margin-bottom: 10%;">
+                            <h3>Familie Sneakerhead</h3>
+                            <p class="pricing-sub">Voor de hele familie</p>
+                            <div class="pricing">
+                                <div class="price"><span> €</span>59,99</div>
+                                <p>Toegang tot releases en evenementen voor het hele gezinsleden</p>
+                            </div>
+                            <ul class="ticket-exclusives">
+                                <li>15 Exclusieve releases per jaar</li>
+                                <li>Toegang tot family events</li>
+                                <li>Workshops voor alle leeftijden</li>
+                                <li>2 Jaar gratis ondersteuning & updates</li>
+                            </ul>
+                            <a href="#" class="button"> RESERVEER NU</a>
                         </div>
-                        <ul class="ticket-exclusives">
-                            <li>Onbeperkte releases voor de team</li>
-                            <li>Exclusieve netwerk- en VIP-events</li>
-                            <li>Zakelijke accountmanager</li>
-                            <li>24/7 klantenondersteuning</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
-                </div>
-                <!--Einde Prijsblok-->
+                    <!--Einde Prijsblok-->
 
-                <!--Prijsblok Camera Crew/Interviewer-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="pricing-block-content">
-                        <h3>Journalist Pass</h3>
-                        <p class="pricing-sub">Voor media- en contentteams</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>199,99</div>
-                            <p>Professionele toegang voor interviews en opnames tijdens evenementen</p>
+                    <!--Prijsblok-->
+                    <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="pricing-block-content">
+                            <h3>Business Sneakerhead</h3>
+                            <p class="pricing-sub">Voor bedrijven en teams</p>
+                            <div class="pricing">
+                                <div class="price"><span> €</span>99,99</div>
+                                <p>Complete toegang en ondersteuning voor zakelijke klanten</p>
+                            </div>
+                            <ul class="ticket-exclusives">
+                                <li>Onbeperkte releases voor de team</li>
+                                <li>Exclusieve netwerk- en VIP-events</li>
+                                <li>Zakelijke accountmanager</li>
+                                <li>24/7 klantenondersteuning</li>
+                            </ul>
+                            <a href="#" class="button"> RESERVEER NU</a>
                         </div>
-                        <ul class="ticket-exclusives">
-                            <li>Toegang tot perszones</li>
-                            <li>VIP-toegang tot exclusieve releases</li>
-                            <li>Speciale interviewsessies</li>
-                            <li>1 Jaar gratis updates</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
-                </div>
-                <!--Einde Prijsblok-->
+                    <!--Einde Prijsblok-->
 
-                <!--Prijsblok Horeca Stands-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="pricing-block-content">
-                        <h3>Horeca Stand Pass</h3>
-                        <p class="pricing-sub">Voor horecaondernemingen</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>299,99</div>
-                            <p>Zakelijke toegang voor food & beverage stands</p>
+                    <!--Prijsblok Camera Crew/Interviewer-->
+                    <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="pricing-block-content">
+                            <h3>Journalist Pass</h3>
+                            <p class="pricing-sub">Voor media- en contentteams</p>
+                            <div class="pricing">
+                                <div class="price"><span> €</span>199,99</div>
+                                <p>Professionele toegang voor interviews en opnames tijdens evenementen</p>
+                            </div>
+                            <ul class="ticket-exclusives">
+                                <li>Toegang tot perszones</li>
+                                <li>VIP-toegang tot exclusieve releases</li>
+                                <li>Speciale interviewsessies</li>
+                                <li>1 Jaar gratis updates</li>
+                            </ul>
+                            <a href="#" class="button"> RESERVEER NU</a>
                         </div>
-                        <ul class="ticket-exclusives">
-                            <li>Toegang tot alle verkoopzones</li>
-                            <li>VIP-locaties voor stand(s)</li>
-                            <li>Promotie in evenementenkanaal</li>
-                            <li>3 Jaar gratis ondersteuning & updates</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
+                    <!--Einde Prijsblok-->
+
+                    <!--Prijsblok Horeca Stands-->
+                    <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="pricing-block-content">
+                            <h3>Horeca Stand Pass</h3>
+                            <p class="pricing-sub">Voor horecaondernemingen</p>
+                            <div class="pricing">
+                                <div class="price"><span> €</span>299,99</div>
+                                <p>Zakelijke toegang voor food & beverage stands</p>
+                            </div>
+                            <ul class="ticket-exclusives">
+                                <li>Toegang tot alle verkoopzones</li>
+                                <li>VIP-locaties voor stand(s)</li>
+                                <li>Promotie in evenementenkanaal</li>
+                                <li>3 Jaar gratis ondersteuning & updates</li>
+                            </ul>
+                            <a href="#" class="button"> RESERVEER NU</a>
+                        </div>
+                    </div>
+                    <!--Einde Prijsblok-->
+
                 </div>
-                <!--Einde Prijsblok-->
+            </section>
+            <br>
+        <?php else: ?>
+            <p class="verbouwing"><strong>De 'Pricing' sectie is momenteel in verbouwing.</strong></p>
+        <?php endif; ?>
 
-            </div>
-        </section>
-        <br>
-
+        <!-- Voeg hier extra secties toe op dezelfde manier -->
 
     </main>
     <!--End Main Content Area-->
