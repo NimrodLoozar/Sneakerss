@@ -22,7 +22,7 @@ $message_stmt->execute(['user_id' => $user_id]);
 $messages = $message_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $user_id = $_SESSION['user_id'];
-$reservations_query = "SELECT stand_id, company_name, status FROM reservations WHERE user_id = :user_id";
+$reservations_query = "SELECT stand_id, company_name, statuses FROM reservations WHERE user_id = :user_id";
 $reservations_stmt = $pdo->prepare($reservations_query);
 $reservations_stmt->execute(['user_id' => $user_id]);
 $reservation = $reservations_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -145,7 +145,7 @@ $reservation = $reservations_stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($reservation as $reservations): ?>
             <li><?php echo htmlspecialchars($reservations['company_name']); ?>
                 <?php echo htmlspecialchars($reservations['stand_id']); ?>
-                <?php echo htmlspecialchars($reservations['status']); ?>
+                <?php echo htmlspecialchars($reservations['statuses']); ?>
                 <form action="mark_message_read.php" method="POST" style="display:inline;">
                     <input type="hidden" name="reservations_id" value="<?php echo $reservations['stand_id']; ?>">
                     <!-- <button type="submit">Markeer als gelezen</button> -->

@@ -7,7 +7,7 @@ session_start();
 include 'config/config.php'; // Zorg ervoor dat je je databaseverbinding hebt
 
 // Ophalen van goedgekeurde reserveringen
-$query = "SELECT * FROM reservations WHERE status = 'approved'";
+$query = "SELECT * FROM reservations WHERE statuses = 'approved'";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);

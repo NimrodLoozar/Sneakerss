@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 24, 2024 at 07:23 PM
+-- Generation Time: Oct 25, 2024 at 06:16 AM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -83,12 +83,16 @@ DROP TABLE IF EXISTS `messages`;
 CREATE TABLE IF NOT EXISTS `messages` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
-  `message` text NOT NULL,
+  `messages` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `is_read` tinyint(1) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `messages`
+--
 
 -- --------------------------------------------------------
 
@@ -129,17 +133,16 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `user_id` int DEFAULT NULL,
   `stand_id` int DEFAULT NULL,
   `company_name` varchar(255) DEFAULT NULL,
+  `statuses` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'active',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `stand_id` (`stand_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`id`, `user_id`, `stand_id`, `company_name`) VALUES
-(1, 3, 1, 'Sneaker Design');
 
 -- --------------------------------------------------------
 
@@ -163,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `stands` (
 
 INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`) VALUES
 (1, 1, '1', 0),
-(2, 1, '2', 1),
+(2, 1, '2', 0),
 (3, 1, '3', 1),
 (4, 1, '4', 1),
 (5, 1, '5', 1),
@@ -192,7 +195,7 @@ INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`) VALUES
 (28, 3, '8', 1),
 (29, 3, '9', 1),
 (30, 3, '10', 1),
-(31, 4, '1', 1),
+(31, 4, '1', 0),
 (32, 4, '2', 1),
 (33, 4, '3', 1),
 (34, 4, '4', 1),
@@ -202,8 +205,8 @@ INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`) VALUES
 (38, 4, '8', 1),
 (39, 4, '9', 1),
 (40, 4, '10', 1),
-(41, 5, '1', 1),
-(42, 5, '2', 1),
+(41, 5, '1', 0),
+(42, 5, '2', 0),
 (43, 5, '3', 1),
 (44, 5, '4', 1),
 (45, 5, '5', 1),
@@ -283,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_admin` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -292,7 +295,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `is_admin`) VALUES
 (1, 'John Doe', 'john@example.com', 'passwordhash1', '2024-10-24 14:04:16', 0),
 (2, 'Jane Smith', 'jane@example.com', 'passwordhash2', '2024-10-24 14:04:16', 0),
-(3, 'Nimród Lobozár', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1);
+(3, 'Nimród Lobozár', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1),
+(5, 'TestUser', 'test@gmail.com', '$2y$10$TNQskGITXrJj1h8UgWSq/uXcd.cn2jjiGazOkXDO9.b1gH1vWRLaW', '2024-10-24 20:13:33', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,10 +10,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['is_admin'] != 1) {
 
 
 // Haal alle reserveringen op die nog niet zijn verwerkt
-$sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.status FROM reservations r
+$sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.statuses FROM reservations r
         JOIN stands s ON r.stand_id = s.id
         JOIN plains p ON s.plain_id = p.id
-        WHERE r.status = 'Active'";
+        WHERE r.statuses = 'active'";
 $stmt = $pdo->query($sql);
 $allreservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

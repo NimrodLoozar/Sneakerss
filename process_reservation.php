@@ -22,9 +22,9 @@ if ($reservation) {
 
     // Update de reservering status
     $status = ($action == 'approve') ? 'approved' : 'rejected';
-    $update_query = "UPDATE reservations SET status = :status WHERE id = :reservation_id";
+    $update_query = "UPDATE reservations SET statuses = :statuses WHERE id = :reservation_id";
     $update_stmt = $pdo->prepare($update_query);
-    $update_stmt->execute(['status' => $status, 'reservation_id' => $reservation_id]);
+    $update_stmt->execute(['statuses' => $status, 'reservation_id' => $reservation_id]);
 
     // Maak een bericht aan voor de gebruiker
     $message = ($status == 'approved')
