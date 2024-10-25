@@ -124,11 +124,11 @@ $allreservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h1>Admin Dashboard</h1>
 
     <h2>Nieuwe Reserveringen</h2>
-    <?php if (empty($reservations)): ?>
+    <?php if (empty($allreservations)): ?>
         <p>Geen nieuwe reserveringen.</p>
     <?php else: ?>
         <ul>
-            <?php foreach ($reservations as $reservation): ?>
+            <?php foreach ($allreservations as $reservation): ?>
                 <li>
                     <?php echo htmlspecialchars($reservation['company_name']) . " - Stand: " . htmlspecialchars($reservation['stand_number']) . " op plein " . htmlspecialchars($reservation['plain_name']); ?>
                     <form action="process_reservation.php" method="POST" style="display:inline;">

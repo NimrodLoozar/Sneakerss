@@ -2,36 +2,44 @@
 session_start();
 include 'config/config.php';
 
+$error = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-    // Zoek de gebruiker in de database
-    $query = "SELECT * FROM users WHERE username = :username";
-    $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-    $stmt->execute();
+    // Valideer gebruikersnaam
+    if (empty($username) || !preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
+        $error = "Ongeldige gebruikersnaam.";
+    }
 
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Valideer wachtwoord
+    if (empty($password)) {
+        $error = "Wachtwoord mag niet leeg zijn.";
+    }
 
-    // Controleer het wachtwoord
-    if ($user && password_verify($password, $user['password'])) {
-        // Sla de gebruikersinformatie op in de sessie met de juiste kolomnaam
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username']; // Gebruik hier de juiste kolomnaam
+    // Als er geen fouten zijn, ga dan verder met inloggen
+    if (empty($error)) {
+        // Zoek de gebruiker in de database
+        $query = "SELECT * FROM users WHERE username = :username";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
 
-        // Sla de admin-status op in de sessie
-        $_SESSION['is_admin'] = $user['is_admin']; // Hier wordt de admin-status opgeslagen
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Redirect naar de juiste pagina op basis van de admin-status
-        if ($user['is_admin']) {
-            header('Location: /admin_dashboard.php'); // Admin-gebruikers
+        // Controleer het wachtwoord
+        if ($user && password_verify($password, $user['password'])) {
+            // Sla de gebruikersinformatie op in de sessie
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['is_admin'] = $user['is_admin'];
+
+            // Redirect naar de juiste pagina
+            header('Location: ' . ($user['is_admin'] ? '/admin_dashboard.php' : '/dashboard.php'));
+            exit();
         } else {
-            header('Location: /dashboard.php'); // Gewone gebruikers
+            $error = "Ongeldige inloggegevens.";
         }
-        exit();
-    } else {
-        $error = "Ongeldige inloggegevens.";
     }
 }
 ?>
@@ -57,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="login-container">
         <h2>Inloggen</h2>
 
-        <?php if (isset($error)): ?>
+        <?php if ($error): ?>
             <div class="error"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
 

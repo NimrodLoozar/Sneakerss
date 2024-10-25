@@ -153,21 +153,19 @@ $reservation = $reservations_stmt->fetchAll(PDO::FETCH_ASSOC);
             </li>
         <?php endforeach; ?>
     </ul>
-
-    <?php
-    if (isset($_SESSION['user_id']) && $_SESSION['is_admin'] === 1) {
-        echo ('<ul>
+    <ul>
+        <?php
+        if (isset($_SESSION['user_id']) && isset($_SESSION['is_admin']) === 1) {
+            echo ('
         <li><a href="logout.php">Uitloggen</a></li>
         <li><a href="/">Home</a></li>
-        <li><a href="/admin_dashboard">Back</a></li>
-    </ul>');
-    } else {
-        echo ('    <ul>
+        <li><a href="/admin_dashboard">Back</a></li>');
+        } else {
+            echo ('
         <li><a href="logout.php">Uitloggen</a></li>
-        <li><a href="/">Home</a></li>
+        <li><a href="/">Home</a></li>');
+        } ?>
     </ul>
-');
-    } ?>
 </body>
 
 </html>

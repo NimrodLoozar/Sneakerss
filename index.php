@@ -1,21 +1,21 @@
 <?php
 // Fouten weergeven voor debugging
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start();
 
 include 'config/config.php'; // Zorg ervoor dat je je databaseverbinding hebt
 
 // Ophalen van goedgekeurde reserveringen
-$query = "SELECT * FROM reservations WHERE statuses = 'approved'";
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// $query = "SELECT * FROM reservations WHERE statuses = 'approved'";
+// $stmt = $pdo->prepare($query);
+// $stmt->execute();
+// $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-$sql = "SELECT r.company_name, s.stand_number, p.plain_name FROM reservations r 
-        JOIN stands s ON r.stand_id = s.id 
-        JOIN plains p ON s.plain_id = p.id";
+$sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.statuses FROM reservations r
+        JOIN stands s ON r.stand_id = s.id
+        JOIN plains p ON s.plain_id = p.id
+        WHERE r.statuses = 'approved'";
 $stmt = $pdo->query($sql);
 $reservations = $stmt->fetchAll();
 
@@ -149,10 +149,16 @@ $reservations = $stmt->fetchAll();
                                 </li>
                             </ul>
                             <?php
-                            if (isset($_SESSION['user_id'])) {
+                            if (isset($_SESSION['is_admin'])) {
                                 echo ('<ul class="interface-icons">
-                                <li><a href="/logout.php">Uitloggen</a></li>
-                            </ul>');
+                                    <li><a href="/admin_dashboard.php">Admin dash</a></li>    
+                                    <li><a href="/logout.php">Uitloggen</a></li>
+                                    </ul>');
+                            } elseif (isset($_SESSION['user_id'])) {
+                                echo ('<ul class="interface-icons">
+                                    <li><a href="/dashboard.php">Dashboard</a></li>
+                                    <li><a href="/logout.php">Uitloggen</a></li>
+                                    </ul>');
                             } else {
                                 echo ('<ul class="interface-icons">
                                 <li>
