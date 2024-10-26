@@ -160,12 +160,12 @@ function isSectionVisible($section)
                                 </li>
                             </ul>
                             <?php
-                            if (isset($_SESSION['is_admin'])) {
+                            if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
                                 echo ('<ul class="interface-icons">
                                     <li><a href="/admin_dashboard.php">Admin dash</a></li>    
                                     <li><a href="/logout.php">Uitloggen</a></li>
                                     </ul>');
-                            } elseif (isset($_SESSION['user_id'])) {
+                            } elseif (isset($_SESSION['user_id']) && $_SESSION['is_admin'] === 0) {
                                 echo ('<ul class="interface-icons">
                                     <li><a href="/dashboard.php">Dashboard</a></li>
                                     <li><a href="/logout.php">Uitloggen</a></li>
