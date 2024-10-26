@@ -136,7 +136,7 @@ $allreservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                                 <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Admin-Dashboard</a>
                                 <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">User-Dashboard</a>
-                                <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
+                                <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
                                 <!-- <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a> -->
                                 <!-- <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Reports</a> -->
                             </div>
@@ -154,13 +154,14 @@ $allreservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <!-- Profile dropdown -->
                             <div class="relative ml-3">
-                                <div>
+                                <a href="/logout" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Logout</a>
+                                <!-- <div>
                                     <button type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                         <span class="absolute -inset-1.5"></span>
                                         <span class="sr-only">Open user menu</span>
                                         <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                                     </button>
-                                </div>
+                                </div> -->
 
                                 <!--
                 Dropdown menu, show/hide based on menu state.
@@ -242,44 +243,50 @@ $allreservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </header>
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-2">Nieuwe Reserveringen</h2>
-                <?php if (empty($allreservations)): ?>
-                    <p class="mb-4">Geen nieuwe reserveringen.</p>
-                <?php else: ?>
-                    <ul class="mb-4">
-                        <?php foreach ($allreservations as $reservation): ?>
-                            <li>
-                                <?php echo htmlspecialchars($reservation['company_name']) . " - Stand: " . htmlspecialchars($reservation['stand_number']) . " op plein " . htmlspecialchars($reservation['plain_name']); ?>
-                                <form action="process_reservation.php" method="POST" style="display:inline;">
-                                    <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
-                                    <button type="submit" name="action" value="approve">Goedkeuren</button>
-                                    <button type="submit" name="action" value="reject">Afkeuren</button>
-                                </form>
-                            </li>
-                        <?php endforeach; ?>
+                <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-2">Nieuwe Reserveringen</h2>
+                    <?php if (empty($allreservations)): ?>
+                        <p class="mb-4">Geen nieuwe reserveringen.</p>
+                    <?php else: ?>
+                        <ul class="mb-4">
+                            <?php foreach ($allreservations as $reservation): ?>
+                                <li>
+                                    <?php echo htmlspecialchars($reservation['company_name']) . " - Stand: " . htmlspecialchars($reservation['stand_number']) . " op plein " . htmlspecialchars($reservation['plain_name']); ?>
+                                    <form action="process_reservation.php" method="POST" style="display:inline;">
+                                        <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
+                                        <button type="submit" name="action" value="approve">Goedkeuren</button>
+                                        <button type="submit" name="action" value="reject">Afkeuren</button>
+                                    </form>
+                                </li>
+                            <?php endforeach; ?>
 
-                    </ul>
-                <?php endif; ?>
+                        </ul>
+                    <?php endif; ?>
+                </div>
 
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Beheer Secties</h2>
-                <?php
-                $sql = "SELECT id, section_name, is_visible FROM sections";
-                $stmt = $pdo->query($sql);
-                $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                ?>
+                <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
+                    <div class="flex grid">
+                        <h2 class="text-2xl font-bold tracking-tight text-gray-900 col-span-full">Beheer Secties</h2>
+                        <?php
+                        $sql = "SELECT id, section_name, is_visible FROM sections";
+                        $stmt = $pdo->query($sql);
+                        $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
 
-                <ul>
-                    <?php foreach ($sections as $section): ?>
-                        <li>
-                            <?php echo htmlspecialchars($section['section_name']); ?>
-                            <label class="switch">
-                                <input type="checkbox" class="toggle-visibility" data-id="<?php echo $section['id']; ?>"
-                                    <?php echo $section['is_visible'] ? 'checked' : ''; ?>>
-                                <span class="slider"></span>
-                            </label>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                        <ul class="col-span-full">
+                            <?php foreach ($sections as $section): ?>
+                                <li class="bg-gray-300 p-4 rounded-2xl mb-2 shadow-lg inline-flex flex-row align-middle">
+                                    <p><?php echo htmlspecialchars($section['section_name']); ?></p>
+                                    <label class="switch ml-4 mt-1">
+                                        <input type="checkbox" class="toggle-visibility" data-id="<?php echo $section['id']; ?>"
+                                            <?php echo $section['is_visible'] ? 'checked' : ''; ?>>
+                                        <span class="slider"></span>
+                                    </label>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
 
                 <script>
                     document.querySelectorAll('.toggle-visibility').forEach(toggle => {
