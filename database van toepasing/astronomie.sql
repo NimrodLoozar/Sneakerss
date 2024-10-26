@@ -298,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `is_admin`) VALUES
 (1, 'John Doe', 'john@example.com', 'passwordhash1', '2024-10-24 14:04:16', 0),
 (2, 'Jane Smith', 'jane@example.com', 'passwordhash2', '2024-10-24 14:04:16', 0),
-(3, 'Nimród Lobozár', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1),
+(3, 'NimrodLobozar', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1),
 (5, 'TestUser', 'test@gmail.com', '$2y$10$TNQskGITXrJj1h8UgWSq/uXcd.cn2jjiGazOkXDO9.b1gH1vWRLaW', '2024-10-24 20:13:33', 0);
 COMMIT;
 

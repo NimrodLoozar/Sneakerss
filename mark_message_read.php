@@ -34,5 +34,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id'])) {
 }
 
 // Redirect terug naar het dashboard
-header('Location: dashboard.php');
+header('Location: all_messages.php');
 exit();

@@ -32,6 +32,33 @@ $unreadQuery = "SELECT COUNT(*) as unread_count FROM messages WHERE is_read = 0"
 $stmt = $pdo->query($unreadQuery);
 $unreadCount = $stmt->fetchColumn();
 
+/// Haal de gebruikersgegevens op
+$query = "SELECT * FROM users WHERE id = :user_id"; // Voeg de extra velden toe
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user) {
+    // Verkrijg de waarden uit de database, of stel ze in als lege strings
+    $username = $user['username'] ?? '';
+    // Haal de profielfoto en coverfoto op uit de database
+    $profile_photo = $user['profile_photo'] ?? 'assets/img/default/default-profile.png'; // Vul hier een standaard afbeelding in als placeholder
+    $cover_photo = $user['cover_photo'] ?? 'assets/img/default/default-profile.jpg'; // Vul hier een standaard afbeelding in als placeholder
+    $first_name = $user['first_name'] ?? '';
+    $last_name = $user['last_name'] ?? '';
+    $email = $user['email'] ?? '';
+    $country = $user['country'] ?? '';
+    $street = $user['street'] ?? '';
+    $adres = $user['adres'] ?? '';
+    $city = $user['city'] ?? '';
+    $state_province = $user['state_province'] ?? '';
+    $zip_postal_code = $user['zip_postal_code'] ?? '';
+} else {
+    // Als de gebruiker niet gevonden is, stel standaard waarden in
+    $username = $email = $country = $street = $adres = $city = $state_province = $zip_postal_code = '';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -154,7 +181,7 @@ $unreadCount = $stmt->fetchColumn();
                         <!-- Belletje met dropdown-menu -->
                         <div class="relative">
                             <!-- Belletje met meldingen teller -->
-                            <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            <button type="button" id="notification-button" type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                 <span class="sr-only">View notifications</span>
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
@@ -185,47 +212,68 @@ $unreadCount = $stmt->fetchColumn();
                                             <?php endforeach; ?>
                                         </ul>
                                     <?php endif; ?>
+                                    <a href="all_messages.php" class="block px-4 py-2 text-sm text-blue-500 hover:underline text-center">Bekijk alle berichten</a>
                                 </div>
                             </div>
+
 
                         </div>
 
                         <!-- Profielfoto met dropdown-menu -->
                         <div class="relative">
-                            <button type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" onclick="toggleDropdown()">
+                            <button type="button" id="user-menu-button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                <img class="h-8 w-8 rounded-full" src="<?php echo htmlspecialchars($user['profile_photo']); ?>" alt="Profile Photo" class="rounded-full h-12 w-12" alt="">
                             </button>
 
-                            <!-- Dropdown menu, verborgen tot het geopend wordt -->
-                            <div id="dropdown-menu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                                <a href="/logout" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            <!-- Dropdown menu -->
+                            <div id="dropdown-menu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">Your Profile</a>
+                                <a href="/edit_profile" class="block px-4 py-2 text-sm text-gray-700">Settings</a>
+                                <a href="/logout" class="block px-4 py-2 text-sm text-gray-700">Sign out</a>
                             </div>
                         </div>
+
                     </div>
 
                     <script>
-                        function toggleDropdown() {
-                            const dropdown = document.getElementById("dropdown-menu");
-                            dropdown.classList.toggle("hidden");
-                        }
-
-                        function toggleNotificationDropdown() {
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Instellingen voor het meldingen dropdown-menu
+                            const notificationButton = document.getElementById('notification-button');
                             const notificationDropdown = document.getElementById('notification-dropdown');
-                            notificationDropdown.classList.toggle('hidden');
-                        }
 
-                        // Sluit het menu als je buiten het profielmenu klikt
-                        window.addEventListener("click", function(event) {
-                            const dropdown = document.getElementById("dropdown-menu");
-                            const button = document.getElementById("user-menu-button");
-                            if (!button.contains(event.target) && !dropdown.contains(event.target)) {
-                                dropdown.classList.add("hidden");
-                            }
+                            notificationButton.addEventListener('click', function(event) {
+                                event.stopPropagation();
+                                notificationDropdown.classList.toggle('hidden');
+                            });
+
+                            // Sluit het meldingen dropdown-menu bij een klik buiten het menu
+                            document.addEventListener('click', function(event) {
+                                if (!notificationDropdown.contains(event.target) && !notificationButton.contains(event.target)) {
+                                    notificationDropdown.classList.add('hidden');
+                                }
+                            });
+
+
+                            // Selecteer de profielknop en het dropdown-menu voor de gebruiker
+                            const profileButton = document.getElementById('user-menu-button');
+                            const profileDropdown = document.getElementById('dropdown-menu');
+
+                            // Toon of verberg het profiel dropdown-menu bij een klik op de profielknop
+                            profileButton.addEventListener('click', function(event) {
+                                event.stopPropagation();
+                                profileDropdown.classList.toggle('hidden');
+                            });
+
+                            // Sluit het profiel dropdown-menu bij een klik buiten het menu
+                            document.addEventListener('click', function(event) {
+                                if (!profileDropdown.contains(event.target) && !profileButton.contains(event.target)) {
+                                    profileDropdown.classList.add('hidden');
+                                }
+                            });
                         });
                     </script>
+
 
                     <div class="-mr-2 flex md:hidden">
                         <!-- Mobile menu button -->
@@ -258,7 +306,7 @@ $unreadCount = $stmt->fetchColumn();
                 <div class="border-t border-gray-700 pb-3 pt-4">
                     <div class="flex items-center px-5">
                         <div class="flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                            <img class="h-10 w-10 rounded-full" src="<?php echo htmlspecialchars($user['profile_photo']); ?>" alt="Profile Photo" class="rounded-full h-12 w-12" alt="">
                         </div>
                         <div class="ml-3">
                             <div class="text-base font-medium leading-none text-white">Tom Cook</div>
@@ -288,26 +336,6 @@ $unreadCount = $stmt->fetchColumn();
         </header>
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <!-- <h1>Welkom op het Sneakerness Dashboard</h1> -->
-                <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
-
-                    <!-- Inbox Sectie -->
-                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-2">Inbox</h2>
-                    <?php if (empty($messages)): ?>
-                        <p class="mb-4">Je hebt geen nieuwe berichten.</p>
-                    <?php else: ?>
-                        <ul class="mb-4">
-                            <?php foreach ($messages as $message): ?>
-                                <li><?php echo htmlspecialchars($message['messages']); ?>
-                                    <form action="mark_message_read.php" method="POST" style="display:inline;">
-                                        <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
-                                        <button type="submit">Markeer als gelezen</button>
-                                    </form>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; ?>
-                </div>
                 <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
                     <div class="grid">
                         <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4 text-center">Beschikbare Evenementen</h2>
