@@ -22,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // Haal de huidige profielfoto op uit de database als er geen nieuwe foto is geüpload
         $stmt = $pdo->prepare("SELECT profile_photo FROM users WHERE id = :user_id");
-        $stmt->execute(['user_id' => $userId]);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->execute();
         $profilePhoto = $stmt->fetchColumn();
     }
 
@@ -33,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // Haal de huidige coverfoto op uit de database als er geen nieuwe foto is geüpload
         $stmt = $pdo->prepare("SELECT cover_photo FROM users WHERE id = :user_id");
-        $stmt->execute(['user_id' => $userId]);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->execute();
         $coverPhoto = $stmt->fetchColumn();
     }
 

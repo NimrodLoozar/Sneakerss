@@ -382,7 +382,3 @@ if ($user) {
 </body>
 
 </html>
-
-
-en als ik op de bericht klik dat het verdwijnt van de inbox dropdown. Maar in de inbox dropdown moet ook een link zijn naar een andere pagina waar ik al mijn berichten kan zien die ik nog gelezen moet markeeren en ook de gene die al gelezen zijn gemarkeerd. Als het nodig is ik kan ook de bestand sturen van mark_message_read.php
-Zeg als het nodig is.
