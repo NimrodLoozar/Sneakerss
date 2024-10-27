@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $defaultProfilePhoto = 'assets/img/default/default-profile.png';
+    $defaultCoverPhoto = 'assets/img/default/default-profile.jpg';
 
     // Controleer of het e-mailadres al bestaat
     $checkEmailQuery = "SELECT * FROM users WHERE email = :email";
@@ -17,10 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($checkEmailStmt->rowCount() > 0) {
         $error = "Dit e-mailadres is al in gebruik. Probeer een ander e-mailadres.";
     } else {
-        // Voer de registratie uit
-        $sql = "INSERT INTO users (username, email, password) VALUES (:name, :email, :password)";
+        // Voer de registratie uit met standaard foto's
+        $sql = "INSERT INTO users (username, email, password, profile_photo, cover_photo) VALUES (:name, :email, :password, :profile_photo, :cover_photo)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['name' => $name, 'email' => $email, 'password' => $password]);
+        $stmt->execute([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'profile_photo' => $defaultProfilePhoto,
+            'cover_photo' => $defaultCoverPhoto
+        ]);
 
         // Sla de gebruikersinformatie op in de sessie
         $_SESSION['user_id'] = $pdo->lastInsertId();

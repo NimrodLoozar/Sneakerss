@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 25, 2024 at 06:16 AM
+-- Generation Time: Oct 26, 2024 at 11:09 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -20,10 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `astronomie`
 --
-DROP DATABASE IF EXISTS `astronomie`;
-CREATE DATABASE IF NOT EXISTS `astronomie`;
 
-USE `astronomie`;
 -- --------------------------------------------------------
 
 --
@@ -91,11 +88,16 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `messages`
 --
+
+INSERT INTO `messages` (`id`, `user_id`, `messages`, `is_read`, `created_at`) VALUES
+(5, 5, 'Je reservering is goedgekeurd.', 1, '2024-10-25 22:42:17'),
+(6, 5, 'Je reservering is goedgekeurd.', 1, '2024-10-26 16:51:35'),
+(7, 5, 'Je reservering is goedgekeurd.', 1, '2024-10-26 19:18:02');
 
 -- --------------------------------------------------------
 
@@ -140,12 +142,47 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `stand_id` (`stand_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `reservations`
 --
 
+INSERT INTO `reservations` (`id`, `user_id`, `stand_id`, `company_name`, `statuses`) VALUES
+(6, 5, 32, 'Sneaker Design', 'approved'),
+(7, 5, 33, 'Sneaker Design', 'rejected'),
+(8, 5, 43, 'Sneaker Design', 'approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sections`
+--
+
+DROP TABLE IF EXISTS `sections`;
+CREATE TABLE IF NOT EXISTS `sections` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `section_name` varchar(255) NOT NULL,
+  `is_visible` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `sections`
+--
+
+INSERT INTO `sections` (`id`, `section_name`, `is_visible`) VALUES
+(1, 'about', 1),
+(2, 'services', 1),
+(3, 'gallery', 1),
+(4, 'banner-content', 1),
+(5, 'testimonials', 1),
+(6, 'clients', 1),
+(7, 'sneaker', 1),
+(8, 'exclusive', 1),
+(9, 'podium', 1),
+(10, 'stand-map-section', 1),
+(11, 'pricing', 1);
 
 -- --------------------------------------------------------
 
@@ -199,8 +236,8 @@ INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`) VALUES
 (29, 3, '9', 1),
 (30, 3, '10', 1),
 (31, 4, '1', 0),
-(32, 4, '2', 1),
-(33, 4, '3', 1),
+(32, 4, '2', 0),
+(33, 4, '3', 0),
 (34, 4, '4', 1),
 (35, 4, '5', 1),
 (36, 4, '6', 1),
@@ -210,7 +247,7 @@ INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`) VALUES
 (40, 4, '10', 1),
 (41, 5, '1', 0),
 (42, 5, '2', 0),
-(43, 5, '3', 1),
+(43, 5, '3', 0),
 (44, 5, '4', 1),
 (45, 5, '5', 1),
 (46, 5, '6', 1),
@@ -283,23 +320,34 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `adres` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state_province` varchar(255) DEFAULT NULL,
+  `zip_postal_code` varchar(20) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `is_admin` tinyint(1) DEFAULT '0',
+  `about` text,
+  `profile_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'assets/img/default/default-profile.png',
+  `cover_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'assets/img/default/default-profile.jpg',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `is_admin`) VALUES
-(1, 'John Doe', 'john@example.com', 'passwordhash1', '2024-10-24 14:04:16', 0),
-(2, 'Jane Smith', 'jane@example.com', 'passwordhash2', '2024-10-24 14:04:16', 0),
-(3, 'Nimród Lobozár', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1),
-(5, 'TestUser', 'test@gmail.com', '$2y$10$TNQskGITXrJj1h8UgWSq/uXcd.cn2jjiGazOkXDO9.b1gH1vWRLaW', '2024-10-24 20:13:33', 0);
+INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `country`, `street`, `adres`, `city`, `state_province`, `zip_postal_code`, `email`, `password`, `created_at`, `is_admin`, `about`, `profile_photo`, `cover_photo`) VALUES
+(1, 'John Doe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'john@example.com', 'passwordhash1', '2024-10-24 14:04:16', 0, NULL, NULL, NULL),
+(2, 'Jane Smith', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jane@example.com', 'passwordhash2', '2024-10-24 14:04:16', 0, NULL, NULL, NULL),
+(3, 'NimrodLobozar', 'F. Nimród', '', NULL, NULL, NULL, NULL, NULL, NULL, 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1, '', 'assets/img/uploads/profile_3_294052465_5222177057837600_119414460320895139_n.jpg', 'assets/img/default/default-profile.jpg'),
+(4, 'TestUser', 'F. Nimród', '', NULL, NULL, NULL, NULL, NULL, NULL, 'test@gmail.com', '$2y$10$Mz8DQZgpGzkjx0fyCFYj2O2.vibTbhYxxvk25FhmbZQxZ2lAZS86u', '2024-10-26 22:48:05', 0, '', 'assets/img/uploads/profile_6_imageedit_2_2174348917-300x300.png', 'assets/img/default/default-profile.jpg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

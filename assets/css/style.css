@@ -4332,3 +4332,68 @@ button:focus {
 .login-input[type="submit"]:hover {
     background: #4cae4c;
 }
+
+
+/* Niet zichtbaar secties */
+.verbouwing{
+    color: red;
+    position: absolute; 
+    width: fit-content;
+    margin-top: 1rem;
+}
+
+@media (max-width: 2560px) {
+    .verbouwing{
+        left: 43vw;
+        
+    }
+}
+
+@media (max-width: 1920px) {
+    .verbouwing{
+        left: 40.5vw;
+        
+    }
+}
+
+@media (max-width: 1440px) {
+    .verbouwing{
+        left: 38vw;
+        
+    }
+}
+
+@media (max-width: 1024px) {
+    .verbouwing{
+        left: 32vw;
+        
+    }
+}
+
+@media (max-width: 768px) {
+    .verbouwing{
+        left: 28vw;
+        
+    }
+}
+
+@media (max-width: 425px) {
+    .verbouwing{
+        left: 20vw;
+        
+    }
+}
+
+@media (max-width: 375px) {
+    .verbouwing{
+        left: 16vw;
+        
+    }
+}
+
+@media (max-width: 320px) {
+    .verbouwing{
+        left: 9vw;
+        
+    }
+}
