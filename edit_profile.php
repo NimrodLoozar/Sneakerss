@@ -129,7 +129,7 @@ if ($user) {
                                 <div class="col-span-full">
                                     <label for="about" class="block text-sm font-medium leading-6 text-gray-900">About</label>
                                     <div class="mt-2">
-                                        <textarea id="about" name="about" rows="3" class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="<?php echo htmlspecialchars($about); ?>" autocomplete="about" placeholder="Tell us something about your Company."></textarea>
+                                        <textarea id="about" name="about" rows="3" class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="<?php echo htmlspecialchars($about); ?>" autocomplete="about" placeholder="<?php echo htmlspecialchars($about); ?>"></textarea>
                                     </div>
                                 </div>
 
@@ -209,7 +209,7 @@ if ($user) {
                                 </div>
                                 <div class="sm:col-span-3">
                                     <label class="block text-sm font-medium leading-6 text-gray-900" for="address">Huisnummer:</label>
-                                    <input class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" id="address" name="address" value="<?php echo htmlspecialchars($adres); ?>" autocomplete="adres" placeholder="<?php echo htmlspecialchars($adres ?: ''); ?>">
+                                    <input class="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" id="adres" name="adres" value="<?php echo htmlspecialchars($adres); ?>" autocomplete="adres" placeholder="<?php echo htmlspecialchars($adres ?: ''); ?>">
                                 </div>
                                 <div class="sm:col-span-3">
                                     <label class="block text-sm font-medium leading-6 text-gray-900" for="city">Stad:</label>

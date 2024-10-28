@@ -14,6 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $about = $_POST['about'];
     $firstName = $_POST['first_name'];
     $lastName = $_POST['last_name'];
+    $country = $_POST['country'];
+    $street = $_POST['street'];
+    $adres = $_POST['adres'];
+    $city = $_POST['city'];
+    $state_province = $_POST['state_province'];
+    $zip_postal_code = $_POST['zip_postal_code'];
 
     // Verwerk de profielfoto
     if (isset($_FILES['profile_photo']) && $_FILES['profile_photo']['error'] == 0) {
@@ -40,10 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Update de gebruiker in de database
-    $sql = "UPDATE users SET username = :username, about = :about, first_name = :first_name, last_name = :last_name, profile_photo = :profile_photo, cover_photo = :cover_photo WHERE id = :user_id";
+    $sql = "UPDATE users SET username = :username, about = :about, country = :country, street = :street, adres = :adres, city = :city, state_province = :state_province, zip_postal_code = :zip_postal_code, first_name = :first_name, last_name = :last_name, profile_photo = :profile_photo, cover_photo = :cover_photo WHERE id = :user_id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':about', $about);
+    $stmt->bindParam(':country', $country);
+    $stmt->bindParam(':street', $street);
+    $stmt->bindParam(':adres', $adres);
+    $stmt->bindParam(':city', $city);
+    $stmt->bindParam(':state_province', $state_province);
+    $stmt->bindParam(':zip_postal_code', $zip_postal_code);
     $stmt->bindParam(':first_name', $firstName);
     $stmt->bindParam(':last_name', $lastName);
     $stmt->bindParam(':profile_photo', $profilePhoto);

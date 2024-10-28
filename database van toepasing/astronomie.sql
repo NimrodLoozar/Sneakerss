@@ -20,7 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `astronomie`
 --
-
+DROP DATABASE IF EXISTS astronomie;
+CREATE DATABASE astronomie;
+USE astronomie;
 -- --------------------------------------------------------
 
 --
