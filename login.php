@@ -51,10 +51,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inloggen</title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico" title="Favicon" />
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/namari-color.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgb(227,6,19);
+            background: -moz-linear-gradient(0deg, rgba(227,6,19,1) 33%, rgba(186,13,27,1) 74%);
+            background: -webkit-linear-gradient(0deg, rgba(227,6,19,1) 33%, rgba(186,13,27,1) 74%);
+            background: linear-gradient(0deg, rgba(227,6,19,1) 33%, rgba(186,13,27,1) 74%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e30613",endColorstr="#ba0d1b",GradientType=1);
+            }
+
+
+            .login-container {
+                background: white;
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                width: 320px;
+                text-align: center;
+            }
+
+            .login-input {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .login-input:focus {
+                border-color: #ba0d1b;
+                box-shadow: 0 0 5px rgba(186, 13, 27, 0.5);
+                outline: none;
+            }
+
+            .login-input[type="submit"] {
+                background: linear-gradient(to right, #e30613, #ba0d1b); /* Gradient background */
+                border: none;
+                border-radius: 5px;
+                padding: 12px;
+            }
+
+            .login-input[type="submit"]:hover {
+                background-color: #ba0d1b;
+            }
+
+
         .error {
-            color: red;
+            color: #ff4d4d; /* Brighter red for errors */
+            background-color: rgba(255, 77, 77, 0.1); /* Light background to make it stand out */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
             text-align: center;
         }
     </style>
