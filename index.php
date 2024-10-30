@@ -1236,7 +1236,7 @@ $reservations = $stmt->fetchAll();
 
 
         <section id="stand-map-section" class="row scrollto clearfix no-padding-bottom wow fadeInUp"
-            data-wow-delay="0.1s"">
+            data-wow-delay="0.1s">
             <h1>Standplattegrond</h1>
             <div id=" stand-map" class="map-container">
             <img src="assets/img/sneaker-exit-august-2024.jpg" alt="Plattegrond van het evenement" id="map-image">
@@ -1256,6 +1256,11 @@ $reservations = $stmt->fetchAll();
                 <div class="col-12 section-heading">
                     <h3>JOUW SNEAKER PASS</h3>
                     <h2 class="section-title">Kies het juiste pakket voor jouw</h2>
+                <p>
+                    Entree tot Sneakerness is alleen mogelijk met een geldige Sneaker Pass. 
+                    Kies het pakket dat het beste bij jou past bij de evenementenbalie.
+                </p>
+                
                 </div>
 
                 <!--Prijsblok Student-->
@@ -1273,7 +1278,6 @@ $reservations = $stmt->fetchAll();
                             <li>Toegang tot online sneaker-workshops</li>
                             <li>1 Jaar gratis updates</li>
                         </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
                 </div>
                 <!--Einde Prijsblok-->
@@ -1293,13 +1297,12 @@ $reservations = $stmt->fetchAll();
                             <li>1 Jaar gratis updates</li>
                             <li>Basis klantenondersteuning</li>
                         </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
                 </div>
                 <!--Einde Prijsblok-->
 
                 <!--Prijsblok-->
-                <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.6s">
+                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.6s">
                     <div class="pricing-block-content">
                         <h3>Advanced Sneakerhead</h3>
                         <p class="pricing-sub">Meest gekozen pakket</p>
@@ -1313,7 +1316,6 @@ $reservations = $stmt->fetchAll();
                             <li>2 Jaar gratis updates</li>
                             <li>Premium klantenondersteuning</li>
                         </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
                 </div>
                 <!--Einde Prijsblok-->
@@ -1333,87 +1335,6 @@ $reservations = $stmt->fetchAll();
                             <li>Levenslang gratis updates</li>
                             <li>24/7 VIP klantenondersteuning</li>
                         </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
-                    </div>
-                </div>
-                <!--Einde Prijsblok-->
-
-                <!--Prijsblok Familie-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="pricing-block-content" style="margin-bottom: 10%;">
-                        <h3>Familie Sneakerhead</h3>
-                        <p class="pricing-sub">Voor de hele familie</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>59,99</div>
-                            <p>Toegang tot releases en evenementen voor het hele gezinsleden</p>
-                        </div>
-                        <ul class="ticket-exclusives">
-                            <li>15 Exclusieve releases per jaar</li>
-                            <li>Toegang tot family events</li>
-                            <li>Workshops voor alle leeftijden</li>
-                            <li>2 Jaar gratis ondersteuning & updates</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
-                    </div>
-                </div>
-                <!--Einde Prijsblok-->
-
-                <!--Prijsblok-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="pricing-block-content">
-                        <h3>Business Sneakerhead</h3>
-                        <p class="pricing-sub">Voor bedrijven en teams</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>99,99</div>
-                            <p>Complete toegang en ondersteuning voor zakelijke klanten</p>
-                        </div>
-                        <ul class="ticket-exclusives">
-                            <li>Onbeperkte releases voor de team</li>
-                            <li>Exclusieve netwerk- en VIP-events</li>
-                            <li>Zakelijke accountmanager</li>
-                            <li>24/7 klantenondersteuning</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
-                    </div>
-                </div>
-                <!--Einde Prijsblok-->
-
-                <!--Prijsblok Camera Crew/Interviewer-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="pricing-block-content">
-                        <h3>Journalist Pass</h3>
-                        <p class="pricing-sub">Voor media- en contentteams</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>199,99</div>
-                            <p>Professionele toegang voor interviews en opnames tijdens evenementen</p>
-                        </div>
-                        <ul class="ticket-exclusives">
-                            <li>Toegang tot perszones</li>
-                            <li>VIP-toegang tot exclusieve releases</li>
-                            <li>Speciale interviewsessies</li>
-                            <li>1 Jaar gratis updates</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
-                    </div>
-                </div>
-                <!--Einde Prijsblok-->
-
-                <!--Prijsblok Horeca Stands-->
-                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="pricing-block-content">
-                        <h3>Horeca Stand Pass</h3>
-                        <p class="pricing-sub">Voor horecaondernemingen</p>
-                        <div class="pricing">
-                            <div class="price"><span> €</span>299,99</div>
-                            <p>Zakelijke toegang voor food & beverage stands</p>
-                        </div>
-                        <ul class="ticket-exclusives">
-                            <li>Toegang tot alle verkoopzones</li>
-                            <li>VIP-locaties voor stand(s)</li>
-                            <li>Promotie in evenementenkanaal</li>
-                            <li>3 Jaar gratis ondersteuning & updates</li>
-                        </ul>
-                        <a href="#" class="button"> RESERVEER NU</a>
                     </div>
                 </div>
                 <!--Einde Prijsblok-->
