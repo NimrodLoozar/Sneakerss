@@ -35,84 +35,104 @@ $reservation = $reservations_stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico" title="Favicon" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/namari-color.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 20px;
-        }
+       body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        background: rgb(227,6,19);
+        background: -moz-linear-gradient(0deg, rgba(227,6,19,1) 33%, rgba(186,13,27,1) 74%);
+        background: -webkit-linear-gradient(0deg, rgba(227,6,19,1) 33%, rgba(186,13,27,1) 74%);
+        background: linear-gradient(0deg, rgba(227,6,19,1) 33%, rgba(186,13,27,1) 74%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e30613",endColorstr="#ba0d1b",GradientType=1);
+    }
 
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+    
 
-        h2 {
-            color: #555;
-            margin-top: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-        }
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
 
-        li {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-        }
+    h2 {
+        color: #444;
+        margin-top: 30px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+    }
 
-        form {
-            display: inline;
-        }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    li {
+        background: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    button:hover {
+        background-color: #0056b3;
+    }
 
-        a:hover {
-            color: #0056b3;
-        }
+    a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
 
-        .message {
-            background-color: #e7f3fe;
-            border-left: 5px solid #2196F3;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
+    a:hover {
+        color: #0056b3;
+    }
 
-        .error {
-            color: red;
-            margin-bottom: 15px;
-        }
+    .message {
+        background-color: #e7f3fe;
+        border-left: 5px solid #2196F3;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
     </style>
 
 </head>
 
 <body>
+<div class="container">
     <h1>Welkom op het Sneakerness Dashboard</h1>
 
     <!-- Inbox Sectie -->
@@ -166,6 +186,7 @@ $reservation = $reservations_stmt->fetchAll(PDO::FETCH_ASSOC);
         <li><a href="/">Home</a></li>');
         } ?>
     </ul>
+    </div>
 </body>
 
 </html>
