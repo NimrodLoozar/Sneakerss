@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config/config.php'; // Verbind met je database
+require_once 'config/config.php'; // Verbind met de database
 
 // Controleer of de gebruiker is ingelogd
 if (!isset($_SESSION['user_id'])) {
@@ -16,57 +16,20 @@ if (!isset($_GET['event_id'])) {
 
 $event_id = $_GET['event_id'];
 
-// Haal het geselecteerde evenement op
+// Haal evenementgegevens op
 $query = "SELECT * FROM events WHERE id = :event_id";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':event_id', $event_id, PDO::PARAM_INT);
 $stmt->execute();
 $event = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Haal alle pleinen voor het evenement op
+// Haal alle pleinen op
 $query = "SELECT * FROM plains WHERE event_id = :event_id";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':event_id', $event_id, PDO::PARAM_INT);
 $stmt->execute();
 $plains = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Verwerk het reserveringsformulier
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $company_name = $_POST['company_name'];
-    $stand_id = $_POST['stand_id'];
-
-    // Controleer of de gekozen stand nog beschikbaar is
-    $query = "SELECT * FROM stands WHERE id = :stand_id AND is_available = TRUE";
-    $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':stand_id', $stand_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $stand = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($stand) {
-        // Reserveer de stand
-        $query = "INSERT INTO reservations (user_id, stand_id, company_name) VALUES (:user_id, :stand_id, :company_name)";
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-        $stmt->bindParam(':stand_id', $stand_id, PDO::PARAM_INT);
-        $stmt->bindParam(':company_name', $company_name, PDO::PARAM_STR);
-
-        if ($stmt->execute()) {
-            // Update stand beschikbaarheid
-            $query = "UPDATE stands SET is_available = FALSE WHERE id = :stand_id";
-            $stmt = $pdo->prepare($query);
-            $stmt->bindParam(':stand_id', $stand_id, PDO::PARAM_INT);
-            $stmt->execute();
-
-            // Redirect naar dashboard met succesbericht
-            header('Location: dashboard.php?success=Stand succesvol gereserveerd!');
-            exit();
-        } else {
-            $error = "Er is een fout opgetreden bij het reserveren van de stand.";
-        }
-    } else {
-        $error = "De gekozen stand is niet meer beschikbaar. Kies een andere stand.";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -74,10 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stand Huren voor <?php echo htmlspecialchars($event['name']); ?></title>
+    <title>Stand Reserveren voor <?php echo htmlspecialchars($event['name']); ?></title>
     <script>
-        // Functie om de beschikbare stands per plein op te halen
         function getStands(plain_id) {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "get_stands.php?plain_id=" + plain_id, true);
@@ -87,6 +48,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             };
             xhr.send();
+        }
+
+        function updatePrice() {
+            var standSelect = document.getElementById("stand_select");
+            var daysSelect = document.getElementById("days");
+            var priceDisplay = document.getElementById("price_display");
+
+            var standPrice = standSelect.options[standSelect.selectedIndex].dataset.price;
+            var days = daysSelect.value;
+
+            if (standPrice) {
+                var totalPrice = standPrice * days;
+                priceDisplay.textContent = "Prijs: €" + totalPrice;
+            } else {
+                priceDisplay.textContent = "Selecteer een stand en aantal dagen";
+            }
         }
     </script>
     <style>
@@ -173,11 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <h1>Reserveer een stand voor <?php echo htmlspecialchars($event['name']); ?></h1>
 
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
-
-    <form action="reserve_stand.php?event_id=<?php echo $event_id; ?>" method="POST">
+    <form action="reserve_stands.php?event_id=<?php echo $event_id; ?>" method="POST">
         <label for="company_name">Bedrijfsnaam:</label>
         <input type="text" name="company_name" id="company_name" required>
 
@@ -191,14 +164,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php endforeach; ?>
         </select>
 
-        <label for="stand_id">Kies een beschikbare stand:</label>
-        <select name="stand_id" id="stand_select" required>
+        <label for="stand_id">Kies een stand:</label>
+        <select name="stand_id" id="stand_select" onchange="updatePrice()" required>
             <option value="">-- Selecteer eerst een plein --</option>
         </select>
 
+        <label for="days">Aantal dagen:</label>
+        <select name="days" id="days" onchange="updatePrice()" required>
+            <option value="1">1 dag</option>
+            <option value="2">2 dagen</option>
+        </select>
+
+        <p id="price_display">Selecteer een stand en aantal dagen</p>
+
         <button type="submit">Reserveer Stand</button>
     </form>
-
     <a href="dashboard.php">Terug naar het Dashboard</a>
 </body>
 

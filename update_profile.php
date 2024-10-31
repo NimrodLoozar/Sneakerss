@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $street = $_POST['street'];
     $adres = $_POST['adres'];
     $city = $_POST['city'];
+    $profilePhoto = $_POST['profile_photo'];
+    $coverPhoto = $_POST['cover_photo'];
     $state_province = $_POST['state_province'];
     $zip_postal_code = $_POST['zip_postal_code'];
 
@@ -36,14 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verwerk de coverfoto
     if (isset($_FILES['cover_photo']) && $_FILES['cover_photo']['error'] == 0) {
         $coverPhoto = 'assets/img/uploads/cover_' . $userId . '_' . basename($_FILES['cover_photo']['name']);
-        move_uploaded_file($_FILES['cover_photo']['tmp_name'], $coverPhoto);
-    } else {
-        // Haal de huidige coverfoto op uit de database als er geen nieuwe foto is geüpload
-        $stmt = $pdo->prepare("SELECT cover_photo FROM users WHERE id = :user_id");
-        $stmt->bindParam(':user_id', $userId);
-        $stmt->execute();
-        $coverPhoto = $stmt->fetchColumn();
+        if (move_uploaded_file($_FILES['cover_photo']['tmp_name'], $coverPhoto)) {
+            // Upload was succesvol
+        } else {
+            echo "Error: cover photo upload failed.";
+        }
     }
+
 
     // Update de gebruiker in de database
     $sql = "UPDATE users SET username = :username, about = :about, country = :country, street = :street, adres = :adres, city = :city, state_province = :state_province, zip_postal_code = :zip_postal_code, first_name = :first_name, last_name = :last_name, profile_photo = :profile_photo, cover_photo = :cover_photo WHERE id = :user_id";

@@ -11,8 +11,8 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 
 // Verwijder de gebruiker uit de database
-$stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
-$stmt->bind_param("i", $userId);
+$stmt = $pdo->prepare("DELETE FROM users WHERE id = :id");
+$stmt->bindParam(':id', $userId, PDO::PARAM_INT);
 $stmt->execute();
 
 // Log de gebruiker uit en verwijder de sessie

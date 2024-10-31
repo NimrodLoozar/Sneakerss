@@ -71,82 +71,7 @@ file_put_contents('debug.log', $user['cover_photo'] . PHP_EOL, FILE_APPEND);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Dashboard</title>
-    <!-- <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            color: #555;
-            margin-top: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        form {
-            display: inline;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #0056b3;
-        }
-
-        .message {
-            background-color: #e7f3fe;
-            border-left: 5px solid #2196F3;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-
-        .error {
-            color: red;
-            margin-bottom: 15px;
-        }
-    </style> -->
-
+    <title>Expired Events</title>
 </head>
 
 <body class="h-full">
@@ -166,10 +91,10 @@ file_put_contents('debug.log', $user['cover_photo'] . PHP_EOL, FILE_APPEND);
                                 <?php
                                 if (isset($_SESSION['user_id']) && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
                                     echo ('<a href="/admin_dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin-Dashboard</a>
-                                    <a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 bg-gray-900">User-Dashboard</a>
+                                    <a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">User-Dashboard</a>
                                 <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>');
                                 } else {
-                                    echo ('<a href="/dashboard" class="bg-gray-900 rounded-md px-3 py-2 text-sm font-medium text-gray-300">Dashboard</a>
+                                    echo ('<a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</a>
                                 <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>');
                                 }
                                 ?>
@@ -438,63 +363,21 @@ file_put_contents('debug.log', $user['cover_photo'] . PHP_EOL, FILE_APPEND);
 
         <header class="bg-white shadow">
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900">Expired Event</h1>
             </div>
         </header>
-        <main>
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
-                    <div class="grid">
-                        <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-4 text-center">Beschikbare Evenementen</h2>
-                        <ul class="flex justify-center space-x-4">
-                            <?php foreach ($events as $event): ?>
-                                <li class="bg-gray-300 p-4 rounded-2xl shadow-lg flex flex-col items-center text-center w-60">
-                                    <!-- Controleer het evenement-ID en voeg de juiste afbeelding toe met vaste hoogte en breedte -->
-                                    <?php if ($event['id'] == 1): ?>
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Rotterdam_van_nelle_fabriek.jpg" alt="Van Nelle Fabriek" class="w-full h-40 object-cover rounded-md mb-3">
-                                    <?php elseif ($event['id'] == 2): ?>
-                                        <img src="https://kep.cdn.indexvas.hu/welove-media/dc/2022-09-millenaris-g-dron-217.exact1980w.jpg" alt="Milenáris Budapest" class="w-full h-40 object-cover rounded-md mb-3">
-                                    <?php endif; ?>
-
-                                    <!-- Evenement naam en datum -->
-                                    <p class="text-lg font-semibold text-gray-800"><?php echo htmlspecialchars($event['name']); ?></p>
-                                    <p class="text-gray-600 mb-3">Datum: <?php echo htmlspecialchars($event['start_date']); ?></p>
-
-                                    <!-- Controleer of het evenement is verlopen -->
-                                    <?php
-                                    $current_date = date('Y-m-d');
-                                    if ($current_date > $event['start_date']): ?>
-                                        <!-- Link naar expired_events.php als het evenement is verlopen -->
-                                        <a href="expired_events.php" class="text-red-500 hover:text-red-700 font-medium">Event verlopen</a>
-                                    <?php else: ?>
-                                        <!-- Link naar reserve_stand.php als het evenement nog niet is verlopen -->
-                                        <a href="reserve_stand.php?event_id=<?php echo $event['id']; ?>" class="text-blue-500 hover:text-blue-700 font-medium">Stand huren</a>
-                                    <?php endif; ?>
-                                </li>
-                            <?php endforeach; ?>
-
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
-                    <div class="flex grid">
-                        <ul>
-                            <?php foreach ($reservation as $reservations): ?>
-                                <li>
-                                    <?php echo htmlspecialchars($reservations['company_name']); ?>
-                                    <?php echo htmlspecialchars($reservations['stand_id']); ?>
-                                    <?php echo htmlspecialchars($reservations['statuses']); ?>
-                                    <form action="mark_message_read.php" method="POST" style="display:inline;">
-                                        <input type="hidden" name="reservations_id" value="<?php echo $reservations['stand_id']; ?>">
-                                        <!-- <button type="submit">Markeer als gelezen</button> -->
-                                    </form>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                </div>
+        <main class="relative flex items-center justify-center h-screen overflow-hidden">
+            <div class="absolute inset-0 flex items-end">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg" class="object-cover w-full h-full" alt="Animated Background" />
+            </div>
+            <div class="relative bg-black bg-opacity-70 text-white p-8 rounded-lg text-center z-10">
+                <h1 class="text-2xl font-bold mb-4">Event is Expired!</h1>
+                <a href="dashboard.php" class="inline-block bg-orange-500 text-white py-2 px-4 rounded-md font-semibold transition duration-300 hover:bg-orange-600">
+                    Go to Dashboard
+                </a>
+            </div>
         </main>
+
 </body>
 
 </html>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 26, 2024 at 11:09 PM
--- Server version: 8.2.0
--- PHP Version: 8.2.13
+-- Generation Time: Oct 30, 2024 at 09:57 AM
+-- Server version: 9.0.1
+-- PHP Version: 8.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -90,16 +90,11 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `messages`
 --
-
-INSERT INTO `messages` (`id`, `user_id`, `messages`, `is_read`, `created_at`) VALUES
-(5, 5, 'Je reservering is goedgekeurd.', 1, '2024-10-25 22:42:17'),
-(6, 5, 'Je reservering is goedgekeurd.', 1, '2024-10-26 16:51:35'),
-(7, 5, 'Je reservering is goedgekeurd.', 1, '2024-10-26 19:18:02');
 
 -- --------------------------------------------------------
 
@@ -121,12 +116,11 @@ CREATE TABLE IF NOT EXISTS `plains` (
 --
 
 INSERT INTO `plains` (`id`, `event_id`, `plain_name`) VALUES
-(1, 1, 'Plein A'),
-(2, 1, 'Plein B'),
-(3, 1, 'Plein C'),
-(4, 2, 'Plein D'),
-(5, 2, 'Plein E'),
-(6, 2, 'Plein F');
+(1, 2, 'Gebouw B'),
+(2, 2, 'Gebouw C'),
+(3, 2, 'Gebouw D'),
+(4, 2, 'Gebouw E'),
+(5, 2, 'Gebouw G');
 
 -- --------------------------------------------------------
 
@@ -144,16 +138,11 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `stand_id` (`stand_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `reservations`
 --
-
-INSERT INTO `reservations` (`id`, `user_id`, `stand_id`, `company_name`, `statuses`) VALUES
-(6, 5, 32, 'Sneaker Design', 'approved'),
-(7, 5, 33, 'Sneaker Design', 'rejected'),
-(8, 5, 43, 'Sneaker Design', 'approved');
 
 -- --------------------------------------------------------
 
@@ -207,66 +196,66 @@ CREATE TABLE IF NOT EXISTS `stands` (
 --
 
 INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`) VALUES
-(1, 1, '1', 0),
-(2, 1, '2', 0),
-(3, 1, '3', 1),
-(4, 1, '4', 1),
-(5, 1, '5', 1),
-(6, 1, '6', 1),
-(7, 1, '7', 1),
-(8, 1, '8', 1),
-(9, 1, '9', 1),
-(10, 1, '10', 1),
-(11, 2, '1', 1),
-(12, 2, '2', 1),
-(13, 2, '3', 1),
-(14, 2, '4', 1),
-(15, 2, '5', 1),
-(16, 2, '6', 1),
-(17, 2, '7', 1),
-(18, 2, '8', 1),
-(19, 2, '9', 1),
-(20, 2, '10', 1),
-(21, 3, '1', 1),
-(22, 3, '2', 1),
-(23, 3, '3', 1),
-(24, 3, '4', 1),
-(25, 3, '5', 1),
-(26, 3, '6', 1),
-(27, 3, '7', 1),
-(28, 3, '8', 1),
-(29, 3, '9', 1),
-(30, 3, '10', 1),
-(31, 4, '1', 0),
-(32, 4, '2', 0),
-(33, 4, '3', 0),
-(34, 4, '4', 1),
-(35, 4, '5', 1),
-(36, 4, '6', 1),
-(37, 4, '7', 1),
-(38, 4, '8', 1),
-(39, 4, '9', 1),
-(40, 4, '10', 1),
-(41, 5, '1', 0),
-(42, 5, '2', 0),
-(43, 5, '3', 0),
-(44, 5, '4', 1),
-(45, 5, '5', 1),
-(46, 5, '6', 1),
-(47, 5, '7', 1),
-(48, 5, '8', 1),
-(49, 5, '9', 1),
-(50, 5, '10', 1),
-(51, 6, '1', 1),
-(52, 6, '2', 1),
-(53, 6, '3', 1),
-(54, 6, '4', 1),
-(55, 6, '5', 1),
-(56, 6, '6', 1),
-(57, 6, '7', 1),
-(58, 6, '8', 1),
-(59, 6, '9', 1),
-(60, 6, '10', 1);
+(1, 1, 'A', 0),
+(2, 1, 'AA', 1),
+(3, 1, 'A', 1),
+(4, 1, 'AA+', 1),
+(5, 1, 'A', 1),
+(6, 1, 'AA+', 1),
+(7, 1, 'AA', 1),
+(8, 1, 'A', 1),
+(9, 1, 'A', 1),
+(10, 1, 'AA', 1),
+(11, 1, 'AA+', 1),
+(12, 1, 'A', 1),
+(13, 1, 'AA', 1),
+(14, 1, 'A', 1),
+(15, 1, 'AA+', 1),
+(16, 2, 'A', 1),
+(17, 2, 'AA+', 1),
+(18, 2, 'AA', 1),
+(19, 2, 'A', 1),
+(20, 2, 'AA', 1),
+(21, 2, 'AA+', 1),
+(22, 2, 'A', 1),
+(23, 2, 'A', 1),
+(24, 2, 'AA', 1),
+(25, 2, 'AA+', 1),
+(26, 2, 'A', 1),
+(27, 2, 'A', 1),
+(28, 2, 'AA', 1),
+(29, 2, 'A', 1),
+(30, 2, 'AA+', 1),
+(31, 3, 'A', 1),
+(32, 3, 'AA+', 1),
+(33, 3, 'AA', 1),
+(34, 3, 'A', 1),
+(35, 3, 'AA', 1),
+(36, 3, 'AA+', 1),
+(37, 3, 'A', 1),
+(38, 3, 'AA', 1),
+(39, 3, 'AA+', 1),
+(40, 3, 'A', 1),
+(41, 3, 'AA', 1),
+(42, 3, 'A', 1),
+(43, 3, 'A', 1),
+(44, 3, 'AA+', 1),
+(45, 4, 'AA', 1),
+(46, 4, 'A', 1),
+(47, 4, 'AA+', 1),
+(48, 4, 'A', 1),
+(49, 4, 'AA', 1),
+(50, 4, 'A', 1),
+(51, 4, 'AA+', 1),
+(52, 4, 'A', 1),
+(53, 4, 'AA', 1),
+(54, 4, 'AA+', 1),
+(55, 4, 'A', 1),
+(56, 4, 'AA', 1),
+(57, 4, 'AA+', 1),
+(58, 5, 'A', 1),
+(59, 5, 'AA+', 1),
+(60, 5, 'AA', 1);
 
 -- --------------------------------------------------------
 
@@ -339,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `cover_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'assets/img/default/default-profile.jpg',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -348,9 +337,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `country`, `street`, `adres`, `city`, `state_province`, `zip_postal_code`, `email`, `password`, `created_at`, `is_admin`, `about`, `profile_photo`, `cover_photo`) VALUES
 (1, 'John Doe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'john@example.com', 'passwordhash1', '2024-10-24 14:04:16', 0, NULL, NULL, NULL),
 (2, 'Jane Smith', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jane@example.com', 'passwordhash2', '2024-10-24 14:04:16', 0, NULL, NULL, NULL),
-(3, 'NimrodLobozar', 'F. Nimród', '', NULL, NULL, NULL, NULL, NULL, NULL, 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1, '', 'assets/img/uploads/profile_3_294052465_5222177057837600_119414460320895139_n.jpg', 'assets/img/default/default-profile.jpg'),
-(4, 'TestUser', 'F. Nimród', '', NULL, NULL, NULL, NULL, NULL, NULL, 'test@gmail.com', '$2y$10$Mz8DQZgpGzkjx0fyCFYj2O2.vibTbhYxxvk25FhmbZQxZ2lAZS86u', '2024-10-26 22:48:05', 0, '', 'assets/img/uploads/profile_6_imageedit_2_2174348917-300x300.png', 'assets/img/default/default-profile.jpg');
-COMMIT;
+(3, 'NimrodLobozar', 'F. Nimród', '', NULL, NULL, NULL, NULL, NULL, NULL, 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1, '', 'assets/img/uploads/profile_3_294052465_5222177057837600_119414460320895139_n.jpg', 'assets/img/default/default-cover.jpg'),
+(4, 'TestUser', 'F. Nimród', 'Lobozár', 'Nederland', 'Australie', '25', 'Utrecht', 'Utrecht', '6574PL', 'test@gmail.com', '$2y$10$Mz8DQZgpGzkjx0fyCFYj2O2.vibTbhYxxvk25FhmbZQxZ2lAZS86u', '2024-10-26 22:48:05', 0, '', 'assets/img/uploads/profile_6_imageedit_2_2174348917-300x300.png', 'assets/img/uploads/cover_4_ferenc.lobozar_Hungarian_style_castle__surrounded_by_pine_tree__1b7b63a0-7855-4855-b3ba-45d1b13326c3.png');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
