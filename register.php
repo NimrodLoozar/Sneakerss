@@ -72,37 +72,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Registreren</title>
     <style>
         .error {
             color: red;
             text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 
-<body>
-    <div class="register-container">
-        <h2>Registreren</h2>
+<body class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg');">
+    <div class="register-container bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+        <h2 class="text-2xl font-semibold mb-4">Registreren</h2>
 
         <?php if (!empty($errors)): ?>
-            <div class="error">
+            <div class="error text-red-500 mb-4">
                 <?php foreach ($errors as $error): ?>
                     <p><?php echo htmlspecialchars($error); ?></p>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
 
-        <form action="register.php" method="POST">
-            <input class="register-input" type="text" id="name" name="name" placeholder="Naam" value="<?php echo htmlspecialchars($name); ?>" required>
-            <input class="register-input" type="email" id="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>" required>
-            <input class="register-input" type="password" id="password" name="password" placeholder="Wachtwoord" required>
-            <button class="register-button" type="submit">Registreer</button>
+        <form action="register.php" method="POST" class="space-y-4">
+            <input class="register-input w-full p-2 border border-gray-300 rounded-md" type="text" id="name" name="name" placeholder="Naam" value="<?php echo htmlspecialchars($name); ?>" required>
+            <input class="register-input w-full p-2 border border-gray-300 rounded-md" type="email" id="email" name="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>" required>
+            <input class="register-input w-full p-2 border border-gray-300 rounded-md" type="password" id="password" name="password" placeholder="Wachtwoord" required>
+            <button class="register-button w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded-md font-semibold" type="submit">Registreer</button>
         </form>
-        <p>Heb je al een account? <a href="/login">Login nu!</a></p>
-        <a href="/">Go Back</a>
+        <p class="mt-4">Heb je al een account? <a href="/login" class="text-blue-500 hover:underline">Login nu!</a></p>
+        <a href="/" class="text-gray-500 hover:underline">Ga terug</a>
     </div>
 </body>
+
 
 </html>

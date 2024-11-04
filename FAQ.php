@@ -1,3 +1,38 @@
+<?php
+// Fouten weergeven voor debugging
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include 'config/config.php'; // Zorg ervoor dat je je databaseverbinding hebt
+
+// Ophalen van goedgekeurde reserveringen
+// $query = "SELECT * FROM reservations WHERE statuses = 'approved'";
+// $stmt = $pdo->prepare($query);
+// $stmt->execute();
+// $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.statuses FROM reservations r
+        JOIN stands s ON r.stand_id = s.id
+        JOIN plains p ON s.plain_id = p.id
+        WHERE r.statuses = 'approved'";
+$stmt = $pdo->query($sql);
+$reservations = $stmt->fetchAll();
+
+
+// Haal zichtbaarheid op van alle secties in één keer
+$sql = "SELECT section_name, is_visible FROM sections";
+$stmt = $pdo->query($sql);
+$visibility = $stmt->fetchAll(PDO::FETCH_KEY_PAIR); // Maakt een array zoals ['about' => 1, 'experience' => 0]
+
+// Functie om zichtbaarheid van een sectie te controleren
+function isSectionVisible($section)
+{
+    global $visibility;
+    return isset($visibility[$section]) && $visibility[$section];
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -94,7 +129,7 @@
 
             </div>
             <!--End of Logo-->
-            <aside>
+            <aside class="row">
               <!--Social Icons in Header-->
               <ul class="social-icons">
                 <li>
@@ -103,7 +138,7 @@
                   </a>
                 </li>
                 <li>
-                  <a target="_blank" title="Google" href="http://google.com/">
+                  <a target="_blank" title="Google" href="http://google.com">
                     <i class="fa fa-google fa-1x"></i><span>Google</span>
                   </a>
                 </li>
@@ -123,15 +158,27 @@
                   </a>
                 </li>
               </ul>
+              <?php
+              if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
+                  echo ('<ul class="interface-icons">
+                      <li><a href="/admin_dashboard.php">Admin dash</a></li>
+                      </ul>');
+              } elseif (isset($_SESSION['user_id']) && $_SESSION['is_admin'] === 0) {
+                  echo ('<ul class="interface-icons">
+                      <li><a href="/dashboard.php">Dashboard</a></li>
+                      </ul>');
+              } else {
+                  echo ('<ul class="offline interface-icons">
+                  <li>
+                      <a href="/register">Register</a>
+                  </li>
+                  <li>
+                      <a href="/login">Login</a>
+                  </li>
+              </ul>');
+              }
+              ?>
               <!--End of Social Icons in Header-->
-              <ul class="interface-icons">
-                <li>
-                  <a href="/register">Register</a>
-                </li>
-                <li>
-                  <a href="/login">Login</a>
-                </li>
-              </ul>
             </aside>
 
 

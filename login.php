@@ -71,33 +71,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inloggen</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .error {
             color: red;
             text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 
-<body>
-
-    <div class="login-container">
-        <h2>Inloggen</h2>
+<body class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg');">
+    <div class="login-container bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+        <h2 class="text-2xl font-semibold mb-4">Inloggen</h2>
 
         <?php if ($error): ?>
-            <div class="error"><?php echo htmlspecialchars($error); ?></div>
+            <div class="error text-red-500 mb-4"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
 
-        <form action="login.php" method="post">
-            <input class="login-input" type="text" name="username" placeholder="Gebruikersnaam" required>
-            <input class="login-input" type="password" name="password" placeholder="Wachtwoord" required>
-            <input class="login-input" type="submit" value="Inloggen">
+        <form action="login.php" method="post" class="space-y-4">
+            <input class="login-input w-full p-2 border border-gray-300 rounded-md" type="text" name="username" placeholder="Gebruikersnaam" required>
+            <input class="login-input w-full p-2 border border-gray-300 rounded-md" type="password" name="password" placeholder="Wachtwoord" required>
+            <button class="login-button w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded-md font-semibold" type="submit">Inloggen</button>
         </form>
-        <p>Heb je nog geen account? <a href="/register">Registreer nu!</a></p>
-        <a href="/">Go Back</a>
-    </div>
 
+        <p class="mt-4">Heb je nog geen account? <a href="/register" class="text-blue-500 hover:underline">Registreer nu!</a></p>
+        <a href="/" class="text-gray-500 hover:underline">Ga terug</a>
+    </div>
 </body>
+
 
 </html>

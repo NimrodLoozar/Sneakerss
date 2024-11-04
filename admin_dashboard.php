@@ -471,19 +471,22 @@ if ($user) {
                 <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
                     <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-2">Nieuwe Reserveringen</h2>
                     <?php if (empty($allreservations)): ?>
-                        <p class="mb-4">Geen nieuwe reserveringen.</p>
+                        <p class="mb-4 bg-gray-100 p-4 rounded-2xl mb-2 shadow-lg">Geen nieuwe reserveringen.</p>
                     <?php else: ?>
                         <ul class="mb-4">
                             <?php foreach ($allreservations as $reservation): ?>
-                                <li>
-                                    <?php echo htmlspecialchars($reservation['company_name']) . " - Stand: " . htmlspecialchars($reservation['stand_number']) . " op plein " . htmlspecialchars($reservation['plain_name']); ?>
-                                    <form action="process_reservation.php" method="POST" style="display:inline;">
+                                <li class="bg-gray-100 p-4 rounded-2xl mb-2 shadow-lg flex items-center justify-between">
+                                    <span>
+                                        <?php echo htmlspecialchars($reservation['company_name']) . " - Stand: " . htmlspecialchars($reservation['stand_number']) . " op plein " . htmlspecialchars($reservation['plain_name']); ?>
+                                    </span>
+                                    <form action="process_reservation.php" method="POST" class="flex space-x-2">
                                         <input type="hidden" name="reservation_id" value="<?php echo $reservation['id']; ?>">
-                                        <button type="submit" name="action" value="approve">Goedkeuren</button>
-                                        <button type="submit" name="action" value="reject">Afkeuren</button>
+                                        <button class="rounded-md px-3 py-2 text-base font-medium text-green-600 bg-gray-300 hover:bg-green-700 hover:text-black" type="submit" name="action" value="approve">Goedkeuren</button>
+                                        <button class="rounded-md px-3 py-2 text-base font-medium text-red-600 bg-gray-300 hover:bg-red-700 hover:text-black" type="submit" name="action" value="reject">Afkeuren</button>
                                     </form>
                                 </li>
                             <?php endforeach; ?>
+
 
                         </ul>
                     <?php endif; ?>

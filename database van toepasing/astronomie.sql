@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Adatbázis: `astronomie`
 --
 DROP DATABASE IF EXISTS `astronomie`;
-CREATE DATABASE 'astronomie';
+CREATE DATABASE `astronomie`;
 USE `astronomie`;
 -- --------------------------------------------------------
 

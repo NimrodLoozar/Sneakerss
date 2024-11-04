@@ -18,29 +18,18 @@ $stmt = $pdo->prepare("SELECT * FROM messages WHERE user_id = :user_id ORDER BY 
 $stmt->execute(['user_id' => $user_id]);
 $allMessages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Haal de ongelezen berichten op voor de gebruiker
-$user_id = $_SESSION['user_id'];
-$message_query = "SELECT id, messages, is_read FROM messages WHERE user_id = :user_id AND is_read = 0";
-$message_stmt = $pdo->prepare($message_query);
-$message_stmt->execute(['user_id' => $user_id]);
-$messages = $message_stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Haal reserveringen op voor de gebruiker
-$reservations_query = "SELECT stand_id, company_name, statuses FROM reservations WHERE user_id = :user_id";
-$reservations_stmt = $pdo->prepare($reservations_query);
-$reservations_stmt->execute(['user_id' => $user_id]);
-$reservation = $reservations_stmt->fetchAll(PDO::FETCH_ASSOC);
-
 // Query om het aantal ongelezen berichten voor de gebruiker op te halen
 $unreadQuery = "SELECT COUNT(*) as unread_count FROM messages WHERE user_id = :user_id AND is_read = 0";
 $stmt = $pdo->prepare($unreadQuery);
 $stmt->execute(['user_id' => $user_id]);
 $unreadCount = $stmt->fetchColumn();
 
-// Query om het aantal ongelezen berichten op te halen
-$unreadQuery = "SELECT COUNT(*) as unread_count FROM messages WHERE is_read = 0";
-$stmt = $pdo->query($unreadQuery);
-$unreadCount = $stmt->fetchColumn();
+
+// Haal reserveringen op voor de gebruiker
+$reservations_query = "SELECT stand_id, company_name, statuses FROM reservations WHERE user_id = :user_id";
+$reservations_stmt = $pdo->prepare($reservations_query);
+$reservations_stmt->execute(['user_id' => $user_id]);
+$reservation = $reservations_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 /// Haal de gebruikersgegevens op
 $query = "SELECT * FROM users WHERE id = :user_id"; // Voeg de extra velden toe
@@ -79,7 +68,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <?php
                                 if (isset($_SESSION['user_id']) && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
                                     echo ('<a href="/admin_dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin-Dashboard</a>
-                                    <a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 bg-gray-900">User-Dashboard</a>
+                                    <a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">User-Dashboard</a>
                                 <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>');
                                 } else {
                                     echo ('<a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Go Back</a>
@@ -364,12 +353,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     <?php else: ?>
                         <ul class="space-y-2">
                             <?php foreach ($allMessages as $message): ?>
-                                <li class="px-4 py-2 rounded-md <?php echo $message['is_read'] ? 'bg-gray-100 text-gray-600' : 'bg-white font-bold'; ?>">
+                                <li class="bg-gray-100 p-4 rounded-2xl mb-2 shadow-lg flex items-center justify-between <?php echo $message['is_read'] ? 'bg-gray-100 text-gray-600' : 'bg-gray font-bold'; ?>">
                                     <span><?php echo htmlspecialchars($message['messages']); ?></span>
                                     <?php if (!$message['is_read']): ?>
                                         <form action="mark_message_read.php" method="POST" class="inline">
                                             <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
-                                            <button type="submit" class="ml-2 text-blue-500 hover:underline">Markeer als gelezen</button>
+                                            <button type="submit" class="rounded-md px-3 py-2 text-base font-medium text-blue-600 bg-gray-300 hover:bg-green-700 hover:text-black">Markeer als gelezen</button>
                                         </form>
                                     <?php endif; ?>
                                 </li>

@@ -1,21 +1,51 @@
+<?php
+// Fouten weergeven voor debugging
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include 'config/config.php'; // Zorg ervoor dat je je databaseverbinding hebt
+
+// Ophalen van goedgekeurde reserveringen
+// $query = "SELECT * FROM reservations WHERE statuses = 'approved'";
+// $stmt = $pdo->prepare($query);
+// $stmt->execute();
+// $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.statuses FROM reservations r
+        JOIN stands s ON r.stand_id = s.id
+        JOIN plains p ON s.plain_id = p.id
+        WHERE r.statuses = 'approved'";
+$stmt = $pdo->query($sql);
+$reservations = $stmt->fetchAll();
+
+
+// Haal zichtbaarheid op van alle secties in één keer
+$sql = "SELECT section_name, is_visible FROM sections";
+$stmt = $pdo->query($sql);
+$visibility = $stmt->fetchAll(PDO::FETCH_KEY_PAIR); // Maakt een array zoals ['about' => 1, 'experience' => 0]
+
+// Functie om zichtbaarheid van een sectie te controleren
+function isSectionVisible($section)
+{
+    global $visibility;
+    return isset($visibility[$section]) && $visibility[$section];
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
-    <title>Sneakerss - 2024</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
     <link rel="shortcut icon" href="assets/img/favicon.ico" title="Favicon" />
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/namari-color.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/namari-color.css">
     <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <title></title>
-
 </head>
 
 <body>
@@ -97,7 +127,7 @@
                             </a>
                         </div>
                         <!--End of Logo-->
-                        <aside>
+                        <aside class="row">
                             <!--Social Icons in Header-->
                             <ul class="social-icons">
                                 <li>
@@ -126,15 +156,27 @@
                                     </a>
                                 </li>
                             </ul>
-                            <!--End of Social Icons in Header-->
-                            <ul class="interface-icons">
+                            <?php
+                            if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
+                                echo ('<ul class="interface-icons">
+                                    <li><a href="/admin_dashboard.php">Admin dash</a></li>
+                                    </ul>');
+                            } elseif (isset($_SESSION['user_id']) && $_SESSION['is_admin'] === 0) {
+                                echo ('<ul class="interface-icons">
+                                    <li><a href="/dashboard.php">Dashboard</a></li>
+                                    </ul>');
+                            } else {
+                                echo ('<ul class="offline interface-icons">
                                 <li>
                                     <a href="/register">Register</a>
                                 </li>
                                 <li>
                                     <a href="/login">Login</a>
                                 </li>
-                            </ul>
+                            </ul>');
+                            }
+                            ?>
+                            <!--End of Social Icons in Header-->
                         </aside>
 
 
@@ -153,10 +195,10 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/agenda" class="links">Agenda</a>
+                                    <a href="#" class="active links">Agenda</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="active links">Info Stands</a>
+                                    <a href="/informatieStands" class="links">Info Stands</a>
                                 </li>
                                 <li>
                                     <a href="/FAQ" class="links">FAQ</a>
@@ -182,10 +224,13 @@
                 <div class="col-38">
 
                     <div class="section-heading">
-                        <h1>Welkom bij Sneakerness</h1>
-                        <h2>Jouw ultieme sneakerbestemming</h2>
-                        <p>Ontdek de nieuwste en meest exclusieve sneakers, ontmoet andere sneakerliefhebbers en geniet
-                            van unieke evenementen. Mis het niet!</p>
+                        <h1>Agenda</h1>
+                        <h2>Jouw exclusieve sneakerervaring</h2>
+                        <p>
+                            Verken de nieuwste en zeldzaamste sneakers,
+                            ontmoet gepassioneerde sneakerheads en beleef
+                            onvergetelijke evenementen. Zorg dat je erbij bent!
+                        </p>
                     </div>
                 </div>
 
@@ -193,66 +238,67 @@
         </header>
     </div>
 
-    <div class="plein">
-        <h1><strong>Ben jij een verkoper en wilt een stand huren? Dan is dit de goeie plek</strong></h1>
-
-        <p>
-            Dit zijn de pleinen op het festival, met in totaal 30 plekken waar u een stand kunt plaatsen.
-            Het reserveren van een plek kost €299,99, waarna u zelf een stand kunt kiezen.
-            <strong>Let op: Als de door u gewenste stand al is gereserveerd, kunnen wij dit helaas niet aanpassen.
-                U kunt mogelijk met de klant onderhandelen, maar verder kunnen wij hier niet bij helpen.</strong>
-            Voor meer informatie over de prijs , bekijk de prijsinformatie op de homepage.
-            <a href="index.html">Klik hier</a> om naar de homepage te gaan.
-        </p>
-
-        <div class="pleinPlek">
-            <span class="plein-titel">Plein 1 - Hoofdplein:</span>
-            <span class="plekken">
-                <h3>Plek 1</h3>
-                <h3>Plek 2</h3>
-                <h3>Plek 3</h3>
-                <h3>Plek 4</h3>
-                <h3>Plek 5</h3>
-                <h3>Plek 6</h3>
-                <h3>Plek 7</h3>
-                <h3>Plek 8</h3>
-                <h3>Plek 9</h3>
-                <h3>Plek 10</h3>
-            </span>
-        </div>
-
-        <div class="pleinPlek">
-            <span class="plein-titel">Plein 2 - Buitenplein:</span>
-            <span class="plekken">
-                <h3>Plek 1</h3>
-                <h3>Plek 2</h3>
-                <h3>Plek 3</h3>
-                <h3>Plek 4</h3>
-                <h3>Plek 5</h3>
-                <h3>Plek 6</h3>
-                <h3>Plek 7</h3>
-                <h3>Plek 8</h3>
-                <h3>Plek 9</h3>
-                <h3>Plek 10</h3>
-            </span>
-        </div>
-
-        <div class="pleinPlek">
-            <span class="plein-titel">Plein 3 - VIP Plein:</span>
-            <span class="plekken">
-                <h3>Plek 1</h3>
-                <h3>Plek 2</h3>
-                <h3>Plek 3</h3>
-                <h3>Plek 4</h3>
-                <h3>Plek 5</h3>
-                <h3>Plek 6</h3>
-                <h3>Plek 7</h3>
-                <h3>Plek 8</h3>
-                <h3>Plek 9</h3>
-                <h3>Plek 10</h3>
-            </span>
-        </div>
+    <!--Banner-->
+    <div class="slideshow-container-1">
+        <div class="absolute banner-text"></div>
+        <img class="mySlides-1" src="assets/img/sneakers/sneakers_landscape_new (1).jpg" />
+        <img class="mySlides-1" src="assets/img/sneakers/sneakers_landscape_new (2).jpg" />
+        <img class="mySlides-1" src="assets/img/sneakers/sneakers_landscape_new (3).jpg" />
     </div>
+
+    <main id="content" role="main">
+        <div id="agenda" class="section">
+            <div class="agenda-item">
+                <h2 id="november" class="agenda-date">27 november</h2>
+                <div class="event">
+                    <span class="event-time">10:00 - 11:00</span>
+                    <span class="event-description">VIP Vroege Toegang</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">11:00 - 19:00</span>
+                    <span class="event-description">Algemene Toegang</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">12:00 - 18:00</span>
+                    <span class="event-description">DJ-sets in de hoofdhal</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">14:00 - 16:00</span>
+                    <span class="event-description">Sneaker Customization Workshop</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">16:00 - 17:30</span>
+                    <span class="event-description">Q&A met beroemde sneakerontwerpers</span>
+                </div>
+            </div>
+
+            <div class="agenda-item">
+                <h2 id="november-1" class="agenda-date">28 november</h2>
+                <div class="event">
+                    <span class="event-time">10:00 - 11:00</span>
+                    <span class="event-description">VIP Vroege Toegang</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">11:00 - 18:00</span>
+                    <span class="event-description">Algemene Toegang</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">12:00 - 17:00</span>
+                    <span class="event-description">DJ-sets in de hoofdhal</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">13:00 - 15:00</span>
+                    <span class="event-description">Sneaker Historie Tentoonstelling</span>
+                </div>
+                <div class="event">
+                    <span class="event-time">15:30 - 17:00</span>
+                    <span class="event-description">Sneaker Ruil Masterclass</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    </div>
+
     <section class="countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
         <div class="col-12 countdown-container flex">
             <div class="countdown row">
@@ -324,25 +370,28 @@
 
     </footer>
     <!--End of Footer-->
+
+
+    <script src="assets/Js/countdown.js"></script>
+    <script src="assets/js/jquery.1.8.3.min.js"></script>
+    <script src="assets/Js/banner_slideshow.js"></script>
+    <script src="assets/js/featherlight.min.js"></script>
+    <script src="assets/js/featherlight.gallery.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="Standindeling.js"></script>
+    <script src="assets/Js/recentie_slide.js"></script>
+    <script src="assets/js/jquery.enllax.min.js"></script>
+    <script src="assets/js/jquery.scrollUp.min.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/js/jquery.stickyNavbar.min.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/images-loaded.min.js"></script>
+    <script src="assets/js/lightbox.min.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script src="assets/Js/progressBar.js"></script>
+    <script src="ExclusieveSneakers.js"></script>
+    <script src="assets/Js/Wat_is_Sneakerness.js"></script>
+    <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; overflow: hidden; display: block;"></a>
 </body>
-<script src="assets/js/jquery.1.8.3.min.js"></script>
-<script src="assets/Js/banner_slideshow.js"></script>
-<script src="assets/js/featherlight.min.js"></script>
-<script src="assets/js/featherlight.gallery.min.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/Js/Standindeling.js"></script>
-<script src="assets/Js/recentie_slide.js"></script>
-<script src="assets/js/jquery.enllax.min.js"></script>
-<script src="assets/js/jquery.scrollUp.min.js"></script>
-<script src="assets/js/jquery.easing.min.js"></script>
-<script src="assets/js/jquery.stickyNavbar.min.js"></script>
-<script src="assets/js/jquery.waypoints.min.js"></script>
-<script src="assets/js/images-loaded.min.js"></script>
-<script src="assets/js/lightbox.min.js"></script>
-<script src="assets/js/site.js"></script>
-<script src="assets/Js/progressBar.js"></script>
-<script src="assets/Js/ExclusieveSneakers.js"></script>
-<script src="assets/Js/Wat_is_Sneakerness.js"></script>
-<script src="assets/Js/countdown.js"></script>
 
 </html>
