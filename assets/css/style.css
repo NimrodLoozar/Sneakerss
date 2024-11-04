@@ -1250,9 +1250,10 @@ nav#nav-mobile a:hover {
 .interface-icons li {
     text-align: center;
 }
-.interface-icons a {
-}
-.interface-icons li:first-of-type::after {
+
+.interface-icons a {}
+
+.offline li:first-of-type::after {
     content: '|';
     padding-left: 1rem;
 }
@@ -4335,65 +4336,65 @@ button:focus {
 
 
 /* Niet zichtbaar secties */
-.verbouwing{
+.verbouwing {
     color: red;
-    position: absolute; 
+    position: absolute;
     width: fit-content;
     margin-top: 1rem;
 }
 
 @media (max-width: 2560px) {
-    .verbouwing{
+    .verbouwing {
         left: 43vw;
-        
+
     }
 }
 
 @media (max-width: 1920px) {
-    .verbouwing{
+    .verbouwing {
         left: 40.5vw;
-        
+
     }
 }
 
 @media (max-width: 1440px) {
-    .verbouwing{
+    .verbouwing {
         left: 38vw;
-        
+
     }
 }
 
 @media (max-width: 1024px) {
-    .verbouwing{
+    .verbouwing {
         left: 32vw;
-        
+
     }
 }
 
 @media (max-width: 768px) {
-    .verbouwing{
+    .verbouwing {
         left: 28vw;
-        
+
     }
 }
 
 @media (max-width: 425px) {
-    .verbouwing{
+    .verbouwing {
         left: 20vw;
-        
+
     }
 }
 
 @media (max-width: 375px) {
-    .verbouwing{
+    .verbouwing {
         left: 16vw;
-        
+
     }
 }
 
 @media (max-width: 320px) {
-    .verbouwing{
+    .verbouwing {
         left: 9vw;
-        
+
     }
 }
