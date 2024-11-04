@@ -281,21 +281,26 @@ $sneakers = [
             <section class="py-8" id="sneaker-section">
                 <div class="max-w-7xl mx-auto px-4">
                     <h1 class="text-3xl font-bold text-center mb-8">Pre-order Exclusieve Sneakers</h1>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8" id="sneaker-grid">
-                        <?php foreach ($sneakers as $sneaker): ?>
-                            <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300"
-                                data-sneaker-name="<?php echo $sneaker['name']; ?>">
-                                <a href="#" onclick="showForm('<?php echo $sneaker['name']; ?>')">
-                                    <img class="w-full h-60 object-cover" src="<?php echo $sneaker['image']; ?>" alt="<?php echo $sneaker['name']; ?>">
-                                    <div class="p-6">
-                                        <h4 class="text-xl font-bold text-gray-800 mb-2"><?php echo $sneaker['name']; ?></h4>
-                                        <p class="text-gray-600 text-sm"><?php echo $sneaker['description']; ?></p>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
 
+
+                    <?php if (isSectionVisible('pre-order-sneakers')): ?>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8" id="sneaker-grid">
+                            <?php foreach ($sneakers as $sneaker): ?>
+                                <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300"
+                                    data-sneaker-name="<?php echo $sneaker['name']; ?>">
+                                    <a href="#" onclick="showForm('<?php echo $sneaker['name']; ?>')">
+                                        <img class="w-full h-60 object-cover" src="<?php echo $sneaker['image']; ?>" alt="<?php echo $sneaker['name']; ?>">
+                                        <div class="p-6">
+                                            <h4 class="text-xl font-bold text-gray-800 mb-2"><?php echo $sneaker['name']; ?></h4>
+                                            <p class="text-gray-600 text-sm"><?php echo $sneaker['description']; ?></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else: ?>
+                        <p class="verbouwing"><strong>De 'Pre-order-sneakers' sectie is momenteel in verbouwing.</strong></p>
+                    <?php endif; ?>
                     <!-- Formulier, standaard verborgen -->
                     <div id="preorder-form" class="hidden mt-8 bg-gray-100 p-6 rounded-lg shadow-md">
                         <h2 class="text-2xl font-semibold mb-4">Pre-order Formulier</h2>
