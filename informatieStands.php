@@ -31,7 +31,49 @@ function isSectionVisible($section)
     global $visibility;
     return isset($visibility[$section]) && $visibility[$section];
 }
+// Query om de beschikbare en bezette plekken per gebouw te tonen
+$query = "SELECT plains.plain_name, stands.stand_number, stands.is_available 
+          FROM stands
+          JOIN plains ON stands.plain_id = plains.id";
+
+try {
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Fout bij ophalen gegevens: " . $e->getMessage());
+}
+
+// Organiseer de gegevens per gebouw
+$gebouwen = [];
+foreach ($result as $row) {
+    $gebouw = $row['plain_name'];
+    $standType = $row['stand_number'];
+    $isAvailable = $row['is_available'];
+
+    if (!isset($gebouwen[$gebouw])) {
+        $gebouwen[$gebouw] = [
+            'A' => ['vrij' => 0, 'bezet' => 0],
+            'AA' => ['vrij' => 0, 'bezet' => 0],
+            'AA+' => ['vrij' => 0, 'bezet' => 0],
+            'vrij' => 0,
+            'bezet' => 0
+        ];
+    }
+
+    // Increment het aantal voor de specifieke type stand
+    if (array_key_exists($standType, $gebouwen[$gebouw])) {
+        if ($isAvailable) {
+            $gebouwen[$gebouw][$standType]['vrij']++;
+            $gebouwen[$gebouw]['vrij']++;
+        } else {
+            $gebouwen[$gebouw][$standType]['bezet']++;
+            $gebouwen[$gebouw]['bezet']++;
+        }
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +84,7 @@ function isSectionVisible($section)
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="assets/img/favicon.ico" title="Favicon" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/namari-color.css">
@@ -239,66 +282,48 @@ function isSectionVisible($section)
         </header>
     </div>
 
-    <div class="plein">
-        <h1><strong>Ben jij een verkoper en wilt een stand huren? Dan is dit de goeie plek</strong></h1>
-
-        <p>
-            Dit zijn de pleinen op het festival, met in totaal 30 plekken waar u een stand kunt plaatsen.
-            Het reserveren van een plek kost €299,99, waarna u zelf een stand kunt kiezen.
+    <div class="plein max-w-screen-lg mx-auto p-4">
+        <h1 class="text-2xl font-bold text-center mb-4">Ben jij een verkoper en wilt een stand huren? Dan is dit de goeie plek</h1>
+        <p class="text-center bg-gray-800 text-red-600 p-4 rounded-lg border border-gray-300 max-w-full mx-auto mb-8">
+            Dit zijn de pleinen op het festival, met in totaal 60 plekken waar u een stand kunt plaatsen.
+            Het reserveren van een plek kost €100 t/m €200, waarna u zelf een stand kunt kiezen.
             <strong>Let op: Als de door u gewenste stand al is gereserveerd, kunnen wij dit helaas niet aanpassen.
                 U kunt mogelijk met de klant onderhandelen, maar verder kunnen wij hier niet bij helpen.</strong>
-            Voor meer informatie over de prijs , bekijk de prijsinformatie op de homepage.
-            <a href="index.html">Klik hier</a> om naar de homepage te gaan.
         </p>
 
-        <div class="pleinPlek">
-            <span class="plein-titel">Plein 1 - Hoofdplein:</span>
-            <span class="plekken">
-                <h3>Plek 1</h3>
-                <h3>Plek 2</h3>
-                <h3>Plek 3</h3>
-                <h3>Plek 4</h3>
-                <h3>Plek 5</h3>
-                <h3>Plek 6</h3>
-                <h3>Plek 7</h3>
-                <h3>Plek 8</h3>
-                <h3>Plek 9</h3>
-                <h3>Plek 10</h3>
-            </span>
+        <div class="eventboard-grid mb-20 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <?php foreach ($gebouwen as $gebouwNaam => $data): ?>
+                <div class="pleinPlek border-l-4 border-red-600 bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    <h2 class="text-2xl font-bold text-red-600 mb-3"><?php echo htmlspecialchars($gebouwNaam); ?></h2>
+                    <div class="flex justify-between text-sm text-gray-700 mb-4">
+                        <p>Aantal vrije plekken: <span class="font-semibold text-green-600"><?php echo $data['vrij']; ?></span></p>
+                        <p>Aantal bezette plekken: <span class="font-semibold text-red-600"><?php echo $data['bezet']; ?></span></p>
+                    </div>
+                    <p class="text-lg font-medium text-gray-800 mt-4 mb-2">Stands per type:</p>
+                    <ul class="list-disc list-inside pl-5">
+                        <li class="plekken">
+                            <span class="font-semibold">Type A:</span>
+                            Vrij: <span class="text-green-600"><?php echo $data['A']['vrij']; ?></span>,
+                            Bezet: <span class="text-red-600"><?php echo $data['A']['bezet']; ?></span>
+                        </li>
+                        <li class="plekken">
+                            <span class="font-semibold">Type AA:</span>
+                            Vrij: <span class="text-green-600"><?php echo $data['AA']['vrij']; ?></span>,
+                            Bezet: <span class="text-red-600"><?php echo $data['AA']['bezet']; ?></span>
+                        </li>
+                        <li class="plekken">
+                            <span class="font-semibold">Type AA+:</span>
+                            Vrij: <span class="text-green-600"><?php echo $data['AA+']['vrij']; ?></span>,
+                            Bezet: <span class="text-red-600"><?php echo $data['AA+']['bezet']; ?></span>
+                        </li>
+                    </ul>
+                </div>
+            <?php endforeach; ?>
         </div>
 
-        <div class="pleinPlek">
-            <span class="plein-titel">Plein 2 - Buitenplein:</span>
-            <span class="plekken">
-                <h3>Plek 1</h3>
-                <h3>Plek 2</h3>
-                <h3>Plek 3</h3>
-                <h3>Plek 4</h3>
-                <h3>Plek 5</h3>
-                <h3>Plek 6</h3>
-                <h3>Plek 7</h3>
-                <h3>Plek 8</h3>
-                <h3>Plek 9</h3>
-                <h3>Plek 10</h3>
-            </span>
-        </div>
 
-        <div class="pleinPlek">
-            <span class="plein-titel">Plein 3 - VIP Plein:</span>
-            <span class="plekken">
-                <h3>Plek 1</h3>
-                <h3>Plek 2</h3>
-                <h3>Plek 3</h3>
-                <h3>Plek 4</h3>
-                <h3>Plek 5</h3>
-                <h3>Plek 6</h3>
-                <h3>Plek 7</h3>
-                <h3>Plek 8</h3>
-                <h3>Plek 9</h3>
-                <h3>Plek 10</h3>
-            </span>
-        </div>
     </div>
+
     <section class="countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
         <div class="col-12 countdown-container flex">
             <div class="countdown row">

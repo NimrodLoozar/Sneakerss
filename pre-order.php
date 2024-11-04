@@ -5,19 +5,56 @@ ini_set('display_errors', 1);
 
 include 'config/config.php'; // Zorg ervoor dat je je databaseverbinding hebt
 
-// Ophalen van goedgekeurde reserveringen
-// $query = "SELECT * FROM reservations WHERE statuses = 'approved'";
-// $stmt = $pdo->prepare($query);
-// $stmt->execute();
-// $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$message = '';
 
-$sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.statuses FROM reservations r
-        JOIN stands s ON r.stand_id = s.id
-        JOIN plains p ON s.plain_id = p.id
-        WHERE r.statuses = 'approved'";
-$stmt = $pdo->query($sql);
-$reservations = $stmt->fetchAll();
+// Functie om een gebruiker op basis van naam en e-mail op te zoeken
+function findUser($pdo, $name, $email)
+{
+    $sql = "SELECT * FROM users WHERE (username = :name OR first_name = :name OR last_name = :name) AND email = :email LIMIT 1";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
+// Functie om de PreOrder-waarde te verhogen
+function incrementPreOrder($pdo, $userId)
+{
+    $sql = "UPDATE users SET PreOrder = PreOrder + 1 WHERE id = :userId";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':userId', $userId);
+    $stmt->execute();
+}
+
+// Verwerk het formulier
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $confirmOrder = isset($_POST['confirm_order']) ? true : false;
+
+    // Controleer of de gebruiker bestaat
+    $user = findUser($pdo, $name, $email);
+
+    if ($user) {
+        // Als de gebruiker al pre-orders heeft, geef een bevestigingsprompt
+        $currentPreOrders = $user['PreOrder'];
+
+        if ($currentPreOrders > 0 && !$confirmOrder) {
+            $message = "Je hebt al $currentPreOrders pre-order(s). Wil je er nog een plaatsen? Klik nogmaals op de knop om te bevestigen.";
+        } else {
+            // Verhoog de PreOrder-waarde
+            incrementPreOrder($pdo, $user['id']);
+            $message = "Pre-order succesvol geregistreerd! Je hebt nu " . ($currentPreOrders + 1) . " pre-order(s).";
+
+            // Redirect naar pre-order-waitlist.php na bevestiging
+            header("Location: pre-order-waitlist.php");
+            exit;
+        }
+    } else {
+        $message = "Geen gebruiker gevonden met deze naam en e-mailadres.";
+    }
+}
 
 // Haal zichtbaarheid op van alle secties in één keer
 $sql = "SELECT section_name, is_visible FROM sections";
@@ -31,114 +68,21 @@ function isSectionVisible($section)
     return isset($visibility[$section]) && $visibility[$section];
 }
 
-// Function to sanitize and validate input
-function validate_input($data, $field)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-
-    switch ($field) {
-        case 'username':
-            if (empty($data)) {
-                return ['value' => '', 'error' => "Gebruikersnaam is verplicht."];
-            } elseif (strlen($data) > 50) {
-                return ['value' => $data, 'error' => "Gebruikersnaam mag niet langer zijn dan 50 karakters."];
-            }
-            return ['value' => $data, 'error' => ''];
-
-        case 'email':
-            if (empty($data)) {
-                return ['value' => '', 'error' => "E-mail is verplicht."];
-            } elseif (!filter_var($data, FILTER_VALIDATE_EMAIL)) {
-                return ['value' => $data, 'error' => "Ongeldig e-mailadres."];
-            }
-            return ['value' => $data, 'error' => ''];
-
-        case 'password':
-            if (empty($data)) {
-                return ['value' => '', 'error' => "Wachtwoord is verplicht."];
-            } elseif (strlen($data) < 8) {
-                return ['value' => '', 'error' => "Wachtwoord moet minstens 8 karakters lang zijn."];
-            }
-            return ['value' => $data, 'error' => ''];
-
-        case 'birthdate':
-            if (empty($data)) {
-                return ['value' => '', 'error' => "Geboortedatum is verplicht."];
-            }
-            $date = DateTime::createFromFormat('Y-m-d', $data);
-            if (!$date || $date->format('Y-m-d') !== $data) {
-                return ['value' => $data, 'error' => "Ongeldige datumnotatie. Gebruik YYYY-MM-DD."];
-            }
-            return ['value' => $data, 'error' => ''];
-
-        default:
-            return ['value' => $data, 'error' => ''];
-    }
-}
-
-$errors = [];
-$form_data = [
-    'username' => '',
-    'email' => '',
-    'password' => '',
-    'birthdate' => ''
+// Array met sneakers om te tonen
+$sneakers = [
+    ["name" => "Urban Mirage", "description" => "Een meesterwerk van design, vervaardigd uit innovatieve materialen voor ongeëvenaard comfort en stijl.", "image" => "assets/img/sneakers/exclusieve/1000_F_710340762_jxdKEAHkmLfDe6WpIzxSnAiTAoPTXIKo.png"],
+    ["name" => "Futuristic Wave", "description" => "Een gedurfde creatie die stijl en functionaliteit perfect combineert, een must-have voor elke sneakerliefhebber.", "image" => "assets/img/sneakers/exclusieve/futuristic-nike-sneaker-red-color-digital-art-3d-render_948904-115.png"],
+    ["name" => "Artisanal Luxe", "description" => "Dit kunstwerk tilt elke outfit naar een hoger niveau met zijn verfijnde ontwerp en unieke uitstraling.", "image" => "assets/img/sneakers/exclusieve/image.png"],
+    ["name" => "Everyday Elegance", "description" => "Deze sneaker combineert comfort met een opvallend ontwerp, perfect voor dagelijks gebruik.", "image" => "assets/img/sneakers/exclusieve/image2.png"],
+    ["name" => "Bold Statement", "description" => "Met zijn gedurfde kleuren en unieke stijl is deze sneaker een echte blikvanger.", "image" => "assets/img/sneakers/exclusieve/image5.png"],
+    ["name" => "Modern Fusion", "description" => "Deze sneaker biedt een perfecte mix van stijl en functionaliteit, ontworpen voor de moderne consument.", "image" => "assets/img/sneakers/exclusieve/image10.png"],
+    ["name" => "Refined Detail", "description" => "Een verfijnde sneaker met aandacht voor detail, perfect voor elke gelegenheid.", "image" => "assets/img/sneakers/exclusieve/image3.png"],
+    ["name" => "Timeless Classic", "description" => "Een tijdloze sneaker die nooit uit de mode raakt, met een luxueuze afwerking.", "image" => "assets/img/sneakers/exclusieve/image4.png"],
+    ["name" => "Collector's Dream", "description" => "Met zijn unieke design en kleurenpalet is deze sneaker een must-have voor elke verzamelaar.", "image" => "assets/img/sneakers/exclusieve/image9.png"]
 ];
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate each field
-    $username = validate_input($_POST['username'] ?? '', 'username');
-    $email = validate_input($_POST['email'] ?? '', 'email');
-    $password = validate_input($_POST['password'] ?? '', 'password');
-    $birthdate = validate_input($_POST['birthdate'] ?? '', 'birthdate');
-
-    // Collect validated data and errors
-    $form_data = [
-        'username' => $username['value'],
-        'email' => $email['value'],
-        'password' => $password['value'],
-        'birthdate' => $birthdate['value']
-    ];
-
-    $errors = array_filter([
-        'username' => $username['error'],
-        'email' => $email['error'],
-        'password' => $password['error'],
-        'birthdate' => $birthdate['error']
-    ]);
-
-    // If no errors, process the form
-    if (empty($errors)) {
-        try {
-            // Hash the password before storing
-            $hashed_password = password_hash($form_data['password'], PASSWORD_DEFAULT);
-
-            $sql = "INSERT INTO user (Username, Email, Password, PreOrder, date)
-                    VALUES (:username, :email, :password, 1, :birthdate)";
-            $statement = $pdo->prepare($sql);
-            $statement->execute([
-                ':username' => $form_data['username'],
-                ':email' => $form_data['email'],
-                ':password' => $hashed_password,
-                ':birthdate' => $form_data['birthdate']
-            ]);
-            $feedback = "Uw pre-order is geregistreerd. Bedankt voor uw interesse!";
-
-            // Set a session variable for feedback
-            session_start();
-            $_SESSION['feedback'] = $feedback;
-
-            // Redirect using JavaScript for a smoother transition
-            echo "<script>setTimeout(function() { window.location.href = 'index.html'; }, 2500);</script>";
-            exit;
-        } catch (PDOException $e) {
-            error_log("Database Error: " . $e->getMessage());
-            $errors['database'] = "Er is een fout opgetreden bij het verwerken van uw aanvraag. Probeer het later opnieuw.";
-        }
-    }
-}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -148,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="assets/img/favicon.ico" title="Favicon" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/namari-color.css">
@@ -290,10 +235,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <a href="/agenda" class="links">Agenda</a>
                                 </li>
                                 <li>
+                                    <a href="/informatieStands" class="links">Info Stands</a>
+                                </li>
+                                <li>
                                     <a href="/FAQ" class="links">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="links">Pre-order nu!</a>
+                                    <a href="/pre-order-waitlist" class="links">Pre-order nu!</a>
                                 </li>
                             </ul>
                             <div id="progress-bar"></div>
@@ -328,55 +276,80 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img class="pre-order-img" src="https://t3.ftcdn.net/jpg/04/47/45/18/360_F_447451812_qESxM59uYu4VEziwYgAnhxrYbbWlEaXR.jpg" alt="">
     </div>
 
-    <main class="pre-order-main" id="content" role="main">
-
-        <section>
-            <div class="form">
-
-                <?php if (!empty($errors)): ?>
-                    <div class="error-messages">
-                        <?php foreach ($errors as $error): ?>
-                            <p><?php echo htmlspecialchars($error); ?></p>
+    <main class="pre-order-container bg-gray-100 py-8 px-4">
+        <div class="w-10/12 mx-auto space-y-8">
+            <h2 class="text-2xl font-semibold mb-4">Plaats je Pre-order</h2>
+            <section class="py-8" id="sneaker-section">
+                <div class="max-w-7xl mx-auto px-4">
+                    <h1 class="text-3xl font-bold text-center mb-8">Pre-order Exclusieve Sneakers</h1>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8" id="sneaker-grid">
+                        <?php foreach ($sneakers as $sneaker): ?>
+                            <div class="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition-transform duration-300"
+                                data-sneaker-name="<?php echo $sneaker['name']; ?>">
+                                <a href="#" onclick="showForm('<?php echo $sneaker['name']; ?>')">
+                                    <img class="w-full h-60 object-cover" src="<?php echo $sneaker['image']; ?>" alt="<?php echo $sneaker['name']; ?>">
+                                    <div class="p-6">
+                                        <h4 class="text-xl font-bold text-gray-800 mb-2"><?php echo $sneaker['name']; ?></h4>
+                                        <p class="text-gray-600 text-sm"><?php echo $sneaker['description']; ?></p>
+                                    </div>
+                                </a>
+                            </div>
                         <?php endforeach; ?>
                     </div>
-                <?php endif; ?>
 
-                <?php if (isset($feedback)): ?>
-                    <div class="success-message">
-                        <p><?php echo htmlspecialchars($feedback); ?></p>
+                    <!-- Formulier, standaard verborgen -->
+                    <div id="preorder-form" class="hidden mt-8 bg-gray-100 p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-semibold mb-4">Pre-order Formulier</h2>
+                        <p id="selected-sneaker-name" class="text-lg mb-4"></p>
+                        <form action="process-preorder.php" method="POST">
+                            <input type="hidden" id="sneaker-name" name="sneaker_name" value="">
+
+                            <label for="first_name" class="block text-gray-700 font-medium mb-2">Voornaam:</label>
+                            <input type="text" id="first_name" name="first_name" required class="w-full mb-4 p-2 border border-gray-300 rounded">
+
+                            <label for="last_name" class="block text-gray-700 font-medium mb-2">Achternaam:</label>
+                            <input type="text" id="last_name" name="last_name" required class="w-full mb-4 p-2 border border-gray-300 rounded">
+
+                            <label for="email" class="block text-gray-700 font-medium mb-2">E-mailadres:</label>
+                            <input type="email" id="email" name="email" required class="w-full mb-4 p-2 border border-gray-300 rounded">
+
+                            <label for="quantity" class="block text-gray-700 font-medium mb-2">Aantal:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" class="w-full mb-4 p-2 border border-gray-300 rounded">
+
+                            <label for="price" class="block text-gray-700 font-medium mb-2">Prijs:</label>
+                            <input type="text" id="price" name="price" readonly class="w-full mb-4 p-2 border border-gray-300 rounded bg-gray-200">
+
+                            <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-200">Pre-order</button>
+                            <button type="button" onclick="hideForm()" class="ml-4 text-red-600 hover:underline transition duration-200">Annuleren</button>
+                        </form>
+
                     </div>
-                <?php endif; ?>
+                </div>
+            </section>
 
 
+            <script>
+                function showForm(sneakerName) {
+                    // Verberg het grid en toon het formulier
+                    document.getElementById("sneaker-grid").classList.add("hidden");
+                    document.getElementById("preorder-form").classList.remove("hidden");
 
-                <form class="pre-order-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                    <h2>Vul dit formulier in om een pre-order te plaatsen!</h2>
-                    <div>
-                        <label for="username">Gebruikersnaam:</label>
-                        <input type="text" id="username" name="username" maxlength="50" required value="<?php echo htmlspecialchars($form_data['username']); ?>">
-                    </div>
+                    // Vul de formuliergegevens in
+                    document.getElementById("selected-sneaker-name").textContent = "Pre-order voor: " + sneakerName;
+                    document.getElementById("sneaker-name").value = sneakerName;
 
-                    <div>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" maxlength="255" required value="<?php echo htmlspecialchars($form_data['email']); ?>">
-                    </div>
+                    // Stel een random prijs tussen 200 en 400 in
+                    const randomPrice = Math.floor(Math.random() * (400 - 200 + 1)) + 200;
+                    document.getElementById("price").value = "€ " + randomPrice;
+                }
 
-                    <div>
-                        <label for="password">Wachtwoord:</label>
-                        <input type="password" id="password" name="password" maxlength="255" required>
-                    </div>
-
-                    <div>
-                        <label for="birthdate">Geboortedatum:</label>
-                        <input type="date" id="birthdate" name="birthdate" required value="<?php echo htmlspecialchars($form_data['birthdate']); ?>">
-                    </div>
-
-                    <div>
-                        <button type="submit">Pre-order nu!</button>
-                    </div>
-                </form>
-            </div>
-        </section>
+                function hideForm() {
+                    // Verberg het formulier en toon het grid opnieuw
+                    document.getElementById("sneaker-grid").classList.remove("hidden");
+                    document.getElementById("preorder-form").classList.add("hidden");
+                }
+            </script>
+        </div>
     </main>
     <section class="col-1 countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
         <div class="countdown-container flex">

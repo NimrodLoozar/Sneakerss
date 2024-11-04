@@ -54,7 +54,7 @@ if ($user) {
     $username = $user['username'] ?? '';
     // Haal de profielfoto en coverfoto op uit de database
     $profile_photo = $user['profile_photo'] ?? 'assets/img/default/default-profile.png'; // Vul hier een standaard afbeelding in als placeholder
-    $cover_photo = $user['cover_photo'] ?? 'assets/img/default/default-profile.jpg'; // Vul hier een standaard afbeelding in als placeholder
+    $cover_photo = $user['cover_photo'] ?? 'assets/img/default/default-cover.jpg'; // Vul hier een standaard afbeelding in als placeholder
     $first_name = $user['first_name'] ?? '';
     $last_name = $user['last_name'] ?? '';
     $email = $user['email'] ?? '';
@@ -79,99 +79,6 @@ if ($user) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Admin Dashboard</title>
-    <!-- <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            color: #666;
-            margin-top: 20px;
-        }
-
-        form {
-            background: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #007bff;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #0056b3;
-        }
-
-        .error {
-            color: red;
-            margin-bottom: 15px;
-        }
-
-        .reservation-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .reservation-item {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .reservation-actions {
-            display: inline;
-        }
-
-        .reservation-actions button {
-            margin-left: 10px;
-        }
-    </style> -->
 </head>
 
 <body class="h-full">
@@ -263,7 +170,7 @@ if ($user) {
                             </div>
                         </div>
 
-                        <!-- Drawer -->|
+                        <!-- Drawer -->
                         <div id="profile-drawer" class="hidden fixed inset-0 z-10 flex items-center justify-end bg-gray-500 bg-opacity-75">
                             <div class="relative w-screen max-w-md h-full bg-white shadow-xl transform transition ease-in-out duration-500 bg-red-600">
                                 <!-- Cover Foto -->

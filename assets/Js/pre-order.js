@@ -1,3 +1,3 @@
 function preOrderButton() {
-    window.location.href = '../../pre-order.php';
+    window.location.href = '../../pre-order';
 }

@@ -237,7 +237,7 @@ file_put_contents('debug.log', $user['cover_photo'] . PHP_EOL, FILE_APPEND);
                             </div>
                         </div>
 
-                        <!-- Drawer -->|
+                        <!-- Drawer -->
                         <div id="profile-drawer" class="hidden fixed inset-0 z-10 flex items-center justify-end bg-gray-500 bg-opacity-75">
                             <div class="relative w-screen max-w-md h-full bg-white shadow-xl transform transition ease-in-out duration-500 bg-red-600">
                                 <!-- Cover Foto -->

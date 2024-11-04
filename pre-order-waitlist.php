@@ -1,5 +1,4 @@
 <?php
-// Fouten weergeven voor debugging
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -7,18 +6,12 @@ ini_set('display_errors', 1);
 include 'config/config.php'; // Zorg ervoor dat je je databaseverbinding hebt
 
 // Ophalen van goedgekeurde reserveringen
-// $query = "SELECT * FROM reservations WHERE statuses = 'approved'";
-// $stmt = $pdo->prepare($query);
-// $stmt->execute();
-// $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 $sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.statuses FROM reservations r
         JOIN stands s ON r.stand_id = s.id
         JOIN plains p ON s.plain_id = p.id
         WHERE r.statuses = 'approved'";
 $stmt = $pdo->query($sql);
 $reservations = $stmt->fetchAll();
-
 
 // Haal zichtbaarheid op van alle secties in één keer
 $sql = "SELECT section_name, is_visible FROM sections";
@@ -30,6 +23,26 @@ function isSectionVisible($section)
 {
     global $visibility;
     return isset($visibility[$section]) && $visibility[$section];
+}
+
+// Query om alle gebruikers op te halen die ten minste één pre-order hebben
+$sql = "SELECT username, PreOrder FROM users WHERE PreOrder > 0";
+// Query om het totaal aantal pre-orders op te halen
+$sqlCount = "SELECT SUM(PreOrder) as total_preorders FROM users";
+
+try {
+    // Uitvoeren van de query om de gebruikers op te halen
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $usernames = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Uitvoeren van de query om het aantal pre-orders op te halen
+    $stmtCount = $pdo->prepare($sqlCount);
+    $stmtCount->execute();
+    $countResult = $stmtCount->fetch(PDO::FETCH_ASSOC);
+    $totalPreorders = $countResult['total_preorders'];
+} catch (PDOException $e) {
+    die("Fout bij het ophalen van gegevens: " . $e->getMessage());
 }
 ?>
 
@@ -146,11 +159,11 @@ function isSectionVisible($section)
                             <?php
                             if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
                                 echo ('<ul class="interface-icons">
-                                    <li><a href="/admin_dashboard.php">Admin dash</a></li>
+                                    <li><a href="/admin_dashboard">Admin dash</a></li>
                                     </ul>');
                             } elseif (isset($_SESSION['user_id']) && $_SESSION['is_admin'] === 0) {
                                 echo ('<ul class="interface-icons">
-                                    <li><a href="/dashboard.php">Dashboard</a></li>
+                                    <li><a href="/dashboard">Dashboard</a></li>
                                     </ul>');
                             } else {
                                 echo ('<ul class="offline interface-icons">
@@ -226,63 +239,52 @@ function isSectionVisible($section)
         <img class="pre-order-img" src="https://t3.ftcdn.net/jpg/04/47/45/18/360_F_447451812_qESxM59uYu4VEziwYgAnhxrYbbWlEaXR.jpg" alt="">
     </div>
 
-    <main class="pre-order-main">
-        <div class="row">
+    <main class="pre-order-main bg-gray-100 py-8 px-4">
+        <div class="space-y-8 max-w-md mx-auto">
 
-            <div class="col-1">
-
-                <h2 class="col-1">Wil jij op de lijst staan? Pre-order nu!</h2>
-                <div class="col-1 button-container">
-                    <button class="pre-order-button" onclick="preOrderButton()">
-                        pre-order!
+            <!-- Pre-order call-to-action -->
+            <div class="text-center">
+                <h2 class="text-2xl font-semibold mb-4">Wil jij op de lijst staan? Pre-order nu!</h2>
+                <div class="button-container">
+                    <button class="pre-order-button bg-blue-500 text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-600" onclick="preOrderButton()">
+                        Pre-order!
                     </button>
                 </div>
             </div>
-            <?php
-            // Configuratiebestand inladen
-            include 'config/config.php';
 
-            // Query om alle gebruikers op te halen waar PreOrder true is
-            $sql = "SELECT username FROM user WHERE PreOrder = 1";
-            $sqlCount = "SELECT COUNT(*) as total_preorders FROM user WHERE PreOrder = 1";
-
-            try {
-                // Uitvoeren van de query om de gebruikers op te halen
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute();
-                $usernames = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                // Uitvoeren van de query om het aantal pre-orders op te halen
-                $stmtCount = $pdo->prepare($sqlCount);
-                $stmtCount->execute();
-                $countResult = $stmtCount->fetch(PDO::FETCH_ASSOC);
-                $totalPreorders = $countResult['total_preorders'];
-            } catch (PDOException $e) {
-                die("Fout bij het ophalen van gegevens: " . $e->getMessage());
-            }
-            ?>
-            <div class="col-1">
-
-                <h2 class="col-1">Aantal Pre-orders</h2>
-                <div class="col-1 pre-order-number">
-                    <p>
-                        <?php echo htmlspecialchars($totalPreorders); ?>
-                    </p>
+            <!-- Pre-order aantal -->
+            <div class="text-center">
+                <h2 class="text-2xl font-semibold mb-4">Aantal Pre-orders</h2>
+                <div class="pre-order-number text-lg font-semibold text-gray-700">
+                    <p><?php echo htmlspecialchars($totalPreorders); ?></p>
                 </div>
             </div>
-            <div class="col-1">
 
-                <h2 class="col-1">Onze beste gasten die een pre-order hebben.</h2>
-                <div class="col-1 pre-orders">
-                    <ul>
-                        <?php foreach ($usernames as $user): ?>
-                            <li><?php echo htmlspecialchars($user['username']); ?></li>
-                        <?php endforeach; ?>
+            <!-- Gebruikers met Pre-orders -->
+            <div class="text-center">
+                <h2 class="text-2xl font-semibold mb-4">Onze beste gasten die een pre-order hebben</h2>
+                <div class="pre-orders">
+                    <ul class="list-disc list-inside text-gray-700">
+                        <?php if (empty($usernames)): ?>
+                            <li>Er zijn momenteel geen pre-orders geregistreerd.</li>
+                        <?php else: ?>
+                            <?php foreach ($usernames as $user): ?>
+                                <li><?php echo htmlspecialchars($user['username']) . " - " . $user['PreOrder'] . " pre-order(s)"; ?></li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
+
         </div>
     </main>
+    <script>
+        function preOrderButton() {
+            // Hier kan je de logica toevoegen om de pre-order functionaliteit aan te roepen
+            alert('Pre-order functie moet hier worden geïmplementeerd!');
+        }
+    </script>
+
     <section class="countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
         <div class="col-12 countdown-container flex">
             <div class="countdown row">
@@ -363,7 +365,7 @@ function isSectionVisible($section)
 <script src="assets/js/featherlight.min.js"></script>
 <script src="assets/js/featherlight.gallery.min.js"></script>
 <script src="assets/js/wow.min.js"></script>
-<script src="Standindeling.js"></script>
+<script src="assets/Js/Standindeling.js"></script>
 <script src="assets/Js/recentie_slide.js"></script>
 <script src="assets/js/jquery.enllax.min.js"></script>
 <script src="assets/js/jquery.scrollUp.min.js"></script>
@@ -374,7 +376,7 @@ function isSectionVisible($section)
 <script src="assets/js/lightbox.min.js"></script>
 <script src="assets/js/site.js"></script>
 <script src="assets/Js/progressBar.js"></script>
-<script src="ExclusieveSneakers.js"></script>
+<script src="assets/Js/ExclusieveSneakers.js"></script>
 <script src="assets/Js/Wat_is_Sneakerness.js"></script>
 
 </html>

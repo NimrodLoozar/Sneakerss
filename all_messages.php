@@ -24,20 +24,18 @@ $stmt = $pdo->prepare($unreadQuery);
 $stmt->execute(['user_id' => $user_id]);
 $unreadCount = $stmt->fetchColumn();
 
-
 // Haal reserveringen op voor de gebruiker
 $reservations_query = "SELECT stand_id, company_name, statuses FROM reservations WHERE user_id = :user_id";
 $reservations_stmt = $pdo->prepare($reservations_query);
 $reservations_stmt->execute(['user_id' => $user_id]);
 $reservation = $reservations_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/// Haal de gebruikersgegevens op
+// Haal de gebruikersgegevens op
 $query = "SELECT * FROM users WHERE id = :user_id"; // Voeg de extra velden toe
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -83,47 +81,6 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                     <div class="hidden md:flex items-center space-x-4">
-                        <!-- Belletje met dropdown-menu -->
-                        <div class="relative">
-                            <!-- Belletje met meldingen teller -->
-                            <button type="button" id="notification-button" type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                <span class="sr-only">View notifications</span>
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                                </svg>
-                                <?php if ($unreadCount > 0): ?>
-                                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-semibold leading-none text-red-100 bg-red-600 rounded-full"><?php echo $unreadCount; ?></span>
-                                <?php endif; ?>
-                            </button>
-
-
-
-                            <!-- Dropdown menu voor meldingen -->
-                            <div id="notification-dropdown" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="notification-button" tabindex="-1">
-                                <h2 class="text-sm font-bold px-4 py-2">Meldingen</h2>
-                                <div id="notification-items">
-                                    <?php if (empty($messages)): ?>
-                                        <p class="block px-4 py-2 text-sm text-gray-700">Geen nieuwe meldingen.</p>
-                                    <?php else: ?>
-                                        <ul class="mb-4">
-                                            <?php foreach ($messages as $message): ?>
-                                                <li class="block px-4 py-2 text-sm text-gray-700 <?php if ($message['is_read'] == 0) echo 'font-bold'; ?>">
-                                                    <?php echo htmlspecialchars($message['messages']); ?>
-                                                    <form action="mark_message_read.php" method="POST" style="display:inline;">
-                                                        <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
-                                                        <button type="submit" class="text-blue-500 hover:underline">Markeer als gelezen</button>
-                                                    </form>
-                                                </li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    <?php endif; ?>
-                                    <a href="all_messages.php" class="block px-4 py-2 text-sm text-blue-500 hover:underline text-center">Bekijk alle berichten</a>
-                                </div>
-                            </div>
-
-
-                        </div>
-
                         <!-- Profielfoto met dropdown-menu -->
                         <!-- User menu -->
                         <div class="relative">
@@ -140,7 +97,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                             </div>
                         </div>
 
-                        <!-- Drawer -->|
+                        <!-- Drawer -->
                         <div id="profile-drawer" class="hidden fixed inset-0 z-10 flex items-center justify-end bg-gray-500 bg-opacity-75">
                             <div class="relative w-screen max-w-md h-full bg-white shadow-xl transform transition ease-in-out duration-500 bg-red-600">
                                 <!-- Cover Foto -->
@@ -365,8 +322,6 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>
-
-                    <!-- <a href="dashboard.php" class="mt-4 inline-block text-blue-500 hover:underline">Terug naar Dashboard</a> -->
                 </div>
             </div>
         </main>

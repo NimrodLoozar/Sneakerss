@@ -4263,13 +4263,13 @@ button:focus {
 }
 
 /* Responsive grid */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
     .eventboard-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .eventboard-grid {
         grid-template-columns: 1fr;
     }
@@ -4277,17 +4277,17 @@ button:focus {
     .eventboard img {
         height: 300px;
     }
-}
+} */
 
-.plein {
-    max-width: 100%;
+/* .plein { */
+    /* max-width: 100%; */
     /* Maximaal 100% van het scherm, voorkomt overflow */
-    margin: 0 auto;
-    padding: 10px;
+    /* margin: 0 auto; */
+    /* padding: 10px; */
     /* Voeg padding toe voor wat ruimte */
-}
+/* } */
 
-.pleinPlek {
+/* .pleinPlek {
     border-left: 5px solid #ccc5b9;
     padding: 10px;
     margin: 10px 0;
@@ -4296,9 +4296,9 @@ button:focus {
     font-size: 16px;
     color: #333;
     margin-bottom: 20px;
-}
+} */
 
-.plein h1,
+/* .plein h1,
 .plein p {
     text-align: center;
     padding: 10px;
@@ -4310,21 +4310,21 @@ button:focus {
 
 .plein h3 {
     font-size: 16px;
-}
+} */
 
-.plein p {
+/* .plein p {
     font-size: 16px;
     background-color: #324046;
     color: #e30613;
     padding: 10px;
     margin: 10px auto;
     border: solid 1px #ccc;
-    max-width: 100%;
+    max-width: 100%; */
     /* Flexibel binnen de container */
-    border-radius: 25px;
-}
+    /* border-radius: 25px; */
+/* } */
 
-.plein-titel {
+/* .plein-titel {
     font-size: 20px;
     font-weight: bold;
     display: block;
@@ -4341,7 +4341,7 @@ button:focus {
 
 .borderbox {
     box-sizing: content-box;
-}
+} */
 
 /* Registratie */
 
