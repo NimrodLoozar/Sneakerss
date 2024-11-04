@@ -80,66 +80,65 @@ file_put_contents('debug.log', $user['cover_photo'] . PHP_EOL, FILE_APPEND);
             padding: 20px;
         }
 
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
 
-        h2 {
-            color: #555;
-            margin-top: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-        }
+    h2 {
+        color: #444;
+        margin-top: 30px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+    }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-        li {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-        }
+    li {
+        background: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        form {
-            display: inline;
-        }
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    button:hover {
+        background-color: #0056b3;
+    }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+    a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    a:hover {
+        color: #0056b3;
+    }
 
-        a:hover {
-            color: #0056b3;
-        }
-
-        .message {
-            background-color: #e7f3fe;
-            border-left: 5px solid #2196F3;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
+    .message {
+        background-color: #e7f3fe;
+        border-left: 5px solid #2196F3;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
 
         .error {
             color: red;

@@ -995,66 +995,129 @@ function isSectionVisible($section)
                         }
                     </script>
 
-                </div>
-            </section>
-            <!-- End of Clients-->
-        <?php else: ?>
-            <p class="verbouwing"><strong>De 'Clients' sectie is momenteel in verbouwing.</strong></p>
-        <?php endif; ?>
+            </div>
+        </section>
+        <!-- End of Clients-->
+       
+        <!-- <img src="assets/img/sneakers/exclusieve/1000_F_710340762_jxdKEAHkmLfDe6WpIzxSnAiTAoPTXIKo.png" alt="">
+        <img src="assets/img/sneakers/exclusieve/futuristic-nike-sneaker-red-color-digital-art-3d-render_948904-115.png" alt="">
+        <img src="assets/img/sneakers/exclusieve/image.png" alt="">
+        <img src="assets/img/sneakers/exclusieve/image2.png" alt="">
+        <img src="assets/img/sneakers/exclusieve/image5.png" alt="">
+        <img src="assets/img/sneakers/exclusieve/image10.png" alt="">
+        <img src="assets/img/sneakers/exclusieve/image3.png" alt="">
+        <img src="assets/img/sneakers/exclusieve/image4.png" alt="">
+        <img src="assets/img/sneakers/exclusieve/image9.png" alt=""> -->
 
-        <?php if (isSectionVisible('sneaker')): ?>
-            <section id="sneaker" class="col scrollto clearfix no-padding-bottom wow fadeInRight" data-wow-delay="0.1s">
-                <div class=" row clearfix">
-                    <div class="col-9">
+        <section id="exclusive-sneakers" class="exclusive-sneakers-section">
+    <div class="exclusive-sneakers-container">
+        <header class="exclusive-sneakers-heading text-center">
+            <h3 class="exclusive-collabs">COLLABS</h3>
+            <h2 class="exclusive-section-title">Exclusieve Sneakers</h2>
+            <p class="exclusive-section-subtitle">
+                Ontdek onze unieke selectie van exclusieve sneakers, alleen verkrijgbaar bij Sneakerness. Laat je inspireren door stijl en innovatie.
+            </p>
+        </header>
 
-                        <div class="section-heading">
-                            <h3>COLLABS</h3>
-                            <h2 class="section-title">Exclusieve Sneakers</h2>
-                            <p class="section-subtitle">
-                                We zijn trots om samen om de volgende sneakers te presenteren. Dit zijn maar een paar stuks
-                                van de duizenden sneakers die bij ons tevinden is.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row scrollto clearfix">
-                        <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.4s">
-                            <!-- Sneaker items zullen hier dynamisch geladen worden -->
-                            <ul>
-                                <img src="assets/img/sneakers/exclusieve/1000_F_710340762_jxdKEAHkmLfDe6WpIzxSnAiTAoPTXIKo.png"
-                                    alt="">
-                                <img src="assets/img/sneakers/exclusieve/futuristic-nike-sneaker-red-color-digital-art-3d-render_948904-115.png"
-                                    alt="">
-                                <img src="assets/img/sneakers/exclusieve/imag6.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/imag7.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/imag8.png" alt="">
-                            </ul>
-                        </div>
-                        <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.5s">
-                            <!-- Sneaker items zullen hier dynamisch geladen worden -->
-                            <ul>
-                                <img src="assets/img/sneakers/exclusieve/image.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/image2.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/image5.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/image10.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/image4.png" alt="">
-                            </ul>
-                        </div>
-                        <div class="row sneaker sneaker-container wow fadeInUp" data-wow-delay="0.6s">
-                            <!-- Sneaker items zullen hier dynamisch geladen worden -->
-                            <ul>
-                                <img src="assets/img/sneakers/exclusieve/image3.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/image4.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/image9.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/image11.png" alt="">
-                                <img src="assets/img/sneakers/exclusieve/image12.png" alt="">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        <?php else: ?>
-            <p class="verbouwing"><strong>De 'Sneaker' sectie is momenteel in verbouwing.</strong></p>
-        <?php endif; ?>
+        <div class="exclusive-sneaker-grid">
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/1000_F_710340762_jxdKEAHkmLfDe6WpIzxSnAiTAoPTXIKo.png" alt="Exclusieve Sneaker - Urban Mirage" loading="lazy">
+                    <figcaption>
+                        <h4>Urban Mirage</h4>
+                        <p>Een meesterwerk van design, vervaardigd uit innovatieve materialen voor ongeëvenaard comfort en stijl.</p>
+                    </figcaption>
+                </figure>
+            </div>
+            
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/futuristic-nike-sneaker-red-color-digital-art-3d-render_948904-115.png" alt="Exclusieve Sneaker - Futuristic Wave" loading="lazy">
+                    <figcaption>
+                        <h4>Futuristic Wave</h4>
+                        <p>Een gedurfde creatie die stijl en functionaliteit perfect combineert, een must-have voor elke sneakerliefhebber.</p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/image.png" alt="Exclusieve Sneaker - Artisanal Luxe" loading="lazy">
+                    <figcaption>
+                        <h4>Artisanal Luxe</h4>
+                        <p>Dit kunstwerk tilt elke outfit naar een hoger niveau met zijn verfijnde ontwerp en unieke uitstraling.</p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/image2.png" alt="Exclusieve Sneaker - Everyday Elegance" loading="lazy">
+                    <figcaption>
+                        <h4>Everyday Elegance</h4>
+                        <p>Deze sneaker combineert comfort met een opvallend ontwerp, perfect voor dagelijks gebruik.</p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/image5.png" alt="Exclusieve Sneaker - Bold Statement" loading="lazy">
+                    <figcaption>
+                        <h4>Bold Statement</h4>
+                        <p>Met zijn gedurfde kleuren en unieke stijl is deze sneaker een echte blikvanger.</p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/image10.png" alt="Exclusieve Sneaker - Modern Fusion" loading="lazy">
+                    <figcaption>
+                        <h4>Modern Fusion</h4>
+                        <p>Deze sneaker biedt een perfecte mix van stijl en functionaliteit, ontworpen voor de moderne consument.</p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/image3.png" alt="Exclusieve Sneaker - Refined Detail" loading="lazy">
+                    <figcaption>
+                        <h4>Refined Detail</h4>
+                        <p>Een verfijnde sneaker met aandacht voor detail, perfect voor elke gelegenheid.</p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/image4.png" alt="Exclusieve Sneaker - Timeless Classic" loading="lazy">
+                    <figcaption>
+                        <h4>Timeless Classic</h4>
+                        <p>Een tijdloze sneaker die nooit uit de mode raakt, met een luxueuze afwerking.</p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="exclusive-sneaker-item">
+                <figure>
+                    <img src="assets/img/sneakers/exclusieve/image9.png" alt="Exclusieve Sneaker - Collector's Dream" loading="lazy">
+                    <figcaption>
+                        <h4>Collector's Dream</h4>
+                        <p>Met zijn unieke design en kleurenpalet is deze sneaker een must-have voor elke verzamelaar.</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+        <p id="error-message" class="error_hidden">Geen exclusieve sneakers beschikbaar</p>
+        <!-- <br> -->
 
         <?php if (isSectionVisible('exclusive')): ?>
             <!-- Exclusive Underground Sneakers Section -->
@@ -1227,7 +1290,12 @@ function isSectionVisible($section)
                     <div class="col-12 section-heading">
                         <h3>JOUW SNEAKER PASS</h3>
                         <h2 class="section-title">Kies het juiste pakket voor jouw</h2>
-                    </div>
+                    <p>
+                    Entree tot Sneakerness is alleen mogelijk met een geldige Sneaker Pass. 
+                    Kies het pakket dat het beste bij jou past bij de evenementenbalie.
+                </p>
+                
+                </div>
 
                     <!--Prijsblok Student-->
                     <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.2s">
@@ -1244,8 +1312,7 @@ function isSectionVisible($section)
                                 <li>Toegang tot online sneaker-workshops</li>
                                 <li>1 Jaar gratis updates</li>
                             </ul>
-                            <a href="#" class="button"> RESERVEER NU</a>
-                        </div>
+                            </div>
                     </div>
                     <!--Einde Prijsblok-->
 
@@ -1264,13 +1331,12 @@ function isSectionVisible($section)
                                 <li>1 Jaar gratis updates</li>
                                 <li>Basis klantenondersteuning</li>
                             </ul>
-                            <a href="#" class="button"> RESERVEER NU</a>
-                        </div>
+                            </div>
                     </div>
                     <!--Einde Prijsblok-->
 
                     <!--Prijsblok-->
-                    <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.6s">
                         <div class="pricing-block-content">
                             <h3>Advanced Sneakerhead</h3>
                             <p class="pricing-sub">Meest gekozen pakket</p>
@@ -1284,8 +1350,7 @@ function isSectionVisible($section)
                                 <li>2 Jaar gratis updates</li>
                                 <li>Premium klantenondersteuning</li>
                             </ul>
-                            <a href="#" class="button"> RESERVEER NU</a>
-                        </div>
+                            </div>
                     </div>
                     <!--Einde Prijsblok-->
 
