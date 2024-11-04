@@ -278,7 +278,6 @@ $sneakers = [
 
     <main class="pre-order-container bg-gray-100 py-8 px-4">
         <div class="w-10/12 mx-auto space-y-8">
-            <h2 class="text-2xl font-semibold mb-4">Plaats je Pre-order</h2>
             <section class="py-8" id="sneaker-section">
                 <div class="max-w-7xl mx-auto px-4">
                     <h1 class="text-3xl font-bold text-center mb-8">Pre-order Exclusieve Sneakers</h1>
@@ -351,9 +350,9 @@ $sneakers = [
             </script>
         </div>
     </main>
-    <section class="col-1 countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
-        <div class="countdown-container flex">
-            <div class="countdown">
+    <section class="countdown-pre-container wow fadeInRight" data-wow-delay=".9s">
+        <div class="col-12 countdown-container flex">
+            <div class="countdown row">
                 <div class="col-3">
                     <div class="">
                         <span id="days"></span>
