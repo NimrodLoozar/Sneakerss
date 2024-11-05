@@ -470,30 +470,82 @@ file_put_contents('debug.log', $user['cover_photo'] . PHP_EOL, FILE_APPEND);
                                         <!-- Link naar reserve_stand.php als het evenement nog niet is verlopen -->
                                         <a href="reserve_stand.php?event_id=<?php echo $event['id']; ?>" class="text-blue-500 hover:text-blue-700 font-medium">Stand huren</a>
                                     <?php endif; ?>
+
+                                    <!-- Alleen zichtbaar voor admins -->
+                                    <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
+                                        <a href="edit_event.php?event_id=<?php echo $event['id']; ?>" class="text-green-500 hover:text-green-700 font-medium">Bewerken</a>
+                                    <?php endif; ?>
                                 </li>
                             <?php endforeach; ?>
-
                         </ul>
                     </div>
                 </div>
 
                 <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
-                    <div class="flex grid">
-                        <ul>
-                            <?php foreach ($reservation as $reservations): ?>
-                                <li>
-                                    <?php echo htmlspecialchars($reservations['company_name']); ?>
-                                    <?php echo htmlspecialchars($reservations['stand_id']); ?>
-                                    <?php echo htmlspecialchars($reservations['statuses']); ?>
-                                    <form action="mark_message_read.php" method="POST" style="display:inline;">
-                                        <input type="hidden" name="reservations_id" value="<?php echo $reservations['stand_id']; ?>">
-                                        <!-- <button type="submit">Markeer als gelezen</button> -->
-                                    </form>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+                        <!-- Prijsblok Student -->
+                        <div class="pricing-block bg-white shadow-lg rounded-lg p-6 text-center border border-blue-500 h-full flex flex-col">
+                            <h3 class="text-xl font-semibold mb-2">Student Sneakerhead</h3>
+                            <p class="text-gray-500 mb-4">Voor studenten</p>
+                            <div class="text-3xl font-bold text-blue-500 mb-2">€14,99</div>
+                            <p class="text-gray-700 mb-4">Voor studenten met echte sneakers</p>
+                            <ul class="text-left text-gray-600 mb-6 space-y-2">
+                                <li>5 Exclusieve releases per jaar</li>
+                                <li>Korting op sneaker-evenementen</li>
+                                <li>Toegang tot online sneaker-workshops</li>
+                                <li>1 Jaar gratis updates</li>
+                            </ul>
+                            <a href="order.php?ticket_type=Student Sneakerhead&price=14.99" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition mt-auto">Koop kaartje</a>
+                        </div>
+
+                        <!-- Prijsblok Basis -->
+                        <div class="pricing-block bg-white shadow-lg rounded-lg p-6 text-center h-full flex flex-col">
+                            <h3 class="text-xl font-semibold mb-2">Basis Sneakerhead</h3>
+                            <p class="text-gray-500 mb-4">Het starterspakket</p>
+                            <div class="text-3xl font-bold text-blue-500 mb-2">€19,99</div>
+                            <p class="text-gray-700 mb-4">Krijg toegang tot exclusieve sneakerreleases en communityfuncties</p>
+                            <ul class="text-left text-gray-600 mb-6 space-y-2">
+                                <li>3 Exclusieve sneakerreleases</li>
+                                <li>Toegang tot online forums</li>
+                                <li>1 Jaar gratis updates</li>
+                                <li>Basis klantenondersteuning</li>
+                            </ul>
+                            <a href="order.php?ticket_type=Basis Sneakerhead&price=19.99" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition mt-auto">Koop kaartje</a>
+                        </div>
+
+                        <!-- Prijsblok Advanced -->
+                        <div class="pricing-block bg-white shadow-lg rounded-lg p-6 text-center h-full flex flex-col">
+                            <h3 class="text-xl font-semibold mb-2">Advanced Sneakerhead</h3>
+                            <p class="text-gray-500 mb-4">Meest gekozen pakket</p>
+                            <div class="text-3xl font-bold text-blue-500 mb-2">€29,99</div>
+                            <p class="text-gray-700 mb-4">Diepgaande toegang tot releases en events</p>
+                            <ul class="text-left text-gray-600 mb-6 space-y-2">
+                                <li>10 Exclusieve sneakerreleases</li>
+                                <li>Toegang tot alle online forums en live chats</li>
+                                <li>2 Jaar gratis updates</li>
+                                <li>Premium klantenondersteuning</li>
+                            </ul>
+                            <a href="order.php?ticket_type=Advanced Sneakerhead&price=29.99" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition mt-auto">Koop kaartje</a>
+                        </div>
+
+                        <!-- Prijsblok Pro -->
+                        <div class="pricing-block bg-white shadow-lg rounded-lg p-6 text-center h-full flex flex-col">
+                            <h3 class="text-xl font-semibold mb-2">Pro Sneakerhead</h3>
+                            <p class="text-gray-500 mb-4">Voor de echte verzamelaars</p>
+                            <div class="text-3xl font-bold text-blue-500 mb-2">€49,99</div>
+                            <p class="text-gray-700 mb-4">Volledige toegang tot alle exclusieve sneaker- en VIP-events</p>
+                            <ul class="text-left text-gray-600 mb-6 space-y-2">
+                                <li>Onbeperkte sneakerreleases</li>
+                                <li>VIP-toegang tot evenementen</li>
+                                <li>Levenslang gratis updates</li>
+                                <li>24/7 VIP klantenondersteuning</li>
+                            </ul>
+                            <a href="order.php?ticket_type=Pro Sneakerhead&price=49.99" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition mt-auto">Koop kaartje</a>
+                        </div>
                     </div>
                 </div>
+
+            </div>
         </main>
 </body>
 

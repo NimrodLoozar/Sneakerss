@@ -1314,6 +1314,7 @@ function isSectionVisible($section)
                                 <li>Toegang tot online sneaker-workshops</li>
                                 <li>1 Jaar gratis updates</li>
                             </ul>
+                            <a href="/login" class="button"> Koop kaartje</a>
                         </div>
                     </div>
                     <!--Einde Prijsblok-->
@@ -1333,6 +1334,7 @@ function isSectionVisible($section)
                                 <li>1 Jaar gratis updates</li>
                                 <li>Basis klantenondersteuning</li>
                             </ul>
+                            <a href="/login" class="button"> Koop kaartje</a>
                         </div>
                     </div>
                     <!--Einde Prijsblok-->
@@ -1352,6 +1354,7 @@ function isSectionVisible($section)
                                 <li>2 Jaar gratis updates</li>
                                 <li>Premium klantenondersteuning</li>
                             </ul>
+                            <a href="/login" class="button"> Koop kaartje</a>
                         </div>
                     </div>
                     <!--Einde Prijsblok-->
@@ -1371,6 +1374,7 @@ function isSectionVisible($section)
                                 <li>Levenslang gratis updates</li>
                                 <li>24/7 VIP klantenondersteuning</li>
                             </ul>
+                            <a href="/login" class="button"> Koop kaartje</a>
                         </div>
                     </div>
                     <!--Einde Prijsblok-->
