@@ -247,50 +247,50 @@ function isSectionVisible($section)
     </div>
 
     <main id="content" role="main">
-        <div id="agenda" class="section">
-            <div class="agenda-item">
-                <h2 id="november" class="agenda-date">27 november</h2>
-                <div class="event">
+        <div id="agenda" class="section row">
+            <div class="agenda-item col-12 col-l-6 col-m-12 col-s-12">
+                <h2 id="november" class="agenda-date col-12">27 november</h2>
+                <div class="event col-12">
                     <span class="event-time">10:00 - 11:00</span>
                     <span class="event-description">VIP Vroege Toegang</span>
                 </div>
-                <div class="event">
+                <div class="event col-12">
                     <span class="event-time">11:00 - 19:00</span>
                     <span class="event-description">Algemene Toegang</span>
                 </div>
-                <div class="event">
+                <div class="event col-12">
                     <span class="event-time">12:00 - 18:00</span>
                     <span class="event-description">DJ-sets in de hoofdhal</span>
                 </div>
-                <div class="event">
+                <div class="event col-12">
                     <span class="event-time">14:00 - 16:00</span>
                     <span class="event-description">Sneaker Customization Workshop</span>
                 </div>
-                <div class="event">
+                <div class="event col-12">
                     <span class="event-time">16:00 - 17:30</span>
                     <span class="event-description">Q&A met beroemde sneakerontwerpers</span>
                 </div>
             </div>
 
-            <div class="agenda-item">
-                <h2 id="november-1" class="agenda-date">28 november</h2>
-                <div class="event">
+            <div class="agenda-item col-12 col-l-6 col-m-12 col-s-12">
+                <h2 id="november-1" class="agenda-date col-12">28 november</h2>
+                <div class="event col-12">
                     <span class="event-time">10:00 - 11:00</span>
                     <span class="event-description">VIP Vroege Toegang</span>
                 </div>
-                <div class="event">
+                <div class="event col-12">
                     <span class="event-time">11:00 - 18:00</span>
                     <span class="event-description">Algemene Toegang</span>
                 </div>
-                <div class="event">
+                <div class="event col-12">
                     <span class="event-time">12:00 - 17:00</span>
                     <span class="event-description">DJ-sets in de hoofdhal</span>
                 </div>
-                <div class="event">
+                <div class="event col-12">
                     <span class="event-time">13:00 - 15:00</span>
                     <span class="event-description">Sneaker Historie Tentoonstelling</span>
                 </div>
-                <div class="event">
+                <div class="event col-12">
                     <span class="event-time">15:30 - 17:00</span>
                     <span class="event-description">Sneaker Ruil Masterclass</span>
                 </div>

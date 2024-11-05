@@ -12,12 +12,14 @@ include 'config/config.php'; // Zorg ervoor dat je je databaseverbinding hebt
 // $stmt->execute();
 // $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.statuses FROM reservations r
+$sql = "SELECT r.id, r.company_name, s.stand_number, p.plain_name, r.statuses, r.about
+        FROM reservations r
         JOIN stands s ON r.stand_id = s.id
         JOIN plains p ON s.plain_id = p.id
         WHERE r.statuses = 'approved'";
 $stmt = $pdo->query($sql);
 $reservations = $stmt->fetchAll();
+
 
 
 // Haal zichtbaarheid op van alle secties in één keer
@@ -512,7 +514,7 @@ function isSectionVisible($section)
                         👟 Keep it fresh, keep it exclusive! 👟 <br> <br>
                         </p>
 
-                        <a href="/"><button>Blijf op de hoogte</button></a>
+                        <a href="/subscribe"><button>Blijf op de hoogte</button></a>
                     </div>
                 </div>
                 <div class="col-61">
@@ -969,11 +971,16 @@ function isSectionVisible($section)
                                             </div>
                                             <?php foreach ($reservations as $res): ?>
                                                 <div class="vendor-item col-3">
-                                                    <h2><?php echo htmlspecialchars($res['company_name']); ?></h2>
-                                                    <p><strong>Trivia:</strong> Populair onder skateboarders en geliefd om hun casual stijl.</p>
-                                                    <p><strong>Locatie:</strong> Stand <?php echo htmlspecialchars($res['stand_number']); ?>, <?php echo htmlspecialchars($res['plain_name']); ?></p>
+                                                    <h2><?php echo htmlspecialchars($res['company_name'] ?? ''); ?></h2>
+
+                                                    <!-- Vervang de placeholder tekst met de 'about' informatie -->
+                                                    <p><strong>Over:</strong> <?php echo htmlspecialchars($res['about'] ?? ''); ?></p>
+
+                                                    <p><strong>Locatie:</strong> Stand <?php echo htmlspecialchars($res['stand_number'] ?? ''); ?>, <?php echo htmlspecialchars($res['plain_name'] ?? ''); ?></p>
                                                 </div>
                                             <?php endforeach; ?>
+
+
                                         </div>
                                     </div>
                                 </div>

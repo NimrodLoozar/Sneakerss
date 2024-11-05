@@ -8,18 +8,14 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Controleer of event_id is doorgegeven
-if (!isset($_GET['event_id'])) {
-    header('Location: dashboard.php');
-    exit();
-}
-
-$event_id = $_GET['event_id'];
+// Haal de user_id uit de sessie
+$user_id = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $company_name = $_POST['company_name'];
     $stand_id = $_POST['stand_id'];
     $days = $_POST['days'];
+    $about = $_POST['about'];  // Hier wordt de 'about' tekst uit het formulier opgehaald
     $status = "Pending";  // Standaard status voor de reservering
 
     // Haal standinformatie op
@@ -34,15 +30,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $total_price = $stand['price_per_day'] * $days;
 
         // Reserveer de stand
-        $query = "INSERT INTO reservations (user_id, stand_id, company_name, statuses, days, total_price) 
-                  VALUES (:user_id, :stand_id, :company_name, :statuses, :days, :total_price)";
+        $query = "INSERT INTO reservations (user_id, stand_id, company_name, statuses, days, total_price, about) 
+                  VALUES (:user_id, :stand_id, :company_name, :statuses, :days, :total_price, :about)";
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->bindParam(':stand_id', $stand_id, PDO::PARAM_INT);
         $stmt->bindParam(':company_name', $company_name, PDO::PARAM_STR);
         $stmt->bindParam(':statuses', $status, PDO::PARAM_STR);
         $stmt->bindParam(':days', $days, PDO::PARAM_INT);
         $stmt->bindParam(':total_price', $total_price, PDO::PARAM_STR);
+        $stmt->bindParam(':about', $about, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             // Update de beschikbaarheid van de stand

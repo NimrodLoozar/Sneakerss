@@ -37,6 +37,7 @@ $plains = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Stand Reserveren voor <?php echo htmlspecialchars($event['name']); ?></title>
     <script>
         function getStands(plain_id) {
@@ -66,7 +67,7 @@ $plains = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
         }
     </script>
-    <style>
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -144,18 +145,20 @@ $plains = $stmt->fetchAll(PDO::FETCH_ASSOC);
         a:hover {
             text-decoration: underline;
         }
-    </style>
+    </style> -->
 </head>
 
-<body>
-    <h1>Reserveer een stand voor <?php echo htmlspecialchars($event['name']); ?></h1>
+<body class="bg-gray-100 p-8">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">
+        Reserveer een stand voor <?php echo htmlspecialchars($event['name']); ?>
+    </h1>
 
-    <form action="reserve_stands.php?event_id=<?php echo $event_id; ?>" method="POST">
-        <label for="company_name">Bedrijfsnaam:</label>
-        <input type="text" name="company_name" id="company_name" required>
+    <form action="reserve_stands.php?event_id=<?php echo $event_id; ?>" method="POST" class="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto space-y-6">
+        <label for="company_name" class="block text-gray-700 font-semibold">Bedrijfsnaam:</label>
+        <input type="text" name="company_name" id="company_name" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-        <label for="plain">Kies een plein:</label>
-        <select name="plain_id" id="plain" onchange="getStands(this.value)" required>
+        <label for="plain" class="block text-gray-700 font-semibold">Kies een plein:</label>
+        <select name="plain_id" id="plain" onchange="getStands(this.value)" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option value="">-- Selecteer een plein --</option>
             <?php foreach ($plains as $plain): ?>
                 <option value="<?php echo $plain['id']; ?>">
@@ -164,22 +167,29 @@ $plains = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </select>
 
-        <label for="stand_id">Kies een stand:</label>
-        <select name="stand_id" id="stand_select" onchange="updatePrice()" required>
+        <label for="stand_id" class="block text-gray-700 font-semibold">Kies een stand:</label>
+        <select name="stand_id" id="stand_select" onchange="updatePrice()" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option value="">-- Selecteer eerst een plein --</option>
         </select>
 
-        <label for="days">Aantal dagen:</label>
-        <select name="days" id="days" onchange="updatePrice()" required>
+        <label for="days" class="block text-gray-700 font-semibold">Aantal dagen:</label>
+        <select name="days" id="days" onchange="updatePrice()" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option value="1">1 dag</option>
             <option value="2">2 dagen</option>
         </select>
 
-        <p id="price_display">Selecteer een stand en aantal dagen</p>
+        <p id="price_display" class="text-gray-700 font-semibold">Selecteer een stand en aantal dagen</p>
 
-        <button type="submit">Reserveer Stand</button>
+        <label for="about" class="block text-gray-700 font-semibold">About:</label>
+        <textarea name="about" id="about" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4"></textarea>
+
+        <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition-colors">Reserveer Stand</button>
     </form>
-    <a href="dashboard.php">Terug naar het Dashboard</a>
+
+    <a href="dashboard.php" class="block text-center mt-6 text-blue-500 hover:underline">
+        Terug naar het Dashboard
+    </a>
 </body>
+
 
 </html>

@@ -377,6 +377,10 @@ if ($user) {
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-2">Nieuwe Nieuwsbrief Aanmaken</h2>
+                    <a href="create_newsletter.php" class="inline-block rounded-md px-4 py-2 text-white bg-blue-500 hover:bg-blue-700">Nieuwsbrief Aanmaken</a>
+                </div>
+                <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
                     <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-2">Nieuwe Reserveringen</h2>
                     <?php if (empty($allreservations)): ?>
                         <p class="mb-4 bg-gray-100 p-4 rounded-2xl mb-2 shadow-lg">Geen nieuwe reserveringen.</p>

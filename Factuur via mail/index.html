@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Factuur Systeem</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Factuur Systeem voor Ticketaankoop en Standhuur</h1>
+  <form id="factuurForm" action="generate_invoice.php" method="POST">
+    <label for="naam">Naam:</label>
+    <input type="text" id="naam" name="naam" required>
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="type">Type:</label>
+    <select id="type" name="type" required>
+      <option value="ticket">Ticket</option>
+      <option value="standhuur">Standhuur</option>
+    </select>
+
+    <label for="bedrag">Bedrag (€):</label>
+    <input type="number" id="bedrag" name="bedrag" required min="1">
+
+    <button type="submit">Factuur Genereren</button>
+  </form>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
