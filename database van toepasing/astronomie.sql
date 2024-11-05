@@ -94,18 +94,6 @@ CREATE TABLE IF NOT EXISTS `messages` (
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id`, `user_id`, `messages`, `is_read`, `created_at`) VALUES
-(20, 1, 'Je hebt een pre-order geplaatst voor Urban Mirage. Aantal: 1, Prijs: € 327.', 1, '2024-11-04 14:29:18'),
-(21, 1, 'Je reservering is goedgekeurd.', 1, '2024-11-04 14:33:33'),
-(22, 1, 'Je reservering is goedgekeurd.', 1, '2024-11-04 14:33:34'),
-(23, 1, 'Je reservering is goedgekeurd.', 1, '2024-11-04 14:33:55'),
-(24, 2, 'Je hebt een pre-order geplaatst voor Artisanal Luxe. Aantal: 1, Prijs: € 262.', 1, '2024-11-04 14:35:00'),
-(25, 2, 'Je reservering is goedgekeurd.', 1, '2024-11-04 14:35:15'),
-(26, 1, 'Je reservering is goedgekeurd.', 1, '2024-11-05 10:42:01'),
-(27, 1, 'Je reservering is goedgekeurd.', 1, '2024-11-05 14:44:49'),
-(28, 1, 'Je reservering is goedgekeurd.', 1, '2024-11-05 14:52:59'),
-(29, 1, 'Je reservering is goedgekeurd.', 1, '2024-11-05 15:02:49'),
-(30, 1, 'Je reservering is goedgekeurd.', 1, '2024-11-05 15:03:18');
 
 -- --------------------------------------------------------
 
@@ -209,15 +197,6 @@ CREATE TABLE IF NOT EXISTS `reservations` (
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`id`, `user_id`, `stand_id`, `company_name`, `statuses`, `days`, `total_price`, `about`) VALUES
-(17, 1, 3, 'Sneaker Design', 'approved', 2, 200.00, NULL),
-(18, 1, 4, 'liuyt', 'approved', 1, 200.00, NULL),
-(19, 1, 5, 'Sneaker Design505', 'approved', 2, 200.00, 'qawsedrftghy'),
-(20, NULL, 6, 'Sneaker Design', 'approved', 2, 400.00, 'qwe'),
-(21, NULL, 7, 'Sneaker Design', 'approved', 1, 150.00, 'qwe'),
-(22, NULL, 8, 'Sneaker Design', 'approved', 1, 100.00, 'qwe'),
-(23, 1, 9, 'Sneaker Design', 'approved', 2, 200.00, 'qwe'),
-(24, 1, 10, 'liuyt', 'approved', 1, 150.00, 'qweqewqwe');
 
 -- --------------------------------------------------------
 
@@ -273,22 +252,22 @@ CREATE TABLE IF NOT EXISTS `stands` (
 --
 
 INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`, `price_per_day`) VALUES
-(1, 1, 'A', 0, 100.00),
-(2, 1, 'AA', 0, 150.00),
-(3, 1, 'A', 0, 100.00),
-(4, 1, 'AA+', 0, 200.00),
-(5, 1, 'A', 0, 100.00),
-(6, 1, 'AA+', 0, 200.00),
-(7, 1, 'AA', 0, 150.00),
-(8, 1, 'A', 0, 100.00),
-(9, 1, 'A', 0, 100.00),
-(10, 1, 'AA', 0, 150.00),
+(1, 1, 'A', 1, 100.00),
+(2, 1, 'AA', 1, 150.00),
+(3, 1, 'A', 1, 100.00),
+(4, 1, 'AA+', 1, 200.00),
+(5, 1, 'A', 1, 100.00),
+(6, 1, 'AA+', 1, 200.00),
+(7, 1, 'AA', 1, 150.00),
+(8, 1, 'A', 1, 100.00),
+(9, 1, 'A', 1, 100.00),
+(10, 1, 'AA', 1, 150.00),
 (11, 1, 'AA+', 1, 200.00),
 (12, 1, 'A', 1, 100.00),
 (13, 1, 'AA', 1, 150.00),
 (14, 1, 'A', 1, 100.00),
 (15, 1, 'AA+', 1, 200.00),
-(16, 2, 'A', 0, 100.00),
+(16, 2, 'A', 1, 100.00),
 (17, 2, 'AA+', 1, 200.00),
 (18, 2, 'AA', 1, 150.00),
 (19, 2, 'A', 1, 100.00),
@@ -330,7 +309,7 @@ INSERT INTO `stands` (`id`, `plain_id`, `stand_number`, `is_available`, `price_p
 (55, 4, 'A', 1, 100.00),
 (56, 4, 'AA', 1, 150.00),
 (57, 4, 'AA+', 1, 200.00),
-(58, 5, 'A', 0, 100.00),
+(58, 5, 'A', 1, 100.00),
 (59, 5, 'AA+', 1, 200.00),
 (60, 5, 'AA', 1, 150.00);
 
@@ -378,8 +357,6 @@ CREATE TABLE IF NOT EXISTS `subscriptions` (
 -- Dumping data for table `subscriptions`
 --
 
-INSERT INTO `subscriptions` (`id`, `email`, `name`, `subscribed_at`, `is_active`) VALUES
-(1, 'nimrod.lobozar@gmail.com', 'Nimród Lobozár', '2024-11-05 18:02:06', 1);
 
 -- --------------------------------------------------------
 
@@ -417,8 +394,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `country`, `street`, `adres`, `city`, `state_province`, `zip_postal_code`, `email`, `password`, `created_at`, `is_admin`, `about`, `profile_photo`, `cover_photo`, `PreOrder`, `date`) VALUES
-(1, 'NimrodLobozar', 'F. Nimród', 'Lobozár', '', '', '', '', '', '', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1, '', 'assets/img/uploads/profile_3_294052465_5222177057837600_119414460320895139_n.jpg', 'assets/img/uploads/cover_1_cover_4_ferenc.lobozar_Hungarian_style_castle__surrounded_by_pine_tree__1b7b63a0-7855-4855-b3ba-45d1b13326c3.png', 1, '2024-11-04 12:05:34'),
-(2, 'TestUser', 'F. Nimród', 'Lobozár', 'Nederland', 'Australie', '25', 'Utrecht', 'Utrecht', '6574PL', 'test@gmail.com', '$2y$10$Mz8DQZgpGzkjx0fyCFYj2O2.vibTbhYxxvk25FhmbZQxZ2lAZS86u', '2024-10-26 22:48:05', 0, '', 'assets/img/uploads/profile_6_imageedit_2_2174348917-300x300.png', 'assets/img/uploads/cover_4_ferenc.lobozar_Hungarian_style_castle__surrounded_by_pine_tree__1b7b63a0-7855-4855-b3ba-45d1b13326c3.png', 1, '2024-11-04 12:05:34'),
+(1, 'NimrodLobozar', 'F. Nimród', 'Lobozár', '', '', '', '', '', '', 'nimrod.lobozar@gmail.com', '$2y$10$ghJvhk2QKyVAoBnwJ8M.cOSfJCTnv/RKhfS4XC5Wyp87eNNSz.sNO', '2024-10-24 14:04:29', 1, '', 'assets/img/uploads/profile_3_294052465_5222177057837600_119414460320895139_n.jpg', 'assets/img/uploads/cover_1_cover_4_ferenc.lobozar_Hungarian_style_castle__surrounded_by_pine_tree__1b7b63a0-7855-4855-b3ba-45d1b13326c3.png', 0, '2024-11-04 12:05:34'),
+(2, 'TestUser', 'F. Nimród', 'Lobozár', 'Nederland', 'Australie', '25', 'Utrecht', 'Utrecht', '6574PL', 'test@gmail.com', '$2y$10$Mz8DQZgpGzkjx0fyCFYj2O2.vibTbhYxxvk25FhmbZQxZ2lAZS86u', '2024-10-26 22:48:05', 0, '', 'assets/img/uploads/profile_6_imageedit_2_2174348917-300x300.png', 'assets/img/uploads/cover_4_ferenc.lobozar_Hungarian_style_castle__surrounded_by_pine_tree__1b7b63a0-7855-4855-b3ba-45d1b13326c3.png', 0, '2024-11-04 12:05:34'),
 (3, 'john_doe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'john@example.com', 'hashed_password_1', '2024-10-01 08:15:00', 0, NULL, NULL, NULL, 0, '2024-11-04 12:05:34'),
 (4, 'jane_smith', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jane@example.com', 'hashed_password_2', '2024-10-01 09:30:00', 0, NULL, NULL, NULL, 0, '2024-11-04 12:05:34'),
 (5, 'alex_jones', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'alex@example.com', 'hashed_password_3', '2024-09-30 12:45:00', 0, NULL, NULL, NULL, 0, '2024-11-04 12:05:34'),
@@ -439,7 +416,7 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `country`, `st
 (20, 'olivia_adams', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'olivia@example.com', 'hashed_password_18', '2024-09-19 10:50:00', 0, NULL, NULL, NULL, 0, '2024-11-04 12:05:34'),
 (21, 'ethan_thompson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ethan@example.com', 'hashed_password_19', '2024-09-18 11:15:00', 0, NULL, NULL, NULL, 0, '2024-11-04 12:05:34'),
 (22, 'katie_hughes', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'katie@example.com', 'hashed_password_20', '2024-09-17 12:05:00', 0, NULL, NULL, NULL, 0, '2024-11-04 12:05:34'),
-(23, 'TestAdmin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'test@admin.com', '$2y$10$JdSy8RJC2hvJlg/KItZ.UuJzJ7D/5cDMGTz9xbbGQXOPCkQKNVy6G', '2024-11-04 17:27:27', 0, NULL, 'https://avatar.iran.liara.run/public/boy?username=Ash', 'assets/img/default/default-cover.jpg', 0, '2024-11-04 17:27:27');
+(23, 'TestAdmin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'test@admin.com', '$2y$10$JdSy8RJC2hvJlg/KItZ.UuJzJ7D/5cDMGTz9xbbGQXOPCkQKNVy6G', '2024-11-04 17:27:27', 1, NULL, 'https://avatar.iran.liara.run/public/boy?username=Ash', 'assets/img/default/default-cover.jpg', 0, '2024-11-04 17:27:27');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
