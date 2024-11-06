@@ -24,18 +24,28 @@ function searchFAQ() {
     if (input.trim() === "") {
         // Als het zoekveld leeg is, toon alle FAQ-items
         faqItems.forEach(item => {
-            item.style.display = "block"; // Of gebruik item.classList.remove("hidden");
+            item.style.display = "block";
         });
+        document.getElementById("error-message").style.display = "none"; // Verberg foutmelding
     } else {
         // Filter de FAQ-items op basis van de zoekinvoer
         faqItems.forEach(item => {
             const questionText = item.querySelector("h3").textContent.toLowerCase();
-            // Check of de vraag begint met de invoer
             if (questionText.startsWith(input)) {
-                item.style.display = "block"; // Of gebruik item.classList.remove("hidden");
+                item.style.display = "block";
             } else {
-                item.style.display = "none"; // Of gebruik item.classList.add("hidden");
+                item.style.display = "none";
             }
         });
+
+        // Controleer of er zichtbare FAQ-items zijn en toon de foutmelding indien nodig
+        const hasVisibleItems = Array.from(faqItems).some(item => item.style.display === "block");
+
+        if (!hasVisibleItems) {
+            document.getElementById("error-message").style.display = "block";
+            document.getElementById("error-message").textContent = "Geen resultaten gevonden.";
+        } else {
+            document.getElementById("error-message").style.display = "none";
+        }
     }
 }

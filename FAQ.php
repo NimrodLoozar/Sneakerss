@@ -28,8 +28,8 @@ $visibility = $stmt->fetchAll(PDO::FETCH_KEY_PAIR); // Maakt een array zoals ['a
 // Functie om zichtbaarheid van een sectie te controleren
 function isSectionVisible($section)
 {
-    global $visibility;
-    return isset($visibility[$section]) && $visibility[$section];
+  global $visibility;
+  return isset($visibility[$section]) && $visibility[$section];
 }
 ?>
 
@@ -160,15 +160,15 @@ function isSectionVisible($section)
               </ul>
               <?php
               if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
-                  echo ('<ul class="interface-icons">
+                echo ('<ul class="interface-icons">
                       <li><a href="/admin_dashboard.php">Admin dash</a></li>
                       </ul>');
               } elseif (isset($_SESSION['user_id']) && $_SESSION['is_admin'] === 0) {
-                  echo ('<ul class="interface-icons">
+                echo ('<ul class="interface-icons">
                       <li><a href="/dashboard.php">Dashboard</a></li>
                       </ul>');
               } else {
-                  echo ('<ul class="offline interface-icons">
+                echo ('<ul class="offline interface-icons">
                   <li>
                       <a href="/register">Register</a>
                   </li>
@@ -256,6 +256,7 @@ function isSectionVisible($section)
             <input type="text" id="searchInput" placeholder="Zoek in de FAQ..." />
             <button id="searchButton" onclick="searchFAQ()">Zoek</button>
             <div id="resultSection">
+              <div id="error-message" class="no-results" style="display: none;">Geen resultaten gevonden.</div>
 
               <section class="faq-section">
                 <div class="container">
